@@ -1,0 +1,225 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Date:
+%     21.10.2018
+%
+% Course:
+%     TIN - Intelligent Sensors
+%     https://www.fit.vutbr.cz/study/courses/index.php.en?id=12941
+%
+% Project:
+%     1. homework
+%
+% Authors:
+%     Adrián Tóth, xtotha01@stud.fit.vutbr.cz
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[left=2cm,text={17cm,24cm},top=3cm]{geometry}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{url}
+\usepackage{enumerate}
+
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{breakurl}
+\usepackage{etoolbox}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{supertabular}
+\usepackage{tikz}
+\usepackage[titles]{tocloft}
+
+\renewcommand{\cftdot}{}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+
+\setlength\parindent{0pt}
+
+\def\UrlBreaks{\do\/\do-}
+\newcommand{\tilda}{\raisebox{0.5ex}{\texttildelow}}
+
+\graphicspath{{.}}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \Huge
+        \textsc{
+            Fakulta informačních technologií\\
+            Vysoké učení technické v~Brně
+        }
+        \vspace{80px}
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[scale=0.3]{img/vutbr-fit-logo.eps}
+        \end{figure}
+        \\[15mm]
+        \Huge{
+            \textbf{
+                TIN
+            }
+        }
+        \\[1.5mm]
+        \huge{
+            \textbf{
+                Teoretická informatika
+            }
+        }
+        \\[2.5em]
+        \LARGE{
+            \textbf{
+                1. domáca úloha
+            }
+        }
+        \vfill
+    \end{center}
+        \Large{
+            Adrián Tóth (xtotha01)\hfill \today
+        }
+\end{titlepage}
+
+\setlength{\parskip}{0pt}
+\hypersetup{hidelinks}\tableofcontents
+\setlength{\parskip}{0pt}
+
+\newpage
+
+\section{1. príklad} %############################################################################
+
+\subsection{(a)} %################################################################################
+
+Vyjadríme si rozdiel množín ekvivalentným vzťahom pomocou prieniku a doplnku (komplementu), aby sme mohli využiť vetu zo študijného textu.
+\begin{center}
+$L_1 \setminus L_2 = L_1 \cap \overline{L_2}$
+\end{center}
+
+Podľa \textit{Vety 3.23}~\cite{TIN}(str. č. 50) platí, že trieda regulárnych jazykov $\mathcal{L}_3$ je uzavretá voči prieniku a doplnku (komplementu).\\
+
+Využitím hore uvedenej \textit{Vety 3.23} a vzťahu možeme stanoviť, že nasledujúci vzťah je platný.
+
+\begin{center}
+$L_1,L_2 \in \mathcal{L}_3 \Rightarrow L_1 \setminus L_2 \in \mathcal{L}_3$
+\end{center}
+
+\subsection{(b)} %################################################################################
+
+Vyjadríme si rozdiel množín ekvivalentným vzťahom pomocou prieniku a doplnku (komplementu), aby sme mohli využiť vetu zo študijného textu.
+\begin{center}
+$L_1 \setminus L_2 = L_1 \cap \overline{L_2}$
+\end{center}
+
+Podľa \textit{Vety 4.27}~\cite{TIN}(str. č. 96) platí, že trieda deterministických bezkontextových jazykov $\mathcal{L}_2^D$ je uzavretá voči prieniku a doplnku (komplementu).\\
+
+Využitím hore uvedenej \textit{Vety 4.27} a vzťahu možeme stanoviť, že nasledujúci vzťah je platný.
+
+\begin{center}
+$L_1 \in \mathcal{L}_3, L_2 \in \mathcal{L}_2^D \Rightarrow L_1 \setminus L_2 \in \mathcal{L}_2^D$
+\end{center}
+
+
+\subsection{(c)} %################################################################################
+
+\red{
+$L_1 \in \mathcal{L}_3, L_2 \in \mathcal{L}_2 \Rightarrow L_1 \setminus L_2 \in \mathcal{L}_2$\\
+Dôkaz sporom (treba protipríklad):\\
+$L \subseteq \Sigma^*$\\
+$\overline{L} = \Sigma^* \setminus L$
+$\Sigma^*$ je regulárny jazyk - $\mathcal{L}_2$
+}
+
+\newpage
+\section{2. príklad} %############################################################################
+
+$M_L = (Q,\Sigma,\Gamma,\delta,q_0,Z_0,F)$\\
+\\
+$Q = \{q_0,q_1,q_2,q_3\}$\\
+$\Sigma = \{\#,0,1,2\}$\\
+$\Gamma = \{Z_0,1\}$\\
+$F = \{q_3\}$\\
+$\delta$:\\
+\begin{tabular}{l}
+$\hspace{1.5em}\delta(q_0,0,Z_0)=\{(q_0,Z_0)\}$\\
+$\hspace{1.5em}\delta(q_0,1,Z_0)=\{(q_0,1Z_0)\}$\\
+$\hspace{1.5em}\delta(q_0,2,Z_0)=\{(q_0,11Z_0)\}$\\
+$\hspace{1.5em}\delta(q_0,0,1)=\{(q_0,1)\}$\\
+$\hspace{1.5em}\delta(q_0,1,1)=\{(q_0,11)\}$\\
+$\hspace{1.5em}\delta(q_0,2,1)=\{(q_0,111)\}$\\
+$\hspace{1.5em}\delta(q_0,\#,1)=\{(q_1,1)\}$\\
+$\hspace{1.5em}\delta(q_0,\#,Z_0)=\{(q_1,Z_0)\}$\\
+$\hspace{1.5em}\delta(q_1,2,1)=\{(q_2,\epsilon)\}$\\
+$\hspace{1.5em}\delta(q_2,\epsilon,1)=\{(q_1,\epsilon)\}$\\
+$\hspace{1.5em}\delta(q_1,1,1)=\{(q_1,\epsilon)\}$\\
+$\hspace{1.5em}\delta(q_1,0,1)=\{(q_1,1)\}$\\
+$\hspace{1.5em}\delta(q_1,0,Z_0)=\{(q_1,Z_0)\}$\\
+$\hspace{1.5em}\delta(q_1,\epsilon,Z_0)=\{(q_3,\epsilon)\}$\\
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (34.5,-14.2) circle (3);
+\draw (34.5,-14.2) node {$q_0$};
+\draw [black] (34.5,-37.7) circle (3);
+\draw (34.5,-37.7) node {$q_1$};
+\draw [black] (52.2,-37.7) circle (3);
+\draw (52.2,-37.7) node {$q_3$};
+\draw [black] (52.2,-37.7) circle (2.4);
+\draw [black] (16.4,-37.7) circle (3);
+\draw (16.4,-37.7) node {$q_2$};
+\draw [black] (25.8,-14.2) -- (31.5,-14.2);
+\draw (25.3,-14.2) node [left] {$Z_0$};
+\fill [black] (31.5,-14.2) -- (30.7,-13.7) -- (30.7,-14.7);
+\draw [black] (37.18,-12.877) arc (144:-144:2.25);
+\draw (41.75,-14.2) node [right] {\begin{tabular}{c}$0,Z_0/Z_0$\\$1,Z_0/1Z_0$\\$2,Z_0/11Z_0$\\$0,1/1$\\$1,1/11$\\$2,1/111$\end{tabular}};
+\fill [black] (37.18,-15.52) -- (37.53,-16.4) -- (38.12,-15.59);
+\draw [black] (34.5,-17.2) -- (34.5,-34.7);
+\fill [black] (34.5,-34.7) -- (35,-33.9) -- (34,-33.9);
+\draw (35,-25.95) node [left] {\begin{tabular}{c}$\#,1/1$\\$\#,Z_0/Z_0$\end{tabular}};
+\draw [black] (31.63,-38.567) arc (-76.44684:-103.55316:26.37);
+\fill [black] (19.27,-38.57) -- (19.93,-39.24) -- (20.17,-38.27);
+\draw (25.45,-39.8) node [below] {$2,1/\epsilon$};
+\draw [black] (19.199,-36.628) arc (106.95174:73.04826:21.439);
+\fill [black] (31.7,-36.63) -- (31.08,-35.92) -- (30.79,-36.87);
+\draw (25.45,-35.2) node [above] {$\epsilon,1/\epsilon$};
+\draw [black] (35.823,-40.38) arc (54:-234:2.25);
+\draw (34.5,-44.95) node [below] {\begin{tabular}{c}$1,1/\epsilon$\\$0,1/1$\\$0,Z_0/Z_0$\end{tabular}};
+\fill [black] (33.18,-40.38) -- (32.3,-40.73) -- (33.11,-41.32);
+\draw [black] (37.5,-37.7) -- (49.2,-37.7);
+\fill [black] (49.2,-37.7) -- (48.4,-37.2) -- (48.4,-38.2);
+\draw (43.35,-37.2) node [above] {$\epsilon,Z_0/\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+\newpage
+\section{3. príklad}
+\red{$L = \{ w_1\#w_2\ |\ w_1,w_2 \in \Sigma^*, \#_1(w_1) + (2 * \#_2(w_1)) = \#_1(w_2) + (2 * \#_2(w_2))\}$}
+
+\section{4. príklad}
+\red{
+$S \rightarrow p$  ...to... $S' \rightarrow p$\\
+$S \rightarrow pA$ ...to... $A \rightarrow p$\\
+$A \rightarrow pB$ ...to... $B \rightarrow Ap$\\
+$A \rightarrow p$  ...to... $S' \rightarrow Ap$\\
+}
+
+\section{5. príklad}
+\red{$L = \{ w \in \{a,b\}^*\ |\ \#_a(w)mod\ 3 \neq 0 \wedge \#_b(w) > 0\}$}
+\newpage
+
+\section{Literatúra}
+\bibliographystyle{slovakiso}
+\begin{flushleft}
+    \bibliography{quotation}
+\end{flushleft}
+
+\end{document}
