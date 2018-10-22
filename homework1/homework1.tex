@@ -205,12 +205,34 @@ $\hspace{1.5em}\delta(q_1,\epsilon,Z_0)=\{(q_3,\epsilon)\}$\\
 \red{$L = \{ w_1\#w_2\ |\ w_1,w_2 \in \Sigma^*, \#_1(w_1) + (2 * \#_2(w_1)) = \#_1(w_2) + (2 * \#_2(w_2))\}$}
 
 \section{4. príklad}
-\red{
-$S \rightarrow p$  ...to... $S' \rightarrow p$\\
-$S \rightarrow pA$ ...to... $A \rightarrow p$\\
-$A \rightarrow pB$ ...to... $B \rightarrow Ap$\\
-$A \rightarrow p$  ...to... $S' \rightarrow Ap$\\
-}
+
+\underline{\textbf{\large{ALGORITMUS}}}\\[0.3em]
+\textbf{Vstup}: Pravá lineárna gramatika $G_P = (N,\Sigma,P,S)$\\
+\textbf{Výstup}: Ľavá lineárna gramatika $G_L = (N',\Sigma',P',S')$ taká, že $L(G_P)=L(G_L)$\\
+\textbf{Metóda}:\\[-2em]
+\begin{displayquote}
+    \begin{enumerate}[1.)]
+        \item pridáme pravidlo $S_0 \rightarrow S$  ak sa $S$ vyskytuje napravo
+        \item $A   \rightarrow pB \Longleftrightarrow B   \rightarrow Ap$
+        \item $S_P \rightarrow p  \Longleftrightarrow S_P \rightarrow p $ kde $S_P$ je počiatočný neterminál
+        \item $S_P \rightarrow pA \Longleftrightarrow A   \rightarrow p $ kde $S_P$ je počiatočný neterminál
+        \item $A   \rightarrow p  \Longleftrightarrow S_P \rightarrow Ap$ kde $S_P$ je počiatočný neterminál
+    \end{enumerate}
+\end{displayquote}
+
+\hfill
+
+\underline{\textbf{\large{DEMONŠTRÁCIA}}}\\[0.3em]
+\textbf{Vstup}: Pravá lineárna gramatika $G = (\{S,A,B\}, \{a, b\}, P, S)$\\[-1.25em]
+\begin{center}
+\begin{tabular}{ll}
+P:&$S \rightarrow abA\ |\ bS$\\
+&$A \rightarrow bB\ |\ S\ |\ ab$\\
+&$B \rightarrow \epsilon\ |\ aA$\\
+\end{tabular}
+\end{center}
+\textbf{Výstup}: Ľavá lineárna gramatika $G_L = (N',\Sigma',P',S')$ taká, že $L(G)=L(G_L)$\\
+
 
 \section{5. príklad}
 \red{$L = \{ w \in \{a,b\}^*\ |\ \#_a(w)mod\ 3 \neq 0 \wedge \#_b(w) > 0\}$}
