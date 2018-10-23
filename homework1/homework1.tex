@@ -94,7 +94,7 @@
 
 \newpage
 
-\section{1. príklad} %############################################################################
+\section{Príklad číslo 1} %############################################################################
 
 \subsection{(a)} %################################################################################
 
@@ -134,10 +134,10 @@ Predpokladajme že $L_1 \in \mathcal{L}_3, L_2 \in \mathcal{L}_2 \Rightarrow L_1
 
 Ak berieme v úvahu, že $L_1 = \Sigma^*$, tak musí platiť $\Sigma^* \setminus L_2 \in \mathcal{L}_2 \Rightarrow \overline{L_2} \in \mathcal{L}_2 \Rightarrow \underline{\textbf{SPOR}}$\\
 
-Vznikol nám spor z toho dôvodu, že podľa \textit{Vety 4.24}~\cite{TIN}(str. č. 95) platí, že bezkontextové jazyky nie sú uzavreté voči doplnku.
+Vznikol nám spor pri $\overline{L_2} \in \mathcal{L}_2$ z toho dôvodu, že podľa \textit{Vety 4.24}~\cite{TIN}(str. č. 95) platí, že bezkontextové jazyky nie sú uzavreté voči doplnku.
 
 \newpage
-\section{2. príklad} %############################################################################
+\section{Príklad číslo 2} %############################################################################
 
 $M_L = (Q,\Sigma,\Gamma,\delta,q_0,Z_0,F)$\\
 \\
@@ -202,10 +202,22 @@ $\delta(q_1,\epsilon,Z_0)=\{(q_3,\epsilon)\}$\\
 \end{center}
 
 \newpage
-\section{3. príklad}
-\red{$L = \{ w_1\#w_2\ |\ w_1,w_2 \in \Sigma^*, \#_1(w_1) + (2 * \#_2(w_1)) = \#_1(w_2) + (2 * \#_2(w_2))\}$}
+\section{Príklad číslo 3}
+$L = \{ w_1\#w_2\ |\ w_1,w_2 \in \Sigma^*, \#_1(w_1) + (2 * \#_2(w_1)) = \#_1(w_2) + (2 * \#_2(w_2))\}$\\
 
-\section{4. príklad}
+\textit{Veta 3.18}~\cite{TIN}(str. č. 46): Nechť $L$ je nekonečný regulární jazyk. Pak existuje celočíselná konstanta $p>0$ taková, že platí: $w \in L \wedge |w| \geq p \Rightarrow w = xyz \wedge y \neq \epsilon \wedge |xy| \leq p \wedge xy^iz \in L$ pro $i \geq 0$\\
+
+Predpokladáme že jazyk L je regulárny jazyk a tak tento jazyk musí spĺňať hore uvedenú \textit{Vetu 3.18}.\\
+
+Pre $w \in L: w=1^p\#1^p$ pre ktoré platí podmienka $|w| \geq p$ pretože platí $2p+1>p$, pričom z dôvodu podmienky $|xy| \leq p$ nastane jediný prípad a to:\\
+
+$x=1^l \wedge y=1^m \wedge z=1^{p-l-m}\#1^p$ kde $l \geq 0$ a $m > 0 \wedge l+m \leq p$ pre $l,m \in N$\\
+
+$xy^iz = 1^l(1^{m})^i1^{p-l-m}\#1^p = 1^{l+(i*m)+p-l-m}\#1^p = 1^{(i*m)+p-m}\#1^p \notin L$ pre všetky $i \geq 0 \wedge i \neq 1 \wedge i \in N$\\
+
+%$xy^iz \notin L$ pre $i \geq 1 \wedge i = 0$ pre $i \in N$\\
+
+\section{Príklad číslo 4}
 
 \underline{\textbf{\large{ALGORITMUS}}}\\[0.3em]
 \textbf{Vstup}: Pravá lineárna gramatika $G_P = (N,\Sigma,P,S)$\\
@@ -246,7 +258,7 @@ P:&$S \rightarrow abA\ |\ bS$\\
 \textbf{Výstup}: Ľavá lineárna gramatika $G_L = (N',\Sigma',P',S')$ taká, že $L(G)=L(G_L)$\\
 
 
-\section{5. príklad}
+\section{Príklad číslo 5}
 \red{$L = \{ w \in \{a,b\}^*\ |\ \#_a(w)mod\ 3 \neq 0 \wedge \#_b(w) > 0\}$}
 \newpage
 
