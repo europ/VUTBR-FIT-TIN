@@ -258,6 +258,8 @@ P:&$S \rightarrow abA\ |\ bS$\\
 \end{center}
 \textbf{Výstup}: Ľavá lineárna gramatika $G_L = (N',\Sigma',P',S')$ taká, že $L(G)=L(G_L)$\\
 
+\red{TODO}
+
 
 \section{Príklad číslo 5}
 
@@ -465,6 +467,18 @@ $\equiv^2\ =\ \equiv^3\ =\ \equiv$
 \end{tikzpicture}
 \end{center}
 
+Premenujeme si jednotlivé stavy automatu:
+\begin{center}
+\begin{tabular}{r@{$\ \rightarrow\ $}l}
+I   & $q_0$ \\
+II  & $q_1$ \\
+III & $q_2$ \\
+IV  & $q_3$ \\
+V   & $q_4$ \\
+VI  & $q_5$ \\
+\end{tabular}
+\end{center}
+
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
@@ -523,13 +537,26 @@ $\equiv^2\ =\ \equiv^3\ =\ \equiv$
 \end{tikzpicture}
 \end{center}
 
+Rozklad $\Sigma^* / \sim_L$ je tvorený nasledujúcimi šiestimi triedami:
+
+\begin{center}
 $L^{-1}(q_0) = \{w\ |\ \#_a(w) mod\ 3 = 0 \wedge \#_b(w) = 0\}$\\
 $L^{-1}(q_1) = \{w\ |\ \#_a(w) mod\ 3 = 1 \wedge \#_b(w) = 0\}$\\
 $L^{-1}(q_2) = \{w\ |\ \#_a(w) mod\ 3 = 2 \wedge \#_b(w) = 0\}$\\
 $L^{-1}(q_3) = \{w\ |\ \#_a(w) mod\ 3 = 0 \wedge \#_b(w) > 0\}$\\
 $L^{-1}(q_4) = \{w\ |\ \#_a(w) mod\ 3 = 1 \wedge \#_b(w) > 0\}$\\
 $L^{-1}(q_5) = \{w\ |\ \#_a(w) mod\ 3 = 2 \wedge \#_b(w) > 0\}$\\
+\end{center}
 
+Jazyk $L$ je tvorený zjednotením dvoch predošlých tried:
+
+\begin{center}
+$L = L^{-1}(q_4) \cup L^{-1}(q_5)$\\
+\end{center}
+
+Dôkaz, že jazyk $L = \{w \in \{a,b\}^*\ |\ \#_a(w) mod\ 3 \neq 0 \wedge \#_b(w) > 0\}$ je regulárny:\\
+
+\red{TODO}
 
 \newpage
 \section{Literatúra}
