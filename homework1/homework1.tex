@@ -242,17 +242,16 @@ Z predošlého vzťahu vyplýva, že jazyk $L$ nie je regulárny.
 \begin{center}
 \begin{minipage}{0.9\textwidth}
 \begin{enumerate}[1.)]
-    \item $G_P = (N \cup \{S_0\},\Sigma,P \cup \{S_0 \rightarrow S\},S_0)$\\[-2em]
-    \item $N' = N \cup \{S'\}$\\[-2em]
+    \item $N' = N \cup \{S'\}$ kde $ S' \notin N$\\[-2em]
     \item $\Sigma' = \Sigma$\\[-2em]
     \item $P'$:\\[-3.275em]
     \begin{center}
     \begin{minipage}{0.85\textwidth}
-            $\hspace{0.6em}\forall A,B \in N,\  w \in \Sigma^*:$\\
-        \begin{tabular}{lcl}
-            $(B  \rightarrow Aw) \in P'$ & $\Longleftrightarrow$ & $(A   \rightarrow wB) \in P \cup \{S_0 \rightarrow S\}$\\
-            $(A  \rightarrow w ) \in P'$ & $\Longleftrightarrow$ & $(S_0 \rightarrow wA) \in P \cup \{S_0 \rightarrow S\}$\\
-            $(S' \rightarrow Aw) \in P'$ & $\Longleftrightarrow$ & $(A   \rightarrow w ) \in P \cup \{S_0 \rightarrow S\}$\\
+            $\hspace{0.6em}\forall A,B,S \in N,\  w \in \Sigma^*:$\\
+        \begin{tabular}{r|lcl}
+            \textit{I.}   & $(S \rightarrow \varepsilon) \in P'$\\
+            \textit{II.}  & $(B  \rightarrow Aw) \in P'$ & $\Longleftrightarrow$ & $(A \rightarrow wB) \in P$\\
+            \textit{III.} & $(S' \rightarrow Aw) \in P'$ & $\Longleftrightarrow$ & $(A \rightarrow w ) \in P$\\
         \end{tabular}
     \end{minipage}
     \end{center}
@@ -266,9 +265,9 @@ Z predošlého vzťahu vyplýva, že jazyk $L$ nie je regulárny.
 \textbf{Vstup}: Pravá lineárna gramatika $G = (\{S,A,B\}, \{a, b\}, P, S)$\\[-1.25em]
 \begin{center}
 \begin{tabular}{ll}
-P:&$S \rightarrow abA\ |\ bS$\\
-&$A \rightarrow bB\ |\ S\ |\ ab$\\
-&$B \rightarrow \varepsilon\ |\ aA$\\
+    P:&$S \rightarrow abA\ |\ bS$\\
+    &$A \rightarrow bB\ |\ S\ |\ ab$\\
+    &$B \rightarrow \varepsilon\ |\ aA$\\
 \end{tabular}
 \end{center}
 
@@ -276,22 +275,21 @@ P:&$S \rightarrow abA\ |\ bS$\\
 \begin{center}
 \begin{minipage}{0.9\textwidth}
 \begin{enumerate}[1.)]
-    \item $G_P = (N \cup \{S_0\},\Sigma,P \cup \{S_0 \rightarrow S\},S_0)$\\[-2em]
     \item $N' = N \cup \{S'\}$\\[-2em]
     \item $\Sigma' = \Sigma$\\[-2em]
     \item $P'$:\\[-3.45em]%[-3.275em]
     \begin{center}
     \begin{minipage}{0.85\textwidth}
             %$\hspace{0.6em}\forall A,B \in N,\  p \in \Sigma^*:$\\
-        \begin{tabular}{lcl}
-            $S   \rightarrow abA$         & sa transformuje na & $A  \rightarrow Sab$\\
-            $S   \rightarrow bS $         & sa transformuje na & $S  \rightarrow Sb $\\
-            $A   \rightarrow bB $         & sa transformuje na & $B  \rightarrow Ab $\\
-            $A   \rightarrow S  $         & sa transformuje na & $S  \rightarrow A  $\\
-            $A   \rightarrow ab $         & sa transformuje na & $S' \rightarrow Aab$\\
-            $B   \rightarrow \varepsilon$ & sa transformuje na & $S' \rightarrow B  $\\
-            $B   \rightarrow aA $         & sa transformuje na & $A  \rightarrow Ba $\\
-            $S_0 \rightarrow S  $         & sa transformuje na & $S  \rightarrow \varepsilon$\\
+        \begin{tabular}{lrlcl}
+            $S   \rightarrow abA$         & sa transformuje na & $A  \rightarrow Sab$         & podľa & \textit{II.} \\
+            $S   \rightarrow bS $         & sa transformuje na & $S  \rightarrow Sb $         & podľa & \textit{II.} \\
+            $A   \rightarrow bB $         & sa transformuje na & $B  \rightarrow Ab $         & podľa & \textit{II.} \\
+            $A   \rightarrow S  $         & sa transformuje na & $S  \rightarrow A  $         & podľa & \textit{II.} \\
+            $A   \rightarrow ab $         & sa transformuje na & $S' \rightarrow Aab$         & podľa & \textit{III.} \\
+            $B   \rightarrow \varepsilon$ & sa transformuje na & $S' \rightarrow B  $         & podľa & \textit{III.} \\
+            $B   \rightarrow aA $         & sa transformuje na & $A  \rightarrow Ba $         & podľa & \textit{II.} \\
+                                          & pridá sa           & $S  \rightarrow \varepsilon$ & podľa & \textit{I.} \\
         \end{tabular}
     \end{minipage}
     \end{center}
@@ -598,7 +596,7 @@ $L^{-1}(q_4) = \{w\ |\ \#_a(w) mod\ 3 = 1 \wedge \#_b(w) > 0\}$\\
 $L^{-1}(q_5) = \{w\ |\ \#_a(w) mod\ 3 = 2 \wedge \#_b(w) > 0\}$\\
 \end{center}
 
-Relácia $~_L$ má tak konečný počet tried (šesť tried) z čoho vyplýva, že sa jedná o regulárny jazyk.\\
+Rozklad $\Sigma^* / \sim_L$ má tak konečný počet tried (šesť tried t.j. relácia $\sim_L$ má index 6) z čoho vyplýva podľa \textit{Vety 3.20}~\cite{TIN}(str. č. 48), že sa jedná o regulárny jazyk t.j. platí \textit{Veta 3.21}~\cite{TIN}(str. č. 48), keďže sme vedeli zostrojiť minimálny konečný automat.\\
 
 Jazyk $L$ je tvorený zjednotením dvoch predošlých tried:
 
