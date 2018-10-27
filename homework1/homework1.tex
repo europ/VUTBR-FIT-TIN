@@ -104,9 +104,13 @@ Vyjadríme si rozdiel množín ekvivalentným vzťahom pomocou prieniku a doplnk
 $L_1 \setminus L_2 = L_1 \cap \overline{L_2}$
 \end{center}
 
-Podľa \textit{Vety 3.23}~\cite{TIN}(str. č. 50) platí, že trieda regulárnych jazykov $\mathcal{L}_3$ je uzavretá voči prieniku a doplnku (komplementu).\\
+Podľa \textit{Vety 3.23}~\cite{TIN}(str. č. 50) platí, že trieda regulárnych jazykov $\mathcal{L}_3$ je uzavretá voči prieniku a doplnku (komplementu).
 
-Využitím hore uvedenej \textit{Vety 3.23} a vzťahu možeme stanoviť, že nasledujúci vzťah je platný.
+\begin{center}
+$L_1,L_2 \in \mathcal{L}_3 \Rightarrow L_1 \cap \overline{L_2} \in \mathcal{L}_3$
+\end{center}
+
+Využitím hore uvedenej \textit{Vety 3.23} a vzťahov možeme stanoviť, že nasledujúci vzťah je platný.
 
 \begin{center}
 $L_1,L_2 \in \mathcal{L}_3 \Rightarrow L_1 \setminus L_2 \in \mathcal{L}_3$
@@ -119,9 +123,13 @@ Vyjadríme si rozdiel množín ekvivalentným vzťahom pomocou prieniku a doplnk
 $L_1 \setminus L_2 = L_1 \cap \overline{L_2}$
 \end{center}
 
-Podľa \textit{Vety 4.27}~\cite{TIN}(str. č. 96) platí, že trieda deterministických bezkontextových jazykov $\mathcal{L}_2^D$ je uzavretá voči prieniku a doplnku (komplementu).\\
+Podľa \textit{Vety 4.27}~\cite{TIN}(str. č. 96) platí, že trieda deterministických bezkontextových jazykov $\mathcal{L}_2^D$ je uzavretá voči prieniku a doplnku (komplementu).
 
-Využitím hore uvedenej \textit{Vety 4.27} a vzťahu možeme stanoviť, že nasledujúci vzťah je platný.
+\begin{center}
+$L_1 \in \mathcal{L}_3, L_2 \in \mathcal{L}_2^D \Rightarrow L_1 \cap \overline{L_2} \in \mathcal{L}_2^D$
+\end{center}
+
+Využitím hore uvedenej \textit{Vety 4.27} a vzťahov možeme stanoviť, že nasledujúci vzťah je platný.
 
 \begin{center}
 $L_1 \in \mathcal{L}_3, L_2 \in \mathcal{L}_2^D \Rightarrow L_1 \setminus L_2 \in \mathcal{L}_2^D$
@@ -131,9 +139,12 @@ $L_1 \in \mathcal{L}_3, L_2 \in \mathcal{L}_2^D \Rightarrow L_1 \setminus L_2 \i
 \subsection{(c)} %################################################################################
 
 
-Predpokladajme že $L_1 \in \mathcal{L}_3, L_2 \in \mathcal{L}_2 \Rightarrow L_1 \setminus L_2 \in \mathcal{L}_2$ je pravdivý vzťah.\\
+Predpokladajme, že $L_1 \in \mathcal{L}_3, L_2 \in \mathcal{L}_2 \Rightarrow L_1 \setminus L_2 \in \mathcal{L}_2$ je pravdivý vzťah.\\
 
-Ak berieme v úvahu, že $L_1 = \Sigma^*$ (regulárny jazyk), tak musí platiť $\Sigma^* \setminus L_2 \in \mathcal{L}_2 \Rightarrow \overline{L_2} \in \mathcal{L}_2 \Rightarrow \underline{\textbf{SPOR}}$\\
+Ak berieme v úvahu, že $L_1 = \Sigma^*$ (regulárny jazyk), tak musí platiť:
+\begin{center}
+$\Sigma^* \setminus L_2 \in \mathcal{L}_2 \Rightarrow \overline{L_2} \in \mathcal{L}_2 \Rightarrow \underline{\textbf{SPOR}}$
+\end{center}
 
 Vznikol nám spor pri $\overline{L_2} \in \mathcal{L}_2$ z toho dôvodu, že podľa \textit{Vety 4.24}~\cite{TIN}(str. č. 95) platí, že bezkontextové jazyky nie sú uzavreté voči doplnku.
 
@@ -220,6 +231,8 @@ $x=1^l \wedge y=1^m \wedge z=1^{p-l-m}\#1^p$ kde $l \geq 0$ a $m > 0 \wedge l+m 
 
 $xy^iz = 1^l(1^{m})^i1^{p-l-m}\#1^p = 1^{l+(i*m)+p-l-m}\#1^p = 1^{(i*m)+p-m}\#1^p \notin L$ pre všetky $i \geq 0 \wedge i \neq 1 \wedge i \in N$\\
 
+Z predošlého vzťahu vyplýva, že jazyk $L$ nie je regulárny.
+
 \section{Príklad číslo 4}
 
 \underline{\textbf{\large{ALGORITMUS}}}\\[0.3em]
@@ -287,9 +300,20 @@ P:&$S \rightarrow abA\ |\ bS$\\
 \end{center}
 \textbf{Výstup}: Ľavá lineárna gramatika $G_L = (N',\Sigma',P',S')$ taká, že $L(G)=L(G_L)$\\
 
+\textbf{Overenie}:\\
+Pravá lineárna gramatika $G_P$ derivuje reťazec $babbaabb$.
+\begin{center}
+$S \Rightarrow bS \Rightarrow babA  \Rightarrow babbB \Rightarrow babbaA \Rightarrow babbaS \Rightarrow babbaabA \Rightarrow babbaabbB \Rightarrow babbaabb$
+\end{center}
+
+Ľavá lineárna gramatika $G_L$ musí tiež derivovať reťazec $babbaabb$, keďže platí $L(G_P)=L(G_L)$.
+\begin{center}
+$S' \Rightarrow B \Rightarrow Ab \Rightarrow Sabb \Rightarrow Aabb \Rightarrow Baabb \Rightarrow Abaabb \Rightarrow Sabbaabb \Rightarrow Sbabbaabb \Rightarrow babbaabb$
+\end{center}
+
 \section{Príklad číslo 5}
 
-Definícia $\sim_L$ pre jazyk $L$:\\[-2em]
+Definícia $\sim_L$ pre jazyk $L$:\\[-1.5em]
 \begin{center}
 $u \sim_L v \stackrel{\text{def}}{\Longleftrightarrow} (\#_a(u)mod\ 3 = \#_a(v)mod\ 3 \wedge ((\#_b(u) > 0 \wedge \#_b(v) > 0) \vee (\#_b(u) = 0 \wedge \#_b(v) = 0)))$
 \end{center}
@@ -573,6 +597,8 @@ $L^{-1}(q_3) = \{w\ |\ \#_a(w) mod\ 3 = 0 \wedge \#_b(w) > 0\}$\\
 $L^{-1}(q_4) = \{w\ |\ \#_a(w) mod\ 3 = 1 \wedge \#_b(w) > 0\}$\\
 $L^{-1}(q_5) = \{w\ |\ \#_a(w) mod\ 3 = 2 \wedge \#_b(w) > 0\}$\\
 \end{center}
+
+Relácia $~_L$ má tak konečný počet tried (šesť tried) z čoho vyplýva, že sa jedná o regulárny jazyk.\\
 
 Jazyk $L$ je tvorený zjednotením dvoch predošlých tried:
 
