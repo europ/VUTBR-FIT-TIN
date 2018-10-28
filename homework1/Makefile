@@ -24,4 +24,4 @@ clean:
 
 .PHONY: clean-all
 clean-all: clean
-	@rm -fv *.pdf
+	@rm -fv $(FILE).pdf

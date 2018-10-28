@@ -332,7 +332,228 @@ Definícia $\sim_L$ pre jazyk $L$:\\[-1.5em]
 $u \sim_L v \stackrel{\text{def}}{\Longleftrightarrow} (\#_a(u)mod\ 3 = \#_a(v)mod\ 3 \wedge ((\#_b(u) > 0 \wedge \#_b(v) > 0) \vee (\#_b(u) = 0 \wedge \#_b(v) = 0)))$
 \end{center}
 
-Na základe \textit{Vety 3.21}~\cite{TIN}(str. č. 49), zostrojíme minimálny DKA na základe ktorého vieme určiť rozklad $\Sigma^* / \sim_L$.
+\hfill\\
+
+Vychádzajme z \textit{Vety 3.21}~\cite{TIN}(str. č. 49), že počet stavov ľubovoľného minimálneho DKA prijímajúci jazyk L je rovný indexu $\sim_L$.\\
+
+Vytvorme si úplne definovaný DKA bez nedosiahnuteľných stavov ktorý prijíma jazyk $L$:
+
+\begin{center}
+    \begin{tikzpicture}[scale=0.2]
+        \tikzstyle{every node}+=[inner sep=0pt]
+        \draw [black] (14.5,-12.7) circle (3);
+        \draw (14.5,-12.7) node {$X$};
+        \draw [black] (30.5,-12.7) circle (3);
+        \draw (30.5,-12.7) node {$A$};
+        \draw [black] (45.8,-5.7) circle (3);
+        \draw (45.8,-5.7) node {$AA$};
+        \draw [black] (45.8,-19.7) circle (3);
+        \draw (45.8,-19.7) node {$AAA$};
+        \draw [black] (14.5,-39.9) circle (3);
+        \draw (14.5,-39.9) node {$B$};
+        \draw [black] (30.5,-39.9) circle (3);
+        \draw (30.5,-39.9) node {$AB$};
+        \draw [black] (30.5,-39.9) circle (2.4);
+        \draw [black] (45.8,-49.1) circle (3);
+        \draw (45.8,-49.1) node {$AAB$};
+        \draw [black] (45.8,-49.1) circle (2.4);
+        \draw [black] (45.8,-34.5) circle (3);
+        \draw (45.8,-34.5) node {$AAAB$};
+        \draw [black] (17.5,-12.7) -- (27.5,-12.7);
+        \fill [black] (27.5,-12.7) -- (26.7,-12.2) -- (26.7,-13.2);
+        \draw (22.5,-13.2) node [below] {$a$};
+        \draw [black] (33.23,-11.45) -- (43.07,-6.95);
+        \fill [black] (43.07,-6.95) -- (42.14,-6.83) -- (42.55,-7.74);
+        \draw (39.23,-9.71) node [below] {$a$};
+        \draw [black] (45.8,-8.7) -- (45.8,-16.7);
+        \fill [black] (45.8,-16.7) -- (46.3,-15.9) -- (45.3,-15.9);
+        \draw (45.3,-12.7) node [left] {$a$};
+        \draw [black] (43.07,-18.45) -- (33.23,-13.95);
+        \fill [black] (33.23,-13.95) -- (33.75,-14.74) -- (34.16,-13.83);
+        \draw (39.23,-15.69) node [above] {$a$};
+        \draw [black] (14.5,-15.7) -- (14.5,-36.9);
+        \fill [black] (14.5,-36.9) -- (15,-36.1) -- (14,-36.1);
+        \draw (14,-26.3) node [left] {$b$};
+        \draw [black] (17.5,-39.9) -- (27.5,-39.9);
+        \fill [black] (27.5,-39.9) -- (26.7,-39.4) -- (26.7,-40.4);
+        \draw (22.5,-40.4) node [below] {$a$};
+        \draw [black] (33.07,-41.45) -- (43.23,-47.55);
+        \fill [black] (43.23,-47.55) -- (42.8,-46.71) -- (42.29,-47.57);
+        \draw (37.05,-45) node [below] {$a$};
+        \draw [black] (45.8,-46.1) -- (45.8,-37.5);
+        \fill [black] (45.8,-37.5) -- (45.3,-38.3) -- (46.3,-38.3);
+        \draw (46.3,-41.8) node [right] {$a$};
+        \draw [black] (42.97,-35.5) -- (33.33,-38.9);
+        \fill [black] (33.33,-38.9) -- (34.25,-39.11) -- (33.92,-38.16);
+        \draw (37.14,-36.67) node [above] {$a$};
+        \draw [black] (15.823,-42.58) arc (54:-234:2.25);
+        \draw (14.5,-47.15) node [below] {$b$};
+        \fill [black] (13.18,-42.58) -- (12.3,-42.93) -- (13.11,-43.52);
+        \draw [black] (30.5,-15.7) -- (30.5,-36.9);
+        \fill [black] (30.5,-36.9) -- (31,-36.1) -- (30,-36.1);
+        \draw (30,-26.3) node [left] {$b$};
+        \draw [black] (31.823,-42.58) arc (54:-234:2.25);
+        \draw (30.5,-47.15) node [below] {$b$};
+        \fill [black] (29.18,-42.58) -- (28.3,-42.93) -- (29.11,-43.52);
+        \draw [black] (48.777,-6.054) arc (79.27163:-79.27163:21.726);
+        \fill [black] (48.78,-48.75) -- (49.66,-49.09) -- (49.47,-48.11);
+        \draw (66.96,-27.4) node [right] {$b$};
+        \draw [black] (48.668,-20.507) arc (62.69446:-62.69446:7.419);
+        \fill [black] (48.67,-33.69) -- (49.61,-33.77) -- (49.15,-32.88);
+        \draw (53.18,-27.1) node [right] {$b$};
+        \draw [black] (44.477,-31.82) arc (234:-54:2.25);
+        \draw (45.8,-27.25) node [above] {$b$};
+        \fill [black] (47.12,-31.82) -- (48,-31.47) -- (47.19,-30.88);
+        \draw [black] (47.123,-51.78) arc (54:-234:2.25);
+        \draw (45.8,-56.35) node [below] {$b$};
+        \fill [black] (44.48,-51.78) -- (43.6,-52.13) -- (44.41,-52.72);
+        \draw [black] (6.9,-6.2) -- (12.22,-10.75);
+        \fill [black] (12.22,-10.75) -- (11.94,-9.85) -- (11.29,-10.61);
+    \end{tikzpicture}
+\end{center}
+
+S využitím \textit{Algoritmu 3.5}~\cite{TIN}(str. č. 34) minimalizujme predošlý automat:
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{c|l|l|l}
+        \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{$\equiv^0$} & \multicolumn{1}{c|}{a} & \multicolumn{1}{c}{b}\\
+        \hline
+        \multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}\\\\I\end{tabular}} & X    & A(I)    & B(I)    \\
+                                                                       & A    & AA(I)   & AB(II)  \\
+                                                                       & AA   & AAA(I)  & AAB(II) \\
+                                                                       & AAA  & A(I)    & AAAB(I) \\
+                                                                       & B    & AB(II)  & B(I)    \\
+                                                                       & AAAB & AB(II)  & AAAB(I) \\
+        \hline
+        \multirow{4}{*}[1.2em]{II} & AB   & AAB(II) & AB(II)  \\
+                                   & AAB  & AAAB(I) & AAB(II) \\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{c|l|l|l}
+        \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{$\equiv^1$} & \multicolumn{1}{c|}{a} & \multicolumn{1}{c}{b}\\
+        \hline
+        \multirow{4}{*}[1.2em]{I}   & X    & A(II)   & B(III)    \\
+                                    & AAA  & A(II)   & AAAB(III) \\
+        \hline
+        \multirow{4}{*}[1.2em]{II}  & A    & AA(II)  & AB(IV)    \\
+                                    & AA   & AAA(I)  & AAB(V)    \\
+        \hline
+        \multirow{4}{*}[1.2em]{III} & B    & AB(IV)  & B(III)    \\
+                                    & AAAB & AB(IV)  & AAAB(III) \\
+        \hline
+        IV  & AB   & AAB(V)  & AB(IV)    \\
+        \hline
+        V   & AAB  & AAAB(I) & AAB(V)    \\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{c|l|l|l}
+        \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{$\equiv^2$} & \multicolumn{1}{c|}{a} & \multicolumn{1}{c}{b}\\
+        \hline
+        \multirow{4}{*}[1.2em]{I}   & X    & A(II)   & B(IV)     \\
+                                    & AAA  & A(II)   & AAAB(IV)  \\
+        \hline
+        II  & A    & AA(III) & AB(V)     \\
+        \hline
+        III & AA   & AAA(I)  & AAB(VI)   \\
+        \hline
+        \multirow{4}{*}[1.2em]{IV}  & B    & AB(V)   & B(IV)     \\
+                                    & AAAB & AB(V)   & AAAB(IV)  \\
+        \hline
+        V   & AB   & AAB(VI) & AB(V)     \\
+        \hline
+        VI  & AAB  & AAAB(IV)  & AAB(VI) \\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{center}
+$\equiv^2\ =\ \equiv^3\ =\ \equiv$
+\end{center}
+
+\hfill
+
+Zakreslíme si náš minimalizovaný DKA:
+
+\begin{center}
+    \begin{tikzpicture}[scale=0.2]
+        \tikzstyle{every node}+=[inner sep=0pt]
+        \draw [black] (14.5,-12.7) circle (3);
+        \draw (14.5,-12.7) node {$I$};
+        \draw [black] (30.5,-12.7) circle (3);
+        \draw (30.5,-12.7) node {$II$};
+        \draw [black] (45.8,-12.7) circle (3);
+        \draw (45.8,-12.7) node {$II$};
+        \draw [black] (14.5,-27.2) circle (3);
+        \draw (14.5,-27.2) node {$IV$};
+        \draw [black] (30.5,-27.2) circle (3);
+        \draw (30.5,-27.2) node {$V$};
+        \draw [black] (30.5,-27.2) circle (2.4);
+        \draw [black] (45.8,-27.2) circle (3);
+        \draw (45.8,-27.2) node {$VI$};
+        \draw [black] (45.8,-27.2) circle (2.4);
+        \draw [black] (14.5,-15.7) -- (14.5,-24.2);
+        \fill [black] (14.5,-24.2) -- (15,-23.4) -- (14,-23.4);
+        \draw (14,-19.95) node [left] {$b$};
+        \draw [black] (17.5,-27.2) -- (27.5,-27.2);
+        \fill [black] (27.5,-27.2) -- (26.7,-26.7) -- (26.7,-27.7);
+        \draw (22.5,-27.7) node [below] {$a$};
+        \draw [black] (33.5,-27.2) -- (42.8,-27.2);
+        \fill [black] (42.8,-27.2) -- (42,-26.7) -- (42,-27.7);
+        \draw (38.15,-27.7) node [below] {$a$};
+        \draw [black] (11.82,-28.523) arc (324:36:2.25);
+        \draw (7.25,-27.2) node [left] {$b$};
+        \fill [black] (11.82,-25.88) -- (11.47,-25) -- (10.88,-25.81);
+        \draw [black] (30.5,-15.7) -- (30.5,-24.2);
+        \fill [black] (30.5,-24.2) -- (31,-23.4) -- (30,-23.4);
+        \draw (30,-19.95) node [left] {$b$};
+        \draw [black] (31.823,-29.88) arc (54:-234:2.25);
+        \draw (30.5,-34.45) node [below] {$b$};
+        \fill [black] (29.18,-29.88) -- (28.3,-30.23) -- (29.11,-30.82);
+        \draw [black] (48.48,-25.877) arc (144:-144:2.25);
+        \draw (53.05,-27.2) node [right] {$b$};
+        \fill [black] (48.48,-28.52) -- (48.83,-29.4) -- (49.42,-28.59);
+        \draw [black] (6.9,-6.2) -- (12.22,-10.75);
+        \fill [black] (12.22,-10.75) -- (11.94,-9.85) -- (11.29,-10.61);
+        \draw [black] (16.157,-10.203) arc (141.61549:38.38451:17.851);
+        \fill [black] (16.16,-10.2) -- (17.05,-9.89) -- (16.26,-9.27);
+        \draw (30.15,-2.94) node [above] {$a$};
+        \draw [black] (17.5,-12.7) -- (27.5,-12.7);
+        \fill [black] (27.5,-12.7) -- (26.7,-12.2) -- (26.7,-13.2);
+        \draw (22.5,-13.2) node [below] {$a$};
+        \draw [black] (33.5,-12.7) -- (42.8,-12.7);
+        \fill [black] (42.8,-12.7) -- (42,-12.2) -- (42,-13.2);
+        \draw (38.15,-13.2) node [below] {$a$};
+        \draw [black] (45.8,-15.7) -- (45.8,-24.2);
+        \fill [black] (45.8,-24.2) -- (46.3,-23.4) -- (45.3,-23.4);
+        \draw (45.3,-19.95) node [left] {$b$};
+        \draw [black] (44.295,-29.791) arc (-35.11681:-144.88319:17.293);
+        \fill [black] (16,-29.79) -- (16.06,-30.73) -- (16.87,-30.16);
+        \draw (30.15,-37.64) node [below] {$a$};
+    \end{tikzpicture}
+\end{center}
+
+Premenujeme si jednotlivé stavy automatu ktoré znázorňujú jednotlivé ekvivalenčné triedy:
+\begin{center}
+    \begin{tabular}{r@{$\ \rightarrow\ $}l}
+        I   & $q_0$ \\
+        II  & $q_1$ \\
+        III & $q_2$ \\
+        IV  & $q_3$ \\
+        V   & $q_4$ \\
+        VI  & $q_5$ \\
+    \end{tabular}
+\end{center}
+
+Znovu zakreslíme automat s premenovanými stavmi:
 
 \begin{center}
     \begin{tikzpicture}[scale=0.2]
@@ -403,7 +624,7 @@ $L^{-1}(q_4) = \{w\ |\ \#_a(w) mod\ 3 = 1 \wedge \#_b(w) > 0\}$\\
 $L^{-1}(q_5) = \{w\ |\ \#_a(w) mod\ 3 = 2 \wedge \#_b(w) > 0\}$\\
 \end{center}
 
-Rozklad $\Sigma^* / \sim_L$ má tak konečný počet tried (šesť tried t.j. relácia $\sim_L$ má index 6) z čoho vyplýva podľa \textit{Vety 3.20}~\cite{TIN}(str. č. 48), že sa jedná o regulárny jazyk t.j. platí \textit{Veta 3.21}~\cite{TIN}(str. č. 49), keďže sme vedeli zostrojiť minimálny konečný automat.\\
+Rozklad $\Sigma^* / \sim_L$ má tak konečný počet tried (šesť tried t.j. relácia $\sim_L$ má index 6) z čoho vyplýva podľa \textit{Vety 3.20}~\cite{TIN}(str. č. 48), že sa jedná o regulárny jazyk t.j. platí \textit{Veta 3.21}~\cite{TIN}(str. č. 48), keďže sme vedeli zostrojiť minimálny konečný automat.\\
 
 Jazyk $L$ je tvorený zjednotením dvoch predošlých tried:
 
