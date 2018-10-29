@@ -93,8 +93,9 @@
 \hypersetup{hidelinks}\tableofcontents
 \setlength{\parskip}{0pt}
 
-\newpage
 
+
+\newpage
 \section{Príklad číslo 1} %############################################################################
 
 \subsection{(a)} %################################################################################
@@ -245,7 +246,7 @@ Z predošlého vzťahu vyplýva, že jazyk $L$ nie je regulárny.
 
 
 
-
+\newpage
 \section{Príklad číslo 4}
 
 \underline{\textbf{\large{ALGORITMUS}}}\\[0.3em]
@@ -324,13 +325,15 @@ $S' \Rightarrow B \Rightarrow Ab \Rightarrow Sabb \Rightarrow Aabb \Rightarrow B
 
 
 
-
+\newpage
 \section{Príklad číslo 5}
 
 Definícia $\sim_L$ pre jazyk $L$:\\[-1.5em]
 \begin{center}
 $u \sim_L v \stackrel{\text{def}}{\Longleftrightarrow} (\#_a(u)mod\ 3 = \#_a(v)mod\ 3 \wedge ((\#_b(u) > 0 \wedge \#_b(v) > 0) \vee (\#_b(u) = 0 \wedge \#_b(v) = 0)))$
 \end{center}
+
+\hfill\\
 
 Na základe \textit{Vety 3.21}~\cite{TIN}(str. č. 49), zostrojíme minimálny DKA na základe ktorého vieme určiť rozklad $\Sigma^* / \sim_L$.
 
@@ -404,6 +407,8 @@ $L^{-1}(q_5) = \{w\ |\ \#_a(w) mod\ 3 = 2 \wedge \#_b(w) > 0\}$\\
 \end{center}
 
 Rozklad $\Sigma^* / \sim_L$ má tak konečný počet tried (šesť tried t.j. relácia $\sim_L$ má index 6) z čoho vyplýva podľa \textit{Vety 3.20}~\cite{TIN}(str. č. 48), že sa jedná o regulárny jazyk t.j. platí \textit{Veta 3.21}~\cite{TIN}(str. č. 49), keďže sme vedeli zostrojiť minimálny konečný automat.\\
+
+\hfill\\
 
 Jazyk $L$ je tvorený zjednotením dvoch predošlých tried:
 
