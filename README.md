@@ -7,8 +7,8 @@
 
 ### Homework 2
 * obtained points: 0.0 / 5.0
-* assignment
-* solution
+* [assignment](https://github.com/europ/VUTBR-FIT-TIN/blob/master/assignments/task2.pdf)
+* [solution](https://github.com/europ/VUTBR-FIT-TIN/blob/master/homework2/homework2.pdf)
 
 ### Homework 3
 * obtained points: 0.0 / 5.0
