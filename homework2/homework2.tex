@@ -97,12 +97,62 @@
 \newpage
 \section{Príklad číslo 1} %############################################################################
 
-\cite{TIN}
+...
 
 \newpage
 \section{Príklad číslo 2} %############################################################################
 
-...
+\textit{Veta 4.19}~\cite{TIN}(str. č. 92): Nechť $L$ je bezkontextový jazyk. Pak existuje konstanta $k>0$ taková že je-li $z \in L$ a $|z| \geq k$, pak lze $z$ napsat ve tvaru:
+
+\begin{center}
+$z = uvwxy, vx \neq \varepsilon, |vwx| \leq k$
+\end{center}
+
+a pro všechna $i \geq 0$ je $uv^{i}wx^{i}y \in L$.
+
+\rule{17cm}{0.4pt}
+
+\hfill\\[-2em]
+
+Nech $L_{primes}$ je bezkontextový jazyk.\\
+
+Tak existuje celočíselná konštanta $k > 0$ taká, že ak $z \in L$ a $|z| \geq k$, tak
+
+\begin{center}
+$z = uvwxy \wedge vx \neq \varepsilon \wedge |vwx| \leq k \wedge uv^{i}wx^{i}y \in L$ kde $i \geq 0$\\
+\end{center}
+
+Zvoľme prvočíslo $r$ väčšie ako ako $k$ t.j. $r \geq k$ kde $r$ je prvočíslo.\\
+
+Potom platí, že
+
+\begin{center}
+$a^{r} \in L \wedge |a^{r}| = r$ kde $r \geq p \ \Longrightarrow \ a^{r} = uvwxy \wedge vx \neq \varepsilon \wedge |vwx| \leq k \wedge uv^{i}wx^{i}y \in L$ pre $i \geq 0$\\
+\end{center}
+
+Nech
+\begin{center}
+$v = a^{M} \Rightarrow |v| = M$\\
+$x = a^{N} \Rightarrow |x| = N$\\
+$w = a^{O} \Rightarrow |w| = O$\\
+\end{center}
+
+Tak musí platiť že $M+N > 0$ pretože $vx \neq \varepsilon$ a $k \geq M+N+O$ pretože $|vwx| \leq k$.\\
+
+Zvoľme $i=r+1$, potom
+
+\begin{center}
+$uv^{r+1}wx^{r+1}y \in L$\\[0.5em]
+$|uv^{r+1}wx^{r+1}y| = |uvwxy| + |v^{r}| + |x^{r}| = r + r \cdot M + r \cdot N = r \cdot (1+M+N)$ čo nie je prvočíšlo\\
+\end{center}
+
+A z toho vyplýva spor pretože
+
+\begin{center}
+$uv^{r+1}wx^{r+1}y \notin L$
+\end{center}
+
+Takže jazyk $L_{primes}$ nie je bezkontextový jazyk.
 
 \newpage
 \section{Príklad číslo 3} %############################################################################
