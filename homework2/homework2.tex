@@ -99,50 +99,94 @@
 \section{Príklad číslo 1} %############################################################################
 
 \subsection{(a)}\label{sec:a}
-...
+\textit{Definice 4.29}~\cite{TIN}(str. č. 97) Označme $ZAV_n$ pre $n \geq 0$ jazyky setávající ze všech vyvážených řetězců závorek $n$ typů. Tyto jazyky -- označované též jako Dyckovy jazyky -- jsou generovány gramatikami s pravidly tvaru: $S \rightarrow [^{1}\ S\ ]^{1} \ |\  [^{2}\ S\ ]^{2} \ |\  ... \ |\  [^{n}\ S\ ]^{n} | \ SS \ | \ \varepsilon $
+
+\rule{17cm}{0.4pt}
+
+\hfill\\[-2em]
+
+Z hore uvedenej definície pre náš príklad vyplýva, že náš dyckov jazyk $L$ je generovaný
+\begin{center}
+$S \rightarrow \varepsilon \ | \ SS \ | \ [\ S \ ]$
+\end{center}
+
+Každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, vieme zapísať v tvare $[u]v$ kde $u,v \in L$ pretože
+\begin{center}
+$S \Rightarrow SS \Rightarrow [S]S = [u]v$
+\end{center}
+
+Keďže $S \Rightarrow^{*} w$ a $S \Rightarrow^{*} [S]S$ tak je zrejmé, že $S \Rightarrow^{*} u$ a $S \Rightarrow^{*} v$ z čoho vyplýva, že $S \Rightarrow^{*} [u]v = w$ kde $\forall u,v,w \in L$.\\
+
+Najkratší neprázdny prefix slova $w$ ktorý patrí do $L$ je $[\ ]$.
 
 \subsection{(b)}
 
-\textbf{Báza}\\
-$\varepsilon \in L$ pretože $S \Rightarrow^{*} \varepsilon$ keďže existuje pravidlo $S \rightarrow \varepsilon$\\
+\textbf{Báza}
+\begin{flushright}
+\begin{minipage}{0.95\textwidth}
+    $\varepsilon \in L$ pretože $S \Rightarrow^{*} \varepsilon$ keďže existuje pravidlo $S \rightarrow \varepsilon$\\
+\end{minipage}
+\end{flushright}
 
-\textbf{Indukčný predpoklad}\\
-$S \Rightarrow^{*} w$ kde $w \in L \wedge w = [u]v$ čo platí pre $j < i$\\
+\textbf{Indukčný predpoklad}
+\begin{flushright}
+\begin{minipage}{0.95\textwidth}
+    $S \Rightarrow^{*} w$ kde $w \in L \wedge w = [u]v$ čo platí pre $j < i$\\
+\end{minipage}
+\end{flushright}
 
-\underline{\textbf{Pre i + 1}}\\
-$S \Rightarrow^{*} w$ kde $w \in L$ pre ktoré platí, že $\#_{[}(w)=i+1$.\\
-Z definicie Dyckovho jazyka platí, že $\#_{]}(w)=i+1$.\\
-Potom vieme $w$ zapísať ako $w=[u]v$ podľa bodu (a)(kapitola \ref{sec:a}) $\Longrightarrow$ $\#_{[}(u) + \#_{[}(v) = i$.\\
-Analogicky musí platiť $\#_{]}(u) + \#_{]}(v) = i$.
 
-\hfill\\
-\underline{\textbf{Pre i}}\\
-$\#_{[}(u) + \#_{[}(v) \stackrel{\text{?}}{=} i$ analogicky pre $\#_{]}(u) + \#_{]}(v) \stackrel{\text{?}}{=} i$
-
-\hfill\\
-\textbf{1.)} $\#_{[}(u) = 0 \Rightarrow \#_{[}(v) = i \quad \vee \quad \#_{[}(v) = 0 \Rightarrow \#_{[}(u) = i$\\[0.5em]
-
-Ak je buď $\#_{[}(u)$ alebo buď $\#_{[}(v)$ rovné nule, tak ho vieme vygenerovať z pravidla $S$ na základe indukčnej bázi.\\
-
-Ak je buď $\#_{[}(u)$ alebo buď $\#_{[}(v)$ rovné $i$, tak ten prvok prepíšeme pomocou vzorca
-
-\begin{center}
-$w'=[u']v' \Rightarrow \#_{[}(u') + \#_{[}(v') = i-1$, analogicky $\#_{]}(u') + \#_{]}(v') = i-1$
-\end{center}
-
-Na základe indukčného predpokladu vieme z $S$ vygenerovať $u'$ a $v'$.
-\begin{center}
-$S \Rightarrow [S]S \Rightarrow^{*} [u']v' = w'$ kde $\#_{[}(u') + \#_{[}(v') = i$, analogicky $\#_{]}(u') + \#_{]}(v') = i$.
-\end{center}
+\underline{\textbf{Pre i + 1}}
+\begin{flushright}
+\begin{minipage}{0.95\textwidth}
+    $S \Rightarrow^{*} w$ kde $w \in L$ pre ktoré platí, že $\#_{[}(w)=i+1$.\\
+    Z definicie Dyckovho jazyka platí, že $\#_{]}(w)=i+1$.\\
+    Potom vieme $w$ zapísať ako $w=[u]v$ podľa bodu (a)(kapitola \ref{sec:a}) $\Longrightarrow$ $\#_{[}(u) + \#_{[}(v) = i$.\\
+    Analogicky musí platiť $\#_{]}(u) + \#_{]}(v) = i$.
+\end{minipage}
+\end{flushright}
 
 \hfill\\
-\textbf{2.)} $\#_{[}(u) \neq 0 \quad \wedge \quad \#_{[}(v) \neq 0 \quad \wedge \quad \#_{[}(u)+\#_{[}(v) \leq i$\\[0.5em]
-Keď $\#_{[}(u)$ a $\#_{[}(v)$ sú nenulové, tak musí platiť že
-\begin{center}
-$\#_{[}(u) < i \wedge \#_{[}(v) < i$ \ t.j. \ $\#_{[}(u) = i - M \wedge \#_{[}(v) = i - N$ kde $M,N \in \mathbb{N} \setminus \{0\}$
-\end{center}
+\underline{\textbf{Pre i}}
+\begin{flushright}
+\begin{minipage}{0.95\textwidth}
 
+    $\#_{[}(u) + \#_{[}(v) \stackrel{\text{?}}{=} i$ analogicky pre $\#_{]}(u) + \#_{]}(v) \stackrel{\text{?}}{=} i$\\
 
+    % 1)
+    \textbf{1.)} $\#_{[}(u) = 0 \Rightarrow \#_{[}(v) = i \quad \vee \quad \#_{[}(v) = 0 \Rightarrow \#_{[}(u) = i$\\[-1em]
+    \begin{flushright}
+    \begin{minipage}{0.95\textwidth}
+        Ak je buď $\#_{[}(u)$ alebo buď $\#_{[}(v)$ rovné nule, tak ho vieme vygenerovať z pravidla $S$ na základe indukčnej bázi.\\
+
+        Ak je buď $\#_{[}(u)$ alebo buď $\#_{[}(v)$ rovné $i$, tak ten prvok prepíšeme pomocou vzorca
+
+        \begin{center}
+        $w'=[u']v' \Rightarrow \#_{[}(u') + \#_{[}(v') = i-1$, analogicky $\#_{]}(u') + \#_{]}(v') = i-1$
+        \end{center}
+
+        Na základe indukčného predpokladu vieme z $S$ vygenerovať $u'$ a $v'$.
+        \begin{center}
+        $S \Rightarrow [S]S \Rightarrow^{*} [u']v' = w'$ kde $\#_{[}(u') + \#_{[}(v') = i$, analogicky $\#_{]}(u') + \#_{]}(v') = i$.
+        \end{center}
+    \end{minipage}
+    \end{flushright}
+
+    \hfill\\[-1em]
+
+    % 2)
+    \textbf{2.)} $\#_{[}(u) \neq 0 \quad \wedge \quad \#_{[}(v) \neq 0 \quad \wedge \quad \#_{[}(u)+\#_{[}(v) \leq i$\\[-1em]
+    \begin{flushright}
+    \begin{minipage}{0.95\textwidth}
+        Keď $\#_{[}(u)$ a $\#_{[}(v)$ sú nenulové, tak musí platiť že
+        \begin{center}
+        $\#_{[}(u) < i \wedge \#_{[}(v) < i$ \ t.j. \ $\#_{[}(u) = i - M \wedge \#_{[}(v) = i - N$ kde $M,N \in \mathbb{N} \setminus \{0\}$
+        \end{center}
+    \end{minipage}
+    \end{flushright}
+
+\end{minipage}
+\end{flushright}
 \hfill\\
 
 $S \Rightarrow [S]S \Rightarrow^{*} [u]v = w$ kde $\#_{[}(u) + \#_{[}(v) = i+1$, analogicky $\#_{]}(u) + \#_{]}(v) = i+1$.
