@@ -235,6 +235,57 @@ Takže jazyk $L_{primes}$ nie je bezkontextový jazyk.
 \newpage
 \section{Príklad číslo 3} %############################################################################
 
+\subsection{Nerozhodnuteľnosť}
+
+Problém môžeme charakterizovať jazykom $L$ pre ktorý platí
+
+\begin{center}
+    $L = \{ \ \langle M_{L} \rangle \ | \ M_{L} \text{ je } TS: \exists w \in \text{\textit{Affine}}: w \in L(M_{L}) \ \}$
+\end{center}
+
+Problém členstva je charakterizovaný jazykom $MP$ pre ktorý platí
+
+\begin{center}
+    $MP = \{ \ \langle M_{MP} \rangle \# w  \ | \ M_{MP} \text{ je } TS \text{ ktorý prijme } w \ \}$
+\end{center}
+
+Zostavíme redukciu
+
+\begin{center}
+    $\sigma: \{0,1,\#\}^{*} \longrightarrow \{0,1\}^{*}$ z jazyka $MP$ na $L$
+\end{center}
+
+$TS \ M_{\sigma}$ implementujúci $\sigma$ priradí každému vstupu $x \in \{0,1,\#\}^{*}$ reťazec $\langle M_{x} \rangle$, kde $M_{x}$ je $TS$, ktorý na vstupu $y \in \{0,1\}^{*}$ pracuje následovne:
+
+\begin{enumerate}
+    \item $M_{x}$ zmaže svoj vstup $y$.
+    \item Zapíše na pásku reťazec $x$.
+    \item $M_{x}$ posúdi, zda $x=x_{1}\#x_{2}$ pre $x_1$, ktorý je kódom $TS$, a $x_2$, ktorý je kódom jeho vstupu. Pokiaľ nie, odmietne.
+    \item Inak $M_{x}$ simuluje činnosť $TS$ s kódom $x_1$ na reťazci s kódom $x_2$.
+        \begin{itemize}
+            \item Ak $x_1$ prijme $x_2$, tak $M_x$ prijme.
+            \item Ak $x_1$ odmietne $x_2$, tak $M_x$ odmietne.
+            \item Inak cyklí.
+        \end{itemize}
+\end{enumerate}
+
+$M_{\sigma}$ je možné implementovať úplným $TS$. Konečne tento $TS$ vypíše kód $M_x$, ktorý sa skladá zo štyroch komponent, ktoré odpovedajú vyššie uvedeným krokom. Tri z nich sú pritom konštantné (nezávisia na $x$) -- konkrétne (1) zmazanie pásky, (2) test na dobré sformovanie instancie $MP$ a (3) simulácia daného $TS$ na danom vstupe (pomocou úplného $TS$). $TS$ implementujúci tieto kroky, ktoré evidentne existujú, môžeme pripraviť vopred a $M_{\sigma}$ vypíše kód spolu s kódom na predanie riadenia. Zostáva vygenerovať kód $TS$, ktorý zapíše na pásku dané $x = a_1a_2...a_n$. To je možné ale ľahko realizovať pomocou $TS$ $Ra_1Ra_2R...Ra_n$. \\
+
+Skúmajme možné jazyky $TS$ $M_x$:
+
+\begin{itemize}
+    \item $L(M_x) = \emptyset \Longleftrightarrow $ ($x$ nie je správne sformovaná instancia $MP$) alebo ($x=x_1\#x_2$ a $TS$ s kódom $x_1$ na reťazci s kódom $x_2$ odmietne) alebo ($x=x_1\#x_2$ a $TS$ s kódom $x_1$ na reťazci s kódom $x_2$ neskončí t.j. cyklí)
+    \item $L(M_x) = \Sigma^* \Longleftrightarrow $ ($x$ je správne sformovaná instancia $MP$, kde $x=x_1\#x_2$ a $TS$ s kódom $x_1$ na reťazci s kódom $x_2$ prijme)
+\end{itemize}
+
+Ak $L(M_x) = \Sigma^*$ je zrejmé, že jazyk $L(M_x)$ iste obsahuje aspoň jeden reťazec ktorý patrí do jazyka \textit{Affine}.\\
+
+Teraz už ľahko ukážeme, že $\sigma$ zachováva členstvo $\langle M_{x} \rangle \in L \Leftrightarrow L(M_x) = \Sigma^{*} \Leftrightarrow x=x_1\#x_2$ kde $x_1$ je kód $TS$, ktorý zastaví na vstupe s kódem $x_2 \Leftrightarrow x \in MP$.
+
+
+\newpage
+\subsection{Čiastočná rozhodnuteľnosť}
+
 ...
 
 \newpage
