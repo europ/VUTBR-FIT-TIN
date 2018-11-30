@@ -90,19 +90,23 @@
 
 \hfill\\[-2em]
 
-Z hore uvedenej definície pre náš príklad vyplýva, že náš dyckov jazyk $L$ je generovaný
+Z hore uvedenej definície pre náš príklad vyplýva, že náš dyckov jazyk $L$ je generovaný gramatikou
+
 \begin{center}
 $S \rightarrow \varepsilon \ | \ SS \ | \ [\ S \ ]$
 \end{center}
 
-Každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, vieme zapísať v tvare $[u]v$ kde $u,v \in L$ pretože
+ktorá obsahuje iba jeden typ zátvoriek ktorými sú $[$ a $]$.\\
+
+Pre každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, muselo byť aspoň raz použité pravidlo $S \rightarrow [\ S \ ]$ v derivácii. Na základe tohto, vieme určiť najkratší neprázdny prefix slova $w$ patriaci do $L$ ktorým je $[\ ]$. S využitím pravidla $S \rightarrow [\ S \ ]$ vygenerujeme jeden pár zátvoriek, pričom medzi zátvorkami sa nachádza neterminál $S$, ktorým je možné ďalej aplikovať ďalšie pravidlá a generovať reťazec $u$ -- presnejšie reťazec $u$ patriaci do jazyka $L$. V prípade použitia pravidla $S \rightarrow SS$ pred pravidlom $S \rightarrow [\ S \ ]$ vieme generovať ďalší reťazec na pravej strane čo odpovedá reťazcu $v$ ktorý patrí do $L$, t.j. vieme generovať za $[u]$ reťazec $v$ patriaci do jazyka $L$.\\
+
+Takže, každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, vieme zapísať v tvare $[u]v$ kde $u,v \in L$ pretože
+
 \begin{center}
 $S \Rightarrow SS \Rightarrow [S]S = [u]v$
 \end{center}
 
-Keďže $S \Rightarrow^{*} w$ a $S \Rightarrow^{*} [S]S$ tak je zrejmé, že $S \Rightarrow^{*} u$ a $S \Rightarrow^{*} v$ z čoho vyplýva, že $S \Rightarrow^{*} [u]v = w$ kde $\forall u,v,w \in L$.\\
-
-Najkratší neprázdny prefix slova $w$ ktorý patrí do $L$ je $[\ ]$.
+Keďže $S \Rightarrow^* u$ a $S \Rightarrow^* v$ ktoré patria do jazyka $L$, tak $S \Rightarrow^* [u]v$ tiež patrí do jazyka, keďže $u, v \in L$ a $[,] \in L$. Je zrejmé, že ak $S \Rightarrow^* w$ a $S \Rightarrow^* [u]v$ tak potom platí že $S \Rightarrow^* w = [u]v$ t.j. $w = [u]v$.\\
 
 \subsection{(b)}
 
