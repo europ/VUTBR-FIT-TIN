@@ -90,7 +90,7 @@
 
 \hfill\\[-2em]
 
-Z hore uvedenej definície pre náš príklad vyplýva, že náš dyckov jazyk $L$ je generovaný gramatikou
+Z hore uvedenej definície pre náš príklad vyplýva, že náš Dyckov jazyk $L$ je generovaný gramatikou
 
 \begin{center}
 $S \rightarrow \varepsilon \ | \ SS \ | \ [\ S \ ]$
@@ -103,7 +103,7 @@ Pre každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, muselo 
 Takže, každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, vieme zapísať v tvare $[u]v$ kde $u,v \in L$ pretože
 
 \begin{center}
-$S \Rightarrow SS \Rightarrow [S]S = [u]v$
+$S \Rightarrow SS \Rightarrow [S]S \Rightarrow^{*} [u]v$
 \end{center}
 
 Keďže $S \Rightarrow^* u$ a $S \Rightarrow^* v$ ktoré patria do jazyka $L$, tak $S \Rightarrow^* [u]v$ tiež patrí do jazyka, keďže $u, v \in L$ a $[,] \in L$. Je zrejmé, že ak $S \Rightarrow^* w$ a $S \Rightarrow^* [u]v$ tak potom platí že $S \Rightarrow^* w = [u]v$ t.j. $w = [u]v$.\\
