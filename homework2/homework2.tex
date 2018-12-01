@@ -11,6 +11,7 @@
 \usepackage{float}
 \usepackage{xcolor}
 \usepackage{siunitx}
+\usepackage{amsmath}
 \usepackage{listings}
 \usepackage{csquotes}
 \usepackage{hyperref}
@@ -84,58 +85,52 @@
 \section{Príklad číslo 1} %############################################################################
 
 \subsection{(a)}\label{sec:a}
+
 \textit{Definice 4.29}~\cite{TIN}(str. č. 97) Označme $ZAV_n$ pre $n \geq 0$ jazyky setávající ze všech vyvážených řetězců závorek $n$ typů. Tyto jazyky -- označované též jako Dyckovy jazyky -- jsou generovány gramatikami s pravidly tvaru: $S \rightarrow [^{1}\ S\ ]^{1} \ |\  [^{2}\ S\ ]^{2} \ |\  ... \ |\  [^{n}\ S\ ]^{n} | \ SS \ | \ \varepsilon $
 
 \rule{17cm}{0.4pt}
 
 \hfill\\[-2em]
 
-Z hore uvedenej definície pre náš príklad vyplýva, že náš Dyckov jazyk $L$ je generovaný gramatikou
+Z hore uvedenej definície pre náš príklad vyplýva, že náš Dyckov jazyk $L$ je generovaný gramatikou $G_{D}$, definovanou ako $G_{D} = (\{S'\},\{[,]\},P,S')$ kde množina prepisovacích pravidiel $P$ je daná ako
 
 \begin{center}
-$S \rightarrow \varepsilon \ | \ SS \ | \ [\ S \ ]$
+$S' \rightarrow \varepsilon \ | \ S'S' \ | \ [\ S' \ ]$
 \end{center}
 
 ktorá obsahuje iba jeden typ zátvoriek ktorými sú $[$ a $]$.\\
 
-Pre každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, muselo byť aspoň raz použité pravidlo $S \rightarrow [\ S \ ]$ v derivácii. Na základe tohto, vieme určiť najkratší neprázdny prefix slova $w$ patriaci do $L$ ktorým je $[\ ]$. S využitím pravidla $S \rightarrow [\ S \ ]$ vygenerujeme jeden pár zátvoriek, pričom medzi zátvorkami sa nachádza neterminál $S$, ktorým je možné ďalej aplikovať ďalšie pravidlá a generovať reťazec $u$ -- presnejšie reťazec $u$ patriaci do jazyka $L$. V prípade použitia pravidla $S \rightarrow SS$ pred pravidlom $S \rightarrow [\ S \ ]$ vieme generovať ďalší reťazec na pravej strane čo odpovedá reťazcu $v$ ktorý patrí do $L$, t.j. vieme generovať za $[u]$ reťazec $v$ patriaci do jazyka $L$.\\
+Pre každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, muselo byť aspoň raz použité pravidlo $S' \rightarrow [\ S' \ ]$ v derivácii. Na základe tohto, vieme určiť najkratší neprázdny prefix slova $w$ patriaci do $L$ ktorým je $[\ ]$. S využitím pravidla $S' \rightarrow [\ S' \ ]$ vygenerujeme jeden pár zátvoriek, pričom medzi zátvorkami sa nachádza neterminál $S'$, ktorým je možné ďalej aplikovať ďalšie pravidlá a generovať reťazec $u$ -- presnejšie reťazec $u$ patriaci do jazyka $L$. V prípade použitia pravidla $S' \rightarrow S'S'$ pred pravidlom $S' \rightarrow [\ S' \ ]$ vieme generovať ďalší reťazec na pravej strane čo odpovedá reťazcu $v$ ktorý patrí do $L$, t.j. vieme generovať za $[u]$ reťazec $v$ patriaci do jazyka $L$.\\
 
 Takže, každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, vieme zapísať v tvare $[u]v$ kde $u,v \in L$ pretože
 
 \begin{center}
-$S \Rightarrow SS \Rightarrow [S]S \Rightarrow^{*} [u]v$
+$S' \underset{G_D}{\Rightarrow} S'S' \underset{G_D}{\Rightarrow} [S']S' {\underset{G_D}{\Rightarrow}}^{*} [u]v$
 \end{center}
 
-Keďže $S \Rightarrow^* u$ a $S \Rightarrow^* v$ ktoré patria do jazyka $L$, tak $S \Rightarrow^* [u]v$ tiež patrí do jazyka, keďže $u, v \in L$ a $[,] \in L$. Je zrejmé, že ak $S \Rightarrow^* w$ a $S \Rightarrow^* [u]v$ tak potom platí že $S \Rightarrow^* w = [u]v$ t.j. $w = [u]v$.\\
+Keďže $S' {\underset{G_D}{\Rightarrow}}^* u$ a $S {\underset{G_D}{\Rightarrow}}^* v$ ktoré patria do jazyka $L$, tak $S' {\underset{G_D}{\Rightarrow}}^* [u]v$ tiež patrí do jazyka, keďže $u, v \in L$ a $[,] \in L$. Je zrejmé, že ak $S' {\underset{G_D}{\Rightarrow}}^* w$ a $S' {\underset{G_D}{\Rightarrow}}^* [u]v$ tak potom platí že $S' {\underset{G_D}{\Rightarrow}}^* w = [u]v$ t.j. $w = [u]v$.
 
 \subsection{(b)}
 
 \textbf{Báza}
 \begin{flushright}
 \begin{minipage}{0.95\textwidth}
-    $\varepsilon \in L$ pretože $S \Rightarrow^{*} \varepsilon$ keďže existuje pravidlo $S \rightarrow \varepsilon$\\
+    Báza je bázový prípad \underline{\textbf{pre i = 0}}.\\
+
+    Pre $i=0$ platí, že počet $[$ a počet $]$ v reťazci $w$ je rovno nule z čoho vyplýva, že reťazec $w$ sa musí rovnať $\varepsilon$. Formálne, pre $i=0$ platí, že $\#_{[}(w) = 0 \wedge \#_{]}(w) = 0$ z čoho vyplýva, že $w = \varepsilon$.\\
+
+    Keďže, existuje pravidlo $S' \rightarrow \varepsilon$ v gramatike $G_D$ a taktiež, existuje pravidlo $S \rightarrow \varepsilon$ v gramatike $G$, potom existujú derivácie $S' \underset{G_D}{\Rightarrow} \varepsilon$ a $S \underset{G}{\Rightarrow} \varepsilon$ a tak platí, že $w = \varepsilon \wedge w \in L \wedge w \in L(G)$.
 \end{minipage}
 \end{flushright}
 
 \textbf{Indukčný predpoklad}
 \begin{flushright}
 \begin{minipage}{0.95\textwidth}
-    $S \Rightarrow^{*} w$ kde $w \in L \wedge w = [u]v$ čo platí pre $j < i$\\
+    $S \Rightarrow^{*} w$ kde $w \in L \wedge w \in L(G) \wedge w = [u]v$ čo platí pre všetky $j$ kde $j < i$ pričom $j, i$ značí počet zátvoriek typu $[$ a počet zátvoriek typu $]$.
 \end{minipage}
 \end{flushright}
 
-
-\underline{\textbf{Pre i + 1}}
-\begin{flushright}
-\begin{minipage}{0.95\textwidth}
-    $S \Rightarrow^{*} w$ kde $w \in L$ pre ktoré platí, že $\#_{[}(w)=i+1$.\\
-    Z definicie Dyckovho jazyka platí, že $\#_{]}(w)=i+1$.\\
-    Potom vieme $w$ zapísať ako $w=[u]v$ podľa bodu (a)(kapitola \ref{sec:a}) $\Longrightarrow$ $\#_{[}(u) + \#_{[}(v) = i$.\\
-    Analogicky musí platiť $\#_{]}(u) + \#_{]}(v) = i$.
-\end{minipage}
-\end{flushright}
-
-\hfill\\
+\newpage
 \underline{\textbf{Pre i}}
 \begin{flushright}
 \begin{minipage}{0.95\textwidth}
@@ -149,14 +144,16 @@ Keďže $S \Rightarrow^* u$ a $S \Rightarrow^* v$ ktoré patria do jazyka $L$, t
         Ak je buď $\#_{[}(u)$ alebo buď $\#_{[}(v)$ rovné nule, tak ho vieme vygenerovať z pravidla $S$ na základe indukčnej bázi.\\
 
         Ak je buď $\#_{[}(u)$ alebo buď $\#_{[}(v)$ rovné $i$, tak ten prvok prepíšeme pomocou vzorca
-
         \begin{center}
-        $w'=[u']v' \Rightarrow \#_{[}(u') + \#_{[}(v') = i-1$, analogicky $\#_{]}(u') + \#_{]}(v') = i-1$
+        $w'=[u']v' \Rightarrow \#_{[}(u') + \#_{[}(v') = i-1 = j$, analogicky $\#_{]}(u') + \#_{]}(v') = i-1 = j$
         \end{center}
-
         Na základe indukčného predpokladu vieme z $S$ vygenerovať $u'$ a $v'$.
         \begin{center}
-        $S \Rightarrow [S]S \Rightarrow^{*} [u']v' = w'$ kde $\#_{[}(u') + \#_{[}(v') = i$, analogicky $\#_{]}(u') + \#_{]}(v') = i$.
+            $S \Rightarrow [S]S \Rightarrow^{*} [u']v' = w'$
+        \end{center}
+        kde
+        \begin{center}
+            $\#_{[}(u') + \#_{[}(v') = i$, analogicky $\#_{]}(u') + \#_{]}(v') = i$
         \end{center}
     \end{minipage}
     \end{flushright}
@@ -169,14 +166,35 @@ Keďže $S \Rightarrow^* u$ a $S \Rightarrow^* v$ ktoré patria do jazyka $L$, t
     \begin{minipage}{0.95\textwidth}
         Keď $\#_{[}(u)$ a $\#_{[}(v)$ sú nenulové, tak musí platiť že
         \begin{center}
-        $\#_{[}(u) < i \wedge \#_{[}(v) < i$ \ t.j. \ $\#_{[}(u) = i - M \wedge \#_{[}(v) = i - N$ kde $M,N \in \mathbb{N} \setminus \{0\}$
+            $\#_{[}(u) < i \wedge \#_{[}(v) < i$
+        \end{center}
+        t.j.
+        \begin{center}
+            $\#_{[}(u) = i - M = j_1 \wedge \#_{[}(v) = i - N = j_2$ kde $M,N \in \mathbb{N} \setminus \{0\}$
         \end{center}
     \end{minipage}
     \end{flushright}
-
 \end{minipage}
 \end{flushright}
-\hfill\\
+
+\hfill\\[-1em]
+
+\underline{\textbf{Pre i + 1}}
+\begin{flushright}
+\begin{minipage}{0.95\textwidth}
+    $S \Rightarrow^{*} w$ kde $w \in L$ pre ktoré platí, že
+    \begin{center}
+        $\#_{[}(w)=i+1$
+    \end{center}
+    a z definicie Dyckovho jazyka platí, že
+    \begin{center}
+        $\#_{]}(w)=i+1$
+    \end{center}
+    Potom vieme $w$ zapísať ako $w=[u]v$ podľa bodu (a)(kapitola \ref{sec:a}) $\Rightarrow$ $\#_{[}(u) + \#_{[}(v) = i$, analogicky musí platiť $\#_{]}(u) + \#_{]}(v) = i$.
+\end{minipage}
+\end{flushright}
+
+\hfill\\[2em]
 
 $S \Rightarrow [S]S \Rightarrow^{*} [u]v = w$ kde $\#_{[}(u) + \#_{[}(v) = i+1$, analogicky $\#_{]}(u) + \#_{]}(v) = i+1$.
 
