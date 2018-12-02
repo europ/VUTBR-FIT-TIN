@@ -100,7 +100,7 @@ $S' \rightarrow \varepsilon \ | \ S'S' \ | \ [\ S' \ ]$
 
 ktorá obsahuje iba jeden typ zátvoriek ktorými sú $[$ a $]$.\\
 
-Pre každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, muselo byť aspoň raz použité pravidlo $S' \rightarrow [\ S' \ ]$ v derivácii. Na základe tohto, vieme určiť najkratší neprázdny prefix slova $w$ patriaci do $L$ ktorým je $[\ ]$. S využitím pravidla $S' \rightarrow [\ S' \ ]$ vygenerujeme jeden pár zátvoriek, pričom medzi zátvorkami sa nachádza neterminál $S'$, ktorým je možné ďalej aplikovať ďalšie pravidlá a generovať reťazec $u$ -- presnejšie reťazec $u$ patriaci do jazyka $L$. V prípade použitia pravidla $S' \rightarrow S'S'$ pred pravidlom $S' \rightarrow [\ S' \ ]$ vieme generovať ďalší reťazec na pravej strane čo odpovedá reťazcu $v$ ktorý patrí do $L$, t.j. vieme generovať za $[u]$ reťazec $v$ patriaci do jazyka $L$.\\
+Pre každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, muselo byť aspoň raz použité pravidlo $S' \rightarrow [\ S' \ ]$ v derivácii. S využitím pravidla $S' \rightarrow [\ S' \ ]$ vygenerujeme jeden pár zátvoriek, pričom medzi zátvorkami sa nachádza neterminál $S'$, ktorým je možné ďalej aplikovať ďalšie pravidlá a generovať reťazec $u$ -- presnejšie reťazec $u$ patriaci do jazyka $L$. V prípade použitia pravidla $S' \rightarrow S'S'$ pred pravidlom $S' \rightarrow [\ S' \ ]$ vieme generovať ďalší reťazec na pravej strane čo odpovedá reťazcu $v$ ktorý patrí do $L$, t.j. vieme generovať za $[u]$ reťazec $v$ patriaci do jazyka $L$.\\
 
 Takže, každé slovo $w \in L$, pre ktoré platí že $w \neq \varepsilon$, vieme zapísať v tvare $[u]v$ kde $u,v \in L$ pretože
 
@@ -232,18 +232,18 @@ $a^{r} \in L \wedge |a^{r}| = r$ kde $r \geq p \ \Longrightarrow \ a^{r} = uvwxy
 
 Nech
 \begin{center}
-$v = a^{M} \Rightarrow |v| = M$\\
-$x = a^{N} \Rightarrow |x| = N$\\
-$w = a^{O} \Rightarrow |w| = O$\\
+$v = a^{m} \Rightarrow |v| = m$\\
+$x = a^{n} \Rightarrow |x| = n$\\
+$w = a^{o} \Rightarrow |w| = o$\\
 \end{center}
 
-Tak musí platiť že $M+N > 0$ pretože $vx \neq \varepsilon$ a $k \geq M+N+O$ pretože $|vwx| \leq k$.\\
+Tak musí platiť že $m+n > 0$ pretože $vx \neq \varepsilon$ a $k \geq m+n+o$ pretože $|vwx| \leq k$.\\
 
 Zvoľme $i=r+1$, potom
 
 \begin{center}
 $uv^{r+1}wx^{r+1}y \in L$\\[0.5em]
-$|uv^{r+1}wx^{r+1}y| = |uvwxy| + |v^{r}| + |x^{r}| = r + r \cdot M + r \cdot N = r \cdot (1+M+N)$ čo nie je prvočíšlo\\
+$|uv^{r+1}wx^{r+1}y| = |uvwxy| + |v^{r}| + |x^{r}| = r + r \cdot m + r \cdot n = r \cdot (1+m+n)$ čo nie je prvočíšlo\\
 \end{center}
 
 A z toho vyplýva spor pretože
@@ -308,7 +308,31 @@ Teraz už ľahko ukážeme, že $\sigma$ zachováva členstvo $\langle M_{x} \ra
 \newpage
 \subsection{Čiastočná rozhodnuteľnosť}
 
-...
+Majme $TS$ $M$ pre ktorý platí, že $\exists w \in \text{\textit{Affine}}: w \in L(M)$.\\
+
+K čiastočnému rozhodovaniu uvedeného problému môžeme využiť $TS$ $M'$ ktorý na svojej prvej páske simuluje beh $TS$ $M$ pre jednotlivé možné vstupné reťazce napríklad v \red{lexikografickom} usporiadaní (viz dole uvedený príklad) a na druhej páske vykonáva kontrolu podmienky patričnosti reťazca do jazyka \textit{Affine}.
+
+\begin{center}
+    \begin{tabular}{l}
+        $konf_M(\varepsilon,0)$\\
+        $konf_M(\varepsilon,1)\#konf_M(0,0)$\\
+        $konf_M(\varepsilon,2)\#konf_M(0,1)\#konf_M(1,0)$\\
+        $konf_M(\varepsilon,3)\#konf_M(0,2)\#konf_M(1,1)\#konf_M(00,0)$\\
+        $konf_M(\varepsilon,4)\#konf_M(0,3)\#konf_M(1,2)\#konf_M(00,1)\#konf_M(01,0)$\\
+        ...
+    \end{tabular}
+\end{center}
+
+$M'$ nemôže len systematicky generovať vstupy pre $TS$ $M$ a na nich nechať $TS$ $M$ neobmedzene bežať pretože hrozí zacyklenie.\\
+
+$TS$ $M'$ ale môže mať na svojej páske súčastne rozbehnutú simuláciu $TS$ $M$ pre ľubovoľný počet vstupných reťazcov, jednotlivé konfigurácie pásky budú vhodne oddelené.\\
+
+$TS$ $M'$ môže vždy prejsť všetky aktuálne rozbehnuté simulácie a na každej vykonať práve jeden krok.
+Pokiaľ v niektorom prípade dôjde k prijatiu reťazca $TS$ $M$, vykoná kontrolu pratričnosti prijatého reťazca do jazyka \textit{Affine} na druhej páske. Ak kontrola patričnosti prijatého reťazca skončila úspechom, t.j. reťazec bol prijatý $TS$ $M$ a súčastne patrí do jazyka \textit{Affine} môžeme tvrdiť, že existuje reťazec ktorý patrí do \textit{Affine} a súčastne do $L(M)$. Ak $TS$ $M$ neprijal reťazec alebo reťazec nepatrí do jazyka \textit{Affine}, tak $TS$ $M'$ pridá páskovú konfiguráciu pre ďalší reťazec a celý krok opakuje.\\
+
+$TS$ $M'$ vykonáva kontrolu patričnosti reťazca do \textit{Affine} na druhej páske tak, že \red{TODO}.\\
+
+Funkčnosť $TS$ $M'$ môžeme chápať tak, že najskôr $TS$ $M'$ spustí simuláciu $TS$ $M$ na prvej páske. Ak $TS$ $M$ zastaví a prijme určitý reťazec, tak tento reťazec $TS$ $M'$ overí na druhej páske zda patrí do jazyka \textit{Affine} t.j. skontroluje podmienku patričnosti tohto reťazca do jazyka \textit{Affine}.
 
 \newpage
 \section{Príklad číslo 4} %############################################################################
