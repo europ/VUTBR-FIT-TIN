@@ -29,6 +29,10 @@
 
 \renewcommand{\cftdot}{}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\definecolor{OliveGreen}{rgb}{0,0.7,0}
+\newcommand{\green}[1]{\textcolor{OliveGreen}{#1}}
 
 \setlength\parindent{0pt}
 
@@ -127,7 +131,7 @@ Keďže $S' {\underset{G_D}{\Rightarrow}}^* u$ a $S {\underset{G_D}{\Rightarrow}
 \textbf{Indukčný predpoklad}
 \begin{flushright}
 \begin{minipage}{0.95\textwidth}
-    $S \Rightarrow^{*} w$ kde $w \in L \wedge w \in L(G) \wedge w = [u]v$ čo platí pre všetky $j$ kde $j < i$ pričom $j, i$ značí počet zátvoriek typu $[$ a počet zátvoriek typu $]$.
+    Predpokladáme, že tvrdenie platí pre všetky $w \in L$ kde $\#_[(w) < i \wedge \#_](w) < i$ t.j. kde $\#_[(w) \leq j \wedge \#_](w) \leq j$ kde $j<i$\\
 \end{minipage}
 \end{flushright}
 
@@ -305,7 +309,6 @@ Ak $L(M_x) = \Sigma^*$ je zrejmé, že jazyk $L(M_x)$ iste obsahuje aspoň jeden
 
 Teraz už ľahko ukážeme, že $\sigma$ zachováva členstvo $\langle M_{x} \rangle \in L \Leftrightarrow L(M_x) = \Sigma^{*} \Leftrightarrow x=x_1\#x_2$ kde $x_1$ je kód $TS$, ktorý zastaví na vstupe s kódem $x_2 \Leftrightarrow x \in MP$.
 
-
 \newpage
 \subsection{Čiastočná rozhodnuteľnosť}
 
@@ -339,11 +342,83 @@ Funkčnosť $TS$ $M'$ môžeme chápať tak, že najskôr $TS$ $M'$ spustí simu
 \section{Príklad číslo 4} %############################################################################
 
 \subsection{(a)}
-...
+Dôkaz, že pre každý $TS$ $M$ nad abecedou $\{0,1\}$ a reťazec $w \in \{0,1\}^*$ je možné zostrojiť program $P_M$ v jazyku \textit{RationalC} a zvoliť počiatočnú hodnotu $x_0$ pre register $x$ tak, že $P_M$ skončí s návratovou hodnotou $1$ práve vtedy keď $w \in L(M)$.\\
+
+Uvažujme $w = 1 0 1 1 1 0 1 1 1$.\\
+
+Prvým krokom je potreba reverzovať reťazec $w$ na páske.
+
+\begin{center}
+    \begin{tabular}{l|l|l}
+        páska s $w$   & $\Delta w   \Delta^\omega$ & $\Delta 1 0 1 1 1 0 1 1 1 \Delta \Delta \Delta \dots$\\
+        páska s $w^R$ & $\Delta w^R \Delta^\omega$ & $\Delta 1 1 1 0 1 1 1 0 1 \Delta \Delta \Delta \dots$\\
+    \end{tabular}
+\end{center}
+
+Druhým krokom je potreba tento reverzovaný reťazec $w^R$ na páske spolu so začiatkom pásky prekódovať (do registra je možné ukladať iba hodnoty $0$ a $1$) za pomoci pravidiel uvedených dole kde symbol \green{\textit{EOT}}\footnote{Pre zlepšenie čitateľnosti bude využitá zelená farba k značeniu \textit{EOF}.} znázorňuje \textit{End Of Tape} (koniec pásky).
+
+\begin{center}
+    \begin{tabular}{r@{ $\rightarrow$ }l}
+        páskový symbol & $\langle \text{\textit{infobit}} \rangle \langle \text{\textit{valuebit}} \rangle$\\
+        $\Delta$ & $00$\\
+        $\green{EOT}$ & $\green{01}$\\
+        $1$ & $11$\\
+        $0$ & $10$\\
+    \end{tabular}
+\end{center}
+
+Symbol \textit{EOT} je potrebný z dôvodu detekcie prepadnutia hlavy. Páskový symbol je reprezentovaný dvoma bitmi kde \textit{infobit} udáva zda sa jedná o hodnotu numerickú (v prípade pre $1$) alebo o blank,\textit{EOT} (v prípade pre $0$).
+
+\begin{center}
+    \begin{tabular}{l|l|l}
+        páska s $w^R$ & $\Delta w^R \Delta^\omega$ & $\hspace{11.75mm} \Delta \hspace{3mm} 1 \hspace{3mm} 1 \hspace{3mm} 1 \hspace{3mm} 0 \hspace{3mm} 1 \hspace{3mm} 1 \hspace{3mm} 1 \hspace{3mm} 0 \hspace{3mm} 1 \hspace{3mm} \Delta \hspace{3mm} \Delta \hspace{3mm} \Delta \dots$ \\
+        časť ktorá sa bude kódovať & $\green{EOT} \Delta w^R$ & $ \green{EOT} \hspace{3mm} \Delta \hspace{3mm} 1 \hspace{3mm} 1 \hspace{3mm} 1 \hspace{3mm} 0 \hspace{3mm} 1 \hspace{3mm} 1 \hspace{3mm} 1 \hspace{3mm} 0 \hspace{3mm} 1$ \\
+        zakódovaná časť pásky & $encoded(\green{EOT} \Delta w^R)$ & $\hspace{2.5mm} \green{01} \hspace{5mm} 00 \hspace{2mm} 11 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 10 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 10 \hspace{1mm} 11$
+    \end{tabular}
+\end{center}
+
+Do registra sa bude ukladať zakódovaná časť pásky tak, že v registri bude \textit{LSB} (\textit{Least Significant Bit}) značiť symbol \green{\textit{EOT}} (\textit{End Of Tape}) (do registra sa to ukladá opačne ale dvojice sa neotáčajú).
+
+\begin{center}
+    \begin{tabular}{l|l}
+        zakódovaná časť pásky  & $\green{01} \hspace{1mm} 00 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 10 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 10 \hspace{1mm} 11$\\
+        hodnota v registri $x$ & $11 \hspace{1mm} 10 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 10 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 00 \hspace{1mm} \green{01}$
+    \end{tabular}
+\end{center}
+
+Takže máme v registri $x$ zapísanú hodnotu kde je ale desatinná bodka na nesprávnom mieste ktorá je znázornená červenou farbou.
+
+\begin{center}
+    \begin{tabular}{r | l}
+        register $x$ & $11 \hspace{1mm} 10 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 10 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 00 \hspace{1mm} \green{01} \red{\textbf{.}}$
+    \end{tabular}
+\end{center}
+
+Aby sme desatinnú čiarku presunuli na správne miesto, tak bude treba využiť inicializačnú programovú rutinu ktorá vykoná nasledujúci podprogram, v ktorom dva krát vykoná príkaz $x \texttt{ /= } 2$. Tým pádom sa register nastaví a jeho hodnota bude reprezentovaná ako
+
+\begin{center}
+    \begin{tabular}{r | l}
+        register $x$ & $11 \hspace{1mm} 10 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 10 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 11 \hspace{1mm} 00 \red{\textbf{.}} \hspace{1mm} \green{01} $
+    \end{tabular}
+\end{center}
+
+\newpage
+
+\textit{Inicializačný kód}:
+\begin{flushright}
+\begin{minipage}{0.90\textwidth}
+    $x \texttt{ /= } 2$\\
+    $x \texttt{ /= } 2$\\
+\end{minipage}
+\end{flushright}
+
+Následne po správnej inicializácii registra sme schopný vykonávať jednotlivé činnosti $TS$ $M$ pomocou určitých podprogramov. Samotný podprogram reprezentuje rutinu ktorá sa správa rovnako ako chovanie jednej činnosti $TS$ $M$.\\
+
+\red{\textbf{TODO}}: jednotlivé rutiny pre TS
 
 \newpage
 \subsection{(b)}
-Dôkaz, že pre každý program $P$ v jazyku \textit{RationalC} a počiatočnú hodnotu $x_0 \in \mathbb{N}$ ($0 \in \mathbb{N}$) je možné zostrojiť $TS$ $M_P = (Q, \Sigma, \Gamma, \delta, q_{first}, F)$ a reťazec $w \in \{0,1\}^*$ tak, že $w \in L(M_P)$ práve vtedy, keď $P$ s počiatočnou hodnotou $x_0$ skončí s návratovou hodnotou $1$.\\
+Dôkaz, že pre každý program $P$ v jazyku \textit{RationalC} a počiatočnú hodnotu $x_0 \red{\in \mathbb{N}}$ \red{($0 \in \mathbb{N}$)} je možné zostrojiť $TS$ $M_P = (Q, \Sigma, \Gamma, \delta, q_{first}, F)$ a reťazec $w \in \{0,1\}^*$ tak, že $w \in L(M_P)$ práve vtedy, keď $P$ s počiatočnou hodnotou $x_0$ skončí s návratovou hodnotou $1$.\\
 
 Na začiatku si zapíšeme obsah registra $x$ v ktorom sa nachádza číslo $x_0 \in \mathbb{N}$ v binárnej podobe na pásku $TS$ $M_P$ čo je zobrazené v ilustračnom obrázku \ref{fig:reg_to_tape}.
 
@@ -486,13 +561,13 @@ Pri násobení a delení (pri použití príkazov $x \texttt{ /= } 2$ a $x \text
             Príkladový prípad hlavy a pásky
 
             \begin{center}
-                $\Delta 1 \red{\underbar{0}} \Delta \Delta \Delta$
+                $\Delta 1 \red{\underbar{0}} \Delta \Delta \Delta \dots$
             \end{center}
 
             Po vykonaní príkazu $x \texttt{ *= } 2$ sa hlava dostane z najpravejšieho neblankového symbolu na pravý blankový symbol.
 
             \begin{center}
-                $\Delta 1 0 \red{\underbar{$\Delta$}} \Delta \Delta$
+                $\Delta 1 0 \red{\underbar{$\Delta$}} \Delta \Delta \dots$
             \end{center}
 
             V hore uvedenom prípade by sme mali chybnú hodnotu čísla z toho dôvodu, že u nás pozícia hlavy určuje \textit{LSB} a tým pádom by sme mali nevalidné číslo keďže jeho \textit{LSB} by bol blankový symbol. Aby sme sa vyhli tejto situácii, pri každom posune doprava treba vykonať kontrolu zda tam je blankový symbol, ak tam je, tak ho prepíšeme na symbol $0$ a posunieme hlavu na tento symbol $0$, ak tam nie je, tak iba presunieme hlavu na ten symbol ktorým je $0$ alebo $1$.
@@ -501,10 +576,10 @@ Pri násobení a delení (pri použití príkazov $x \texttt{ /= } 2$ a $x \text
                 \begin{tabular}{l|l|c|c}
                     \multicolumn{1}{c|}{\textbf{Páska}} & \multicolumn{1}{c|}{\textbf{Hodnota}} & \multicolumn{1}{c|}{\textbf{Riadok}} & \multicolumn{1}{c}{\textbf{Nasledujúci príkaz}}\\
                     \hline
-                    $\Delta \red{\underbar{1}} 0       \Delta \Delta \Delta$ & $1$ & $n$   & $x \texttt{ *= } 2$\\
-                    $\Delta 1 \red{\underbar{0}}       \Delta \Delta \Delta$ & $2$ & $n+1$ & $x \texttt{ *= } 2$\\
-                    $\Delta 1 0 \red{\underbar{$0$}}   \Delta \Delta \Delta$ & $4$ & $n+2$ & $x \texttt{ *= } 2$\\
-                    $\Delta 1 0 0 \red{\underbar{$0$}} \Delta \Delta \Delta$ & $8$ & $n+3$ & $x \texttt{ *= } 2$\\
+                    $\Delta \red{\underbar{1}} 0       \Delta \Delta \Delta \dots$ & $1$ & $n$   & $x \texttt{ *= } 2$\\
+                    $\Delta 1 \red{\underbar{0}}       \Delta \Delta \Delta \dots$ & $2$ & $n+1$ & $x \texttt{ *= } 2$\\
+                    $\Delta 1 0 \red{\underbar{$0$}}   \Delta \Delta \Delta \dots$ & $4$ & $n+2$ & $x \texttt{ *= } 2$\\
+                    $\Delta 1 0 0 \red{\underbar{$0$}} \Delta \Delta \Delta \dots$ & $8$ & $n+3$ & $x \texttt{ *= } 2$\\
                 \end{tabular}
             \end{center}
 
@@ -517,13 +592,13 @@ Pri násobení a delení (pri použití príkazov $x \texttt{ /= } 2$ a $x \text
             Príkladový prípad hlavy a pásky
 
             \begin{center}
-                $\Delta \red{\underbar{1}} 0 \Delta \Delta \Delta$
+                $\Delta \red{\underbar{1}} 0 \Delta \Delta \Delta \dots$
             \end{center}
 
             Po vykonaní príkazu $x \texttt{ /= } 2$ sa hlava dostane z najľavejšieho neblankového symbolu na ľavý blankový symbol.
 
             \begin{center}
-                $\red{\underbar{$\Delta$}} 1 0 \Delta \Delta \Delta$
+                $\red{\underbar{$\Delta$}} 1 0 \Delta \Delta \Delta \dots$
             \end{center}
 
             Ak by sme znovu vykonali tento príkaz, tak by došlo k abnormálnemu zastaveniu $TS$ $M_P$ pretože by nám spadla hlava. Tento prípad je možné riešiť tak, že ak sme na tomto ľavom blankovom symbole a treba vykonať príkaz pre posun do ľava t.j. vykonaným príkazom bude príkaz $x \texttt{ /= } 2$, tak sa celý obsah pásky posunieme o jeden symbol do prava (vykonáme $S_R$) a pred obsah pásky zapíšeme symbol $0$ pričom hlavu musíme vrátiť na pôvodné miesto -- na miesto ľavého blanku. Pre ilustráciu funkčnosti viz tabuľku dole.
@@ -532,11 +607,11 @@ Pri násobení a delení (pri použití príkazov $x \texttt{ /= } 2$ a $x \text
                 \begin{tabular}{l|l|c|c}
                     \multicolumn{1}{c|}{\textbf{Páska}} & \multicolumn{1}{c|}{\textbf{Hodnota}} & \multicolumn{1}{c|}{\textbf{Riadok}} & \multicolumn{1}{c}{\textbf{Nasledujúci príkaz}}\\
                     \hline
-                    $\Delta 1 \red{\underbar{0}}       \Delta \Delta \Delta$ & $2$     & $n$   & $x \texttt{ /= } 2$\\
-                    $\Delta \red{\underbar{1}} 0       \Delta \Delta \Delta$ & $1$     & $n+1$ & $x \texttt{ /= } 2$\\
-                    $\red{\underbar{$\Delta$}} 1 0     \Delta \Delta \Delta$ & $0.5$   & $n+2$ & $x \texttt{ /= } 2$\\
-                    $\red{\underbar{$\Delta$}} 0 1 0   \Delta \Delta \Delta$ & $0.25$  & $n+3$ & $x \texttt{ /= } 2$\\
-                    $\red{\underbar{$\Delta$}} 0 0 1 0 \Delta \Delta \Delta$ & $0.125$ & $n+4$ & $x \texttt{ /= } 2$\\
+                    $\Delta 1 \red{\underbar{0}}       \Delta \Delta \Delta \dots$ & $2$     & $n$   & $x \texttt{ /= } 2$\\
+                    $\Delta \red{\underbar{1}} 0       \Delta \Delta \Delta \dots$ & $1$     & $n+1$ & $x \texttt{ /= } 2$\\
+                    $\red{\underbar{$\Delta$}} 1 0     \Delta \Delta \Delta \dots$ & $0.5$   & $n+2$ & $x \texttt{ /= } 2$\\
+                    $\red{\underbar{$\Delta$}} 0 1 0   \Delta \Delta \Delta \dots$ & $0.25$  & $n+3$ & $x \texttt{ /= } 2$\\
+                    $\red{\underbar{$\Delta$}} 0 0 1 0 \Delta \Delta \Delta \dots$ & $0.125$ & $n+4$ & $x \texttt{ /= } 2$\\
                 \end{tabular}
             \end{center}
 
@@ -544,6 +619,8 @@ Pri násobení a delení (pri použití príkazov $x \texttt{ /= } 2$ a $x \text
         \end{minipage}
         \end{flushright}
 \end{itemize}
+
+Na základe tohto hore uvedeného popisu je možné zostrojiť pre program $P$ v jazyku $RationalC$ s počiatočnou hodnotou $x_0$ uloženou v registri $x$ ekvivalentný $TS$ $M_P$ a reťazec $w \in \{0,1\}^*$ tak, že $w \in L(M_P)$ práve vtedy keď program $P$ s počiatočnou hodnotou $x_0$ skončí s návratovou hodnotou $1$.
 
 \newpage
 \section{Literatúra} %#################################################################################
