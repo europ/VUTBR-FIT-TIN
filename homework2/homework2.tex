@@ -227,7 +227,7 @@ Zvoľme prvočíslo $r$ väčšie ako ako $k$ t.j. $r \geq k$ kde $r$ je prvoč�
 Potom platí, že
 
 \begin{center}
-$a^{r} \in L \wedge |a^{r}| = r$ kde $r \geq p \ \Longrightarrow \ a^{r} = uvwxy \wedge vx \neq \varepsilon \wedge |vwx| \leq k \wedge uv^{i}wx^{i}y \in L$ pre $i \geq 0$\\
+$a^{r} \in L \wedge |a^{r}| = r$ kde $r \geq k \ \Longrightarrow \ a^{r} = uvwxy \wedge vx \neq \varepsilon \wedge |vwx| \leq k \wedge uv^{i}wx^{i}y \in L$ pre $i \geq 0$\\
 \end{center}
 
 Nech
@@ -308,9 +308,9 @@ Teraz už ľahko ukážeme, že $\sigma$ zachováva členstvo $\langle M_{x} \ra
 \newpage
 \subsection{Čiastočná rozhodnuteľnosť}
 
-Majme $TS$ $M$ pre ktorý platí, že $\exists w \in \text{\textit{Affine}}: w \in L(M)$.\\
+Majme $TS$ $M$ pre ktorý platí, že $\exists w \in \text{\textit{Affine}}: w \in L(M)$ kde jazyk \textit{Affine} je rekurzívny jazyk.\\
 
-K čiastočnému rozhodovaniu uvedeného problému môžeme využiť $TS$ $M'$ ktorý na svojej prvej páske simuluje beh $TS$ $M$ pre jednotlivé možné vstupné reťazce napríklad v \red{lexikografickom} usporiadaní (viz dole uvedený príklad) a na druhej páske vykonáva kontrolu podmienky patričnosti reťazca do jazyka \textit{Affine}.
+K čiastočnému rozhodovaniu uvedeného problému môžeme využiť $TS$ $M'$ ktorý na svojej prvej páske simuluje beh $TS$ $M$ pre jednotlivé možné vstupné reťazce podľa určitého usporiadania (viz dole uvedený príklad) a na druhej páske vykonáva kontrolu podmienky patričnosti reťazca do jazyka \textit{Affine}.
 
 \begin{center}
     \begin{tabular}{l}
@@ -330,15 +330,138 @@ $TS$ $M'$ ale môže mať na svojej páske súčastne rozbehnutú simuláciu $TS
 $TS$ $M'$ môže vždy prejsť všetky aktuálne rozbehnuté simulácie a na každej vykonať práve jeden krok.
 Pokiaľ v niektorom prípade dôjde k prijatiu reťazca $TS$ $M$, vykoná kontrolu pratričnosti prijatého reťazca do jazyka \textit{Affine} na druhej páske. Ak kontrola patričnosti prijatého reťazca skončila úspechom, t.j. reťazec bol prijatý $TS$ $M$ a súčastne patrí do jazyka \textit{Affine} môžeme tvrdiť, že existuje reťazec ktorý patrí do \textit{Affine} a súčastne do $L(M)$. Ak $TS$ $M$ neprijal reťazec alebo reťazec nepatrí do jazyka \textit{Affine}, tak $TS$ $M'$ pridá páskovú konfiguráciu pre ďalší reťazec a celý krok opakuje.\\
 
-$TS$ $M'$ vykonáva kontrolu patričnosti reťazca do \textit{Affine} na druhej páske tak, že \red{TODO}.\\
+$TS$ $M'$ vykonáva kontrolu patričnosti reťazca do jazyka \textit{Affine} na druhej páske tak, že \red{TODO}.\\
 
 Funkčnosť $TS$ $M'$ môžeme chápať tak, že najskôr $TS$ $M'$ spustí simuláciu $TS$ $M$ na prvej páske. Ak $TS$ $M$ zastaví a prijme určitý reťazec, tak tento reťazec $TS$ $M'$ overí na druhej páske zda patrí do jazyka \textit{Affine} t.j. skontroluje podmienku patričnosti tohto reťazca do jazyka \textit{Affine}.
 
 \newpage
 \section{Príklad číslo 4} %############################################################################
 
+\subsection{(a)}
 ...
 
+\newpage
+\subsection{(b)}
+Dôkaz, že pre každý program $P$ v jazyku \textit{RationalC} a počiatočnú hodnotu $x_0 \in \mathbb{N}$ ($0 \in \mathbb{N}$) je možné zostrojiť $TS$ $M_P = (Q, \Sigma, \Gamma, \delta, q_{first}, F)$ a reťazec $w \in \{0,1\}^*$ tak, že $w \in L(M_P)$ práve vtedy, keď $P$ s počiatočnou hodnotou $x_0$ skončí s návratovou hodnotou $1$.\\
+
+Na začiatku si zapíšeme obsah registra $x$ v ktorom sa nachádza číslo $x_0 \in \mathbb{N}$ v binárnej podobe na pásku $TS$ $M_P$ čo je zobrazené v ilustračnom obrázku \ref{fig:reg_to_tape}.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=1]{img/register_to_tape.pdf}
+    \caption{Ilustračný obrázok prevodu registra $x$ na pásku $TS$ $M_P$.}
+    \label{fig:reg_to_tape}
+\end{figure}
+
+Potom, pre $TS$ $M_P$ je potreba inicializovať hlavu čo v našom prípade znamená, že posunieme hlavu $TS$ $M_P$ na \textit{least significant bit} (\textit{LSB}) t.j. na \textit{most right nonblank symbol} (najpravejší neblankový symbol) čo je realizovateľné $TS$. Táto inicializácia nášho $TS$ $M_P$ je nutná z toho dôvodu, že na začiatku máme celé nezáporné číslo ale neskôr sa môžeme dopracovať ku desatinným číslam kde je potreba vedieť kde je desatinná čiarka. V $TS$ $M_P$ budeme desatinnú čiarku reprezentovať tak, že pozícia hlavy ukazuje na \textit{LSB} čísla z čoho vieme, že desatinná bodka sa nachádza na pravej strane od tohto \textit{LSB} čísla. Proces inicializácie hlavy je ilustrovaný na obrázku \ref{fig:tape_init} v ktorom je hypotetická desatinná bodka znázornená červenou bodkou.\\
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=1]{img/tape_head.pdf}
+    \caption{Ilustračný obrázok inicializácie hlavy $TS$ $M_P$ na páske.}
+    \label{fig:tape_init}
+\end{figure}
+
+Predpokladajme, že zdrojový kód pre program $P$ v jazyku \textit{RationalC} má určitú formu kde každý jeden príkaz je zapísaný na osobitnom riadku kde všetky riadky sú očíslované od $0$ (pre prvý riadok) až po $N$ (posledný riadok).\\
+
+Potom, pre každý jeden riadok, kde označíme číslo riadka ako $N$, vytvoríme jeden stav $q_N \in Q$ a pre každý príkaz na týchto riadokoch platí, že jednotlivé príkazy vieme previesť podľa nasledujúcich pravidiel.
+\begin{itemize}
+    \item Príkaz $\texttt{if } x \ \% \ 2 == A$ \texttt{goto} $B$ kde $A = \{0, 1\}$ a $0 \leq B \leq N_{MAX}$ na riadku $N$\\[-1.5em]
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            $TS$ $M_P$ bude obsahovať nasledujúce prechodové pravidlá pre tento príkaz
+            \begin{center}
+            \begin{tabular}{r@{ $=$ }l}
+                $\delta(q_{N}, A)$       & $(q_{B}, A)$\\
+                $\delta(q_{N}, \bar{A})$ & $(q_{N+1}, \bar{A})$
+            \end{tabular}
+            \end{center}
+            kde $q_{B}, q_{N}, q_{N+1} \in Q$.
+        \end{minipage}
+        \end{flushright}
+    \item Príkaz $x \texttt{ /= } 2$ na riadku $N$\\[-1.5em]
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            $TS$ $M_P$ bude obsahovať nasledujúce prechodové pravidlá pre tento príkaz
+            \begin{center}
+            \begin{tabular}{r@{ $=$ }l}
+                $\delta(q_{N}, 0)$ & $(q_{N+1}, L)$\\
+                $\delta(q_{N}, 1)$ & $(q_{N+1}, L)$
+            \end{tabular}
+            \end{center}
+            kde $q_{N}, q_{N+1} \in Q$.
+        \end{minipage}
+        \end{flushright}
+    \item Príkaz $x \texttt{ *= } 2$ na riadku $N$\\[-1.5em]
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            $TS$ $M_P$ bude obsahovať nasledujúce prechodové pravidlá pre tento príkaz
+            \begin{center}
+            \begin{tabular}{r@{ $=$ }l}
+                $\delta(q_{N}, 0)$ & $(q_{N+1}, R)$\\
+                $\delta(q_{N}, 1)$ & $(q_{N+1}, R)$
+            \end{tabular}
+            \end{center}
+            kde $q_{N}, q_{N+1} \in Q$.
+        \end{minipage}
+        \end{flushright}
+    \item Príkaz \texttt{return} $0$ na riadku $N$\\[-1.5em]
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            $TS$ $M_P$ bude obsahovať nasledujúce prechodové pravidlá pre tento príkaz
+            \begin{center}
+            \begin{tabular}{r@{ $=$ }l}
+                $\delta(q_{N}, 0)$ & $(q_{reject}, 0)$\\
+                $\delta(q_{N}, 1)$ & $(q_{reject}, 1)$
+            \end{tabular}
+            \end{center}
+            kde $q_{N}, q_{reject} \in Q$ a $q_{reject} \in F$.
+        \end{minipage}
+        \end{flushright}
+    \item Príkaz \texttt{return} $1$ na riadku $N$\\[-1.5em]
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            $TS$ $M_P$ bude obsahovať nasledujúce prechodové pravidlá pre tento príkaz
+            \begin{center}
+            \begin{tabular}{r@{ $=$ }l}
+                $\delta(q_{N}, 0)$ & $(q_{accept}, 0)$\\
+                $\delta(q_{N}, 1)$ & $(q_{accept}, 1)$
+            \end{tabular}
+            \end{center}
+            kde $q_{N}, q_{accept} \in Q$ a $q_{accept} \in F$.
+        \end{minipage}
+        \end{flushright}
+    \item Príkaz \texttt{odd}$(x)$ na riadku $N$\\[-1.5em]
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            $TS$ $M_P$ bude obsahovať nasledujúce prechodové pravidlá pre tento príkaz
+            \begin{center}
+            \begin{tabular}{r@{ $=$ }l}
+                $\delta(q_{N}, 0)$ & $(q_{N+1}, 1)$\\
+                $\delta(q_{N}, 1)$ & $(q_{N+1}, 1)$
+            \end{tabular}
+            \end{center}
+            kde $q_{N}, q_{N+1} \in Q$.
+        \end{minipage}
+        \end{flushright}
+    \item Príkaz \texttt{even}$(x)$ na riadku $N$\\[-1.5em]
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            $TS$ $M_P$ bude obsahovať nasledujúce prechodové pravidlá pre tento príkaz
+            \begin{center}
+            \begin{tabular}{r@{ $=$ }l}
+                $\delta(q_{N}, 0)$ & $(q_{N+1}, 0)$\\
+                $\delta(q_{N}, 1)$ & $(q_{N+1}, 0)$
+            \end{tabular}
+            \end{center}
+            kde $q_{N}, q_{N+1} \in Q$.
+        \end{minipage}
+        \end{flushright}
+\end{itemize}
+
+Pri násobení a delení (pri použití príkazov $x \texttt{ /= } 2$ a $x \texttt{ *= } 2$) môže ale dôjsť ku tomu, že sa hlava dostane zo symbolu $0$ alebo $1$ na symbol blank. Môžu nastať dve možnosti a to keď sa hlava dostaneme na ľavý blank (prvý symbol pásky) alebo na pravý blank (blank za posledným znakom $0$ alebo $1$ ktorý je uložený na páske).
+
+\red{\textbf{TODO}}: Ak sa hlava dostane na ľavý blank... Ak sa hlava dostane na pravý blank...
 
 \newpage
 \section{Literatúra} %#################################################################################
