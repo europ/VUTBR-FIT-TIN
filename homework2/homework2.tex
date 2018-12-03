@@ -414,7 +414,128 @@ Aby sme desatinnú čiarku presunuli na správne miesto, tak bude treba využiť
 
 Následne po správnej inicializácii registra sme schopný vykonávať jednotlivé činnosti $TS$ $M$ pomocou určitých podprogramov. Samotný podprogram reprezentuje rutinu ktorá sa správa rovnako ako chovanie jednej činnosti $TS$ $M$.\\
 
-\red{\textbf{TODO}}: jednotlivé rutiny pre TS
+Rutiny pre jednotlivé činnosti $TS$ $M$ môžeme rozdeliť na základe ich závislosti na posuvné, zápisové a overovacie. Posuvné realizujú posuv hlavy zo symbolu na symbol ktoré ale nekontrolujú \green{\textit{EOT}} pretože prechod $TS$ $M$ závisí od aktuálneho symbolu pod hlavou, ktorý sa kontroluje zda to nie je \green{\textit{EOT}} v overovacích rutinách, ktoré realizujú čítanie symbolu pod hlavou. Každá posuvná a zápisová rutina je podmienená overovacou rutinou, ktorá vždy overí zda sa tam nenachádza \green{\textit{EOT}}. Každá overovacia rutina obsahuje na začiatku kód pre overenie \green{\textit{EOT}} pod ktorým sa nachádza kód pre overenie $0$,$1$ alebo $\Delta$. Ak overovacia rutina odhalí \green{\textit{EOT}} tak beh programu je ukončený s návratovou hodnotou $0$, ak neodhalí \green{\textit{EOT}} symbol tak overí zda sa jedná o očakávaný symbol a ak sa jedná o očakávaný symbol tak sa vykoná posuvná alebo zápisová rutina. Overovacie rutiny obsahujú na konci \texttt{NOOP;} ktorý je možný realizovať za pomoci dvoch príkazov \texttt{x /= 2; x *= 2;} ktoré realizujú neutrálnu operáciu. Je to z toho dôvodu, že bolo potrebné pre overovaciu rutinu vytvoriť koncovú návesť.\\
+
+Posuvné rutiny:
+\begin{itemize}
+    \item Posun hlavny do ľava
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            \begin{tabular}{r|l}
+                \textit{A} & \texttt{x *= 2;}\\
+                \textit{B} & \texttt{x *= 2;}
+            \end{tabular}
+        \end{minipage}
+        \end{flushright}
+    \item Posun hlavy do prava
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            \begin{tabular}{r|l}
+                \textit{A} & \texttt{x /= 2;}\\
+                \textit{B} & \texttt{x /= 2;}
+            \end{tabular}
+        \end{minipage}
+        \end{flushright}
+\end{itemize}
+
+Zápisové rutiny:
+\begin{itemize}
+    \item Zápis symbolu $1$
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            \begin{tabular}{r|l}
+                \textit{A} & \texttt{x /= 2;}\\
+                \textit{B} & \texttt{odd(x);}\\
+                \textit{C} & \texttt{x *= 2;}\\
+                \textit{D} & \texttt{odd(x);}
+            \end{tabular}
+        \end{minipage}
+        \end{flushright}
+    \item Zápis symbolu $0$
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            \begin{tabular}{r|l}
+                \textit{A} & \texttt{x /= 2;}\\
+                \textit{B} & \texttt{odd(x);}\\
+                \textit{C} & \texttt{x *= 2;}\\
+                \textit{D} & \texttt{even(x);}
+            \end{tabular}
+        \end{minipage}
+        \end{flushright}
+    \item Zápis symbolu $\Delta$
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            \begin{tabular}{r|l}
+                \textit{A} & \texttt{x /= 2;}\\
+                \textit{B} & \texttt{even(x);}\\
+                \textit{C} & \texttt{x *= 2;}\\
+                \textit{D} & \texttt{even(x);}
+            \end{tabular}
+        \end{minipage}
+        \end{flushright}
+\end{itemize}
+
+\newpage
+
+Overovacie rutiny:
+\begin{itemize}
+    \item Kontrola symbolu $1$
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            \begin{tabular}{r|l}
+                \textit{A} & \texttt{if x \% 2 == 0 goto F;}\\
+                \textit{B} & \texttt{x /= 2;}\\
+                \textit{C} & \texttt{if x \% 2 == 1 goto E;}\\
+                \textit{D} & \texttt{return 0;}\\
+                \textit{E} & \texttt{x *= 2;}\\
+                \textit{F} & \texttt{if x \% 2 == 0 goto K;}\\
+                \textit{G} & \texttt{x /= 2;}\\
+                \textit{H} & \texttt{if x \% 2 == 0 goto J;}\\
+                \textit{I} & rutina pre zápis alebo posuv\\
+                \textit{J} & \texttt{x *= 2;}\\
+                \textit{K} & \texttt{NOOP;}
+            \end{tabular}
+        \end{minipage}
+        \end{flushright}
+    \item Kontrola symbolu $0$
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            \begin{tabular}{r|l}
+                \textit{A} & \texttt{if x \% 2 == 0 goto F;}\\
+                \textit{B} & \texttt{x /= 2;}\\
+                \textit{C} & \texttt{if x \% 2 == 1 goto E;}\\
+                \textit{D} & \texttt{return 0;}\\
+                \textit{E} & \texttt{x *= 2;}\\
+                \textit{F} & \texttt{if x \% 2 == 1 goto K;}\\
+                \textit{G} & \texttt{x /= 2;}\\
+                \textit{H} & \texttt{if x \% 2 == 0 goto J;}\\
+                \textit{I} & rutina pre zápis alebo posuv\\
+                \textit{J} & \texttt{x *= 2;}\\
+                \textit{K} & \texttt{NOOP;}
+            \end{tabular}
+        \end{minipage}
+        \end{flushright}
+    \item Kontrola symbolu $\Delta$
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            \begin{tabular}{r|l}
+                \textit{A} & \texttt{if x \% 2 == 0 goto F;}\\
+                \textit{B} & \texttt{x /= 2;}\\
+                \textit{C} & \texttt{if x \% 2 == 1 goto E;}\\
+                \textit{D} & \texttt{return 0;}\\
+                \textit{E} & \texttt{x *= 2;}\\
+                \textit{F} & \texttt{if x \% 2 == 1 goto K;}\\
+                \textit{G} & \texttt{x /= 2;}\\
+                \textit{H} & \texttt{if x \% 2 == 1 goto J;}\\
+                \textit{I} & rutina pre zápis alebo posuv\\
+                \textit{J} & \texttt{x *= 2;}\\
+                \textit{K} & \texttt{NOOP;}
+            \end{tabular}
+        \end{minipage}
+        \end{flushright}
+\end{itemize}
+
+Všetky rutiny obsahujú na ľavej strane kódu písmená ktoré reprezentujú číslné označenie jednotlivých po sebe idúcich riadkov.
 
 \newpage
 \subsection{(b)}
