@@ -12,6 +12,7 @@
 \usepackage{xcolor}
 \usepackage{siunitx}
 \usepackage{amsmath}
+\usepackage{accents}
 \usepackage{listings}
 \usepackage{csquotes}
 \usepackage{hyperref}
@@ -365,6 +366,8 @@ Potom, pre $TS$ $M_P$ je potreba inicializovať hlavu čo v našom prípade znam
 Predpokladajme, že zdrojový kód pre program $P$ v jazyku \textit{RationalC} má určitú formu kde každý jeden príkaz je zapísaný na osobitnom riadku kde všetky riadky sú očíslované od $0$ (pre prvý riadok) až po $N$ (posledný riadok).\\
 
 Potom, pre každý jeden riadok, kde označíme číslo riadka ako $N$, vytvoríme jeden stav $q_N \in Q$ a pre každý príkaz na týchto riadokoch platí, že jednotlivé príkazy vieme previesť podľa nasledujúcich pravidiel.
+
+\newpage
 \begin{itemize}
     \item Príkaz $\texttt{if } x \ \% \ 2 == A$ \texttt{goto} $B$ kde $A = \{0, 1\}$ a $0 \leq B \leq N_{MAX}$ na riadku $N$\\[-1.5em]
         \begin{flushright}
@@ -376,7 +379,9 @@ Potom, pre každý jeden riadok, kde označíme číslo riadka ako $N$, vytvorí
                 $\delta(q_{N}, \bar{A})$ & $(q_{N+1}, \bar{A})$
             \end{tabular}
             \end{center}
-            kde $q_{B}, q_{N}, q_{N+1} \in Q$.
+            kde $q_{B}, q_{N}, q_{N+1} \in Q$.\\
+
+            Tento príkaz je možné chápať ako zmena stavu v $TS$ $M_P$ pričom sa hlava neposunie a ponechá sa pôvodný symbol pod pozíciou hlavy.
         \end{minipage}
         \end{flushright}
     \item Príkaz $x \texttt{ /= } 2$ na riadku $N$\\[-1.5em]
@@ -389,7 +394,9 @@ Potom, pre každý jeden riadok, kde označíme číslo riadka ako $N$, vytvorí
                 $\delta(q_{N}, 1)$ & $(q_{N+1}, L)$
             \end{tabular}
             \end{center}
-            kde $q_{N}, q_{N+1} \in Q$.
+            kde $q_{N}, q_{N+1} \in Q$.\\
+
+            Tento príkaz je možné chápať ako posun hlavy $TS$ $M_P$ do ľava.
         \end{minipage}
         \end{flushright}
     \item Príkaz $x \texttt{ *= } 2$ na riadku $N$\\[-1.5em]
@@ -402,7 +409,9 @@ Potom, pre každý jeden riadok, kde označíme číslo riadka ako $N$, vytvorí
                 $\delta(q_{N}, 1)$ & $(q_{N+1}, R)$
             \end{tabular}
             \end{center}
-            kde $q_{N}, q_{N+1} \in Q$.
+            kde $q_{N}, q_{N+1} \in Q$.\\
+
+            Tento príkaz je možné chápať ako posun hlavy $TS$ $M_P$ do prava.
         \end{minipage}
         \end{flushright}
     \item Príkaz \texttt{return} $0$ na riadku $N$\\[-1.5em]
@@ -415,7 +424,9 @@ Potom, pre každý jeden riadok, kde označíme číslo riadka ako $N$, vytvorí
                 $\delta(q_{N}, 1)$ & $(q_{reject}, 1)$
             \end{tabular}
             \end{center}
-            kde $q_{N}, q_{reject} \in Q$ a $q_{reject} \in F$.
+            kde $q_{N}, q_{reject} \in Q$ a $q_{reject} \in F$.\\
+
+            Tento príkaz je možné chápať ako prechod $TS$ $M_P$ do koncového stavu ktorý je odmietajúci.
         \end{minipage}
         \end{flushright}
     \item Príkaz \texttt{return} $1$ na riadku $N$\\[-1.5em]
@@ -428,9 +439,12 @@ Potom, pre každý jeden riadok, kde označíme číslo riadka ako $N$, vytvorí
                 $\delta(q_{N}, 1)$ & $(q_{accept}, 1)$
             \end{tabular}
             \end{center}
-            kde $q_{N}, q_{accept} \in Q$ a $q_{accept} \in F$.
+            kde $q_{N}, q_{accept} \in Q$ a $q_{accept} \in F$.\\
+
+            Tento príkaz je možné chápať ako prechod $TS$ $M_P$ do koncového stavu ktorý je akceptujúci.
         \end{minipage}
         \end{flushright}
+\newpage
     \item Príkaz \texttt{odd}$(x)$ na riadku $N$\\[-1.5em]
         \begin{flushright}
         \begin{minipage}{0.90\textwidth}
@@ -441,7 +455,9 @@ Potom, pre každý jeden riadok, kde označíme číslo riadka ako $N$, vytvorí
                 $\delta(q_{N}, 1)$ & $(q_{N+1}, 1)$
             \end{tabular}
             \end{center}
-            kde $q_{N}, q_{N+1} \in Q$.
+            kde $q_{N}, q_{N+1} \in Q$.\\
+
+            Tento príkaz je možné chápať ako zápis symbolu $1$ na aktuálnej pozícii hlavy.
         \end{minipage}
         \end{flushright}
     \item Príkaz \texttt{even}$(x)$ na riadku $N$\\[-1.5em]
@@ -454,14 +470,80 @@ Potom, pre každý jeden riadok, kde označíme číslo riadka ako $N$, vytvorí
                 $\delta(q_{N}, 1)$ & $(q_{N+1}, 0)$
             \end{tabular}
             \end{center}
-            kde $q_{N}, q_{N+1} \in Q$.
+            kde $q_{N}, q_{N+1} \in Q$.\\
+
+            Tento príkaz je možné chápať ako zápis symbolu $0$ na aktuálnej pozícii hlavy.
         \end{minipage}
         \end{flushright}
 \end{itemize}
 
-Pri násobení a delení (pri použití príkazov $x \texttt{ /= } 2$ a $x \texttt{ *= } 2$) môže ale dôjsť ku tomu, že sa hlava dostane zo symbolu $0$ alebo $1$ na symbol blank. Môžu nastať dve možnosti a to keď sa hlava dostaneme na ľavý blank (prvý symbol pásky) alebo na pravý blank (blank za posledným znakom $0$ alebo $1$ ktorý je uložený na páske).
+Pri násobení a delení (pri použití príkazov $x \texttt{ /= } 2$ a $x \texttt{ *= } 2$) môže ale dôjsť ku tomu, že sa hlava dostane zo symbolu $0$ alebo $1$ na symbol blank. Môžu nastať dve možnosti a to keď sa hlava dostaneme na ľavý blank (prvý symbol pásky) alebo na pravý blank (blank za posledným znakom $0$ alebo $1$ ktorý je uložený na páske). Tieto prípady je potreba vyriešiť pričom môžu nastať iba vtedy, ak sme sa dostali na krajný (najpravejší alebo najľavejší) symbol $0$ alebo $1$ vedľa ktorého je z ľavej strany blank (pre najľavejší) alebo z pravej strany blank (pre najpravejší). Takže môžu nastať dva prípady.
 
-\red{\textbf{TODO}}: Ak sa hlava dostane na ľavý blank... Ak sa hlava dostane na pravý blank...
+\begin{itemize}
+    \item Hlava je na najpravejšom symbole $0$ alebo $1$ a treba vykonať príkaz $x \texttt{ *= } 2$.\\[-1.5em]
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            Príkladový prípad hlavy a pásky
+
+            \begin{center}
+                $\Delta 1 \red{\underbar{0}} \Delta \Delta \Delta$
+            \end{center}
+
+            Po vykonaní príkazu $x \texttt{ *= } 2$ sa hlava dostane z najpravejšieho neblankového symbolu na pravý blankový symbol.
+
+            \begin{center}
+                $\Delta 1 0 \red{\underbar{$\Delta$}} \Delta \Delta$
+            \end{center}
+
+            V hore uvedenom prípade by sme mali chybnú hodnotu čísla z toho dôvodu, že u nás pozícia hlavy určuje \textit{LSB} a tým pádom by sme mali nevalidné číslo keďže jeho \textit{LSB} by bol blankový symbol. Aby sme sa vyhli tejto situácii, pri každom posune doprava treba vykonať kontrolu zda tam je blankový symbol, ak tam je, tak ho prepíšeme na symbol $0$ a posunieme hlavu na tento symbol $0$, ak tam nie je, tak iba presunieme hlavu na ten symbol ktorým je $0$ alebo $1$.
+
+            \begin{center}
+                \begin{tabular}{l|l|c|c}
+                    \multicolumn{1}{c|}{\textbf{Páska}} & \multicolumn{1}{c|}{\textbf{Hodnota}} & \multicolumn{1}{c|}{\textbf{Riadok}} & \multicolumn{1}{c}{\textbf{Nasledujúci príkaz}}\\
+                    \hline
+                    $\Delta \red{\underbar{1}} 0       \Delta \Delta \Delta$ & $1$ & $n$   & $x \texttt{ *= } 2$\\
+                    $\Delta 1 \red{\underbar{0}}       \Delta \Delta \Delta$ & $2$ & $n+1$ & $x \texttt{ *= } 2$\\
+                    $\Delta 1 0 \red{\underbar{$0$}}   \Delta \Delta \Delta$ & $4$ & $n+2$ & $x \texttt{ *= } 2$\\
+                    $\Delta 1 0 0 \red{\underbar{$0$}} \Delta \Delta \Delta$ & $8$ & $n+3$ & $x \texttt{ *= } 2$\\
+                \end{tabular}
+            \end{center}
+
+            V tabuľke stĺpec '\textit{páska}' zachytáva aktuálny stav pásky spolu s pozíciou hlavy čo je znázornené podčiarknutým červeným symbolom. Stĺpec '\textit{hodnota}' vyjadruje numerickú hodnotu ktorá sa nachádza na páske, '\textit{riadok}' udáva pozíciu v programe a '\textit{nasledujúci príkaz}' zobrazuje príkaz ktorý bude vykonaný.
+        \end{minipage}
+        \end{flushright}
+    \item Hlava je na najľavejšom symbole $0$ alebo $1$ a treba vykonať príkaz $x \texttt{ /= } 2$.\\[-1.5em]
+        \begin{flushright}
+        \begin{minipage}{0.90\textwidth}
+            Príkladový prípad hlavy a pásky
+
+            \begin{center}
+                $\Delta \red{\underbar{1}} 0 \Delta \Delta \Delta$
+            \end{center}
+
+            Po vykonaní príkazu $x \texttt{ /= } 2$ sa hlava dostane z najľavejšieho neblankového symbolu na ľavý blankový symbol.
+
+            \begin{center}
+                $\red{\underbar{$\Delta$}} 1 0 \Delta \Delta \Delta$
+            \end{center}
+
+            Ak by sme znovu vykonali tento príkaz, tak by došlo k abnormálnemu zastaveniu $TS$ $M_P$ pretože by nám spadla hlava. Tento prípad je možné riešiť tak, že ak sme na tomto ľavom blankovom symbole a treba vykonať príkaz pre posun do ľava t.j. vykonaným príkazom bude príkaz $x \texttt{ /= } 2$, tak sa celý obsah pásky posunieme o jeden symbol do prava (vykonáme $S_R$) a pred obsah pásky zapíšeme symbol $0$ pričom hlavu musíme vrátiť na pôvodné miesto -- na miesto ľavého blanku. Pre ilustráciu funkčnosti viz tabuľku dole.
+
+            \begin{center}
+                \begin{tabular}{l|l|c|c}
+                    \multicolumn{1}{c|}{\textbf{Páska}} & \multicolumn{1}{c|}{\textbf{Hodnota}} & \multicolumn{1}{c|}{\textbf{Riadok}} & \multicolumn{1}{c}{\textbf{Nasledujúci príkaz}}\\
+                    \hline
+                    $\Delta 1 \red{\underbar{0}}       \Delta \Delta \Delta$ & $2$     & $n$   & $x \texttt{ /= } 2$\\
+                    $\Delta \red{\underbar{1}} 0       \Delta \Delta \Delta$ & $1$     & $n+1$ & $x \texttt{ /= } 2$\\
+                    $\red{\underbar{$\Delta$}} 1 0     \Delta \Delta \Delta$ & $0.5$   & $n+2$ & $x \texttt{ /= } 2$\\
+                    $\red{\underbar{$\Delta$}} 0 1 0   \Delta \Delta \Delta$ & $0.25$  & $n+3$ & $x \texttt{ /= } 2$\\
+                    $\red{\underbar{$\Delta$}} 0 0 1 0 \Delta \Delta \Delta$ & $0.125$ & $n+4$ & $x \texttt{ /= } 2$\\
+                \end{tabular}
+            \end{center}
+
+            V tabuľke stĺpec '\textit{páska}' zachytáva aktuálny stav pásky spolu s pozíciou hlavy čo je znázornené podčiarknutým červeným symbolom. Stĺpec '\textit{hodnota}' vyjadruje numerickú hodnotu ktorá sa nachádza na páske, '\textit{riadok}' udáva pozíciu v programe a '\textit{nasledujúci príkaz}' zobrazuje príkaz ktorý bude vykonaný.
+        \end{minipage}
+        \end{flushright}
+\end{itemize}
 
 \newpage
 \section{Literatúra} %#################################################################################
