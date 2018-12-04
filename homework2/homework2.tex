@@ -140,69 +140,48 @@ Keďže $S' {\underset{G_D}{\Rightarrow}}^* u$ a $S {\underset{G_D}{\Rightarrow}
 \begin{flushright}
 \begin{minipage}{0.95\textwidth}
 
-    $\#_{[}(u) + \#_{[}(v) \stackrel{\text{?}}{=} i$ analogicky pre $\#_{]}(u) + \#_{]}(v) \stackrel{\text{?}}{=} i$\\
+    Pre $w$ platí že
 
-    % 1)
-    \textbf{1.)} $\#_{[}(u) = 0 \Rightarrow \#_{[}(v) = i \quad \vee \quad \#_{[}(v) = 0 \Rightarrow \#_{[}(u) = i$\\[-1em]
-    \begin{flushright}
-    \begin{minipage}{0.95\textwidth}
-        Ak je buď $\#_{[}(u)$ alebo buď $\#_{[}(v)$ rovné nule, tak ho vieme vygenerovať z pravidla $S$ na základe indukčnej bázi.\\
+    \begin{center}
+        $\#_[(w) = i$
+    \end{center}
 
-        Ak je buď $\#_{[}(u)$ alebo buď $\#_{[}(v)$ rovné $i$, tak ten prvok prepíšeme pomocou vzorca
-        \begin{center}
-        $w'=[u']v' \Rightarrow \#_{[}(u') + \#_{[}(v') = i-1 = j$, analogicky $\#_{]}(u') + \#_{]}(v') = i-1 = j$
-        \end{center}
-        Na základe indukčného predpokladu vieme z $S$ vygenerovať $u'$ a $v'$.
-        \begin{center}
-            $S \Rightarrow [S]S \Rightarrow^{*} [u']v' = w'$
-        \end{center}
-        kde
-        \begin{center}
-            $\#_{[}(u') + \#_{[}(v') = i$, analogicky $\#_{]}(u') + \#_{]}(v') = i$
-        \end{center}
-    \end{minipage}
-    \end{flushright}
+    Keďže $w=[u]v$ na základe kapitoly \ref{sec:a}, tak z toho vyplýva že
 
-    \hfill\\[-1em]
+    \begin{center}
+    $\#_[(w) - 1 = \#_[(u) + \#_[(v) = i-1 = j$
+    \end{center}
 
-    % 2)
-    \textbf{2.)} $\#_{[}(u) \neq 0 \quad \wedge \quad \#_{[}(v) \neq 0 \quad \wedge \quad \#_{[}(u)+\#_{[}(v) \leq i$\\[-1em]
-    \begin{flushright}
-    \begin{minipage}{0.95\textwidth}
-        Keď $\#_{[}(u)$ a $\#_{[}(v)$ sú nenulové, tak musí platiť že
-        \begin{center}
-            $\#_{[}(u) < i \wedge \#_{[}(v) < i$
-        \end{center}
-        t.j.
-        \begin{center}
-            $\#_{[}(u) = i - M = j_1 \wedge \#_{[}(v) = i - N = j_2$ kde $M,N \in \mathbb{N} \setminus \{0\}$
-        \end{center}
-    \end{minipage}
-    \end{flushright}
+    analogicky pre
+
+    \begin{center}
+    $\#_](w) - 1 = \#_](u) + \#_](v) = i-1 = j$
+    \end{center}
+
+    Z toho vyplýva podľa indukčného predpokladu že
+
+    \begin{center}
+    $S {\underset{G}{\Rightarrow}}^* u \wedge S {\underset{G}{\Rightarrow}}^* v$
+    \end{center}
+
+    takže
+
+    \begin{center}
+    $u,v \in L(G)$
+    \end{center}
+
+    A keďže existuje v gramatike $G$ také pravidlo, že
+
+    \begin{center}
+        $S \rightarrow [S]S$
+    \end{center}
+
+    tak je možné generovať
+    \begin{center}
+        $S {\underset{G}{\Rightarrow}} [S]S {\underset{G}{\Rightarrow}}^* w \Rightarrow w \in L(G)$.
+    \end{center}
 \end{minipage}
 \end{flushright}
-
-\hfill\\[-1em]
-
-\underline{\textbf{Pre i + 1}}
-\begin{flushright}
-\begin{minipage}{0.95\textwidth}
-    $S \Rightarrow^{*} w$ kde $w \in L$ pre ktoré platí, že
-    \begin{center}
-        $\#_{[}(w)=i+1$
-    \end{center}
-    a z definicie Dyckovho jazyka platí, že
-    \begin{center}
-        $\#_{]}(w)=i+1$
-    \end{center}
-    Potom vieme $w$ zapísať ako $w=[u]v$ podľa bodu (a)(kapitola \ref{sec:a}) $\Rightarrow$ $\#_{[}(u) + \#_{[}(v) = i$, analogicky musí platiť $\#_{]}(u) + \#_{]}(v) = i$.
-\end{minipage}
-\end{flushright}
-
-\hfill\\[2em]
-
-$S \Rightarrow [S]S \Rightarrow^{*} [u]v = w$ kde $\#_{[}(u) + \#_{[}(v) = i+1$, analogicky $\#_{]}(u) + \#_{]}(v) = i+1$.
-
 
 \newpage
 \section{Príklad číslo 2} %############################################################################
@@ -334,7 +313,7 @@ $TS$ $M'$ ale môže mať na svojej páske súčastne rozbehnutú simuláciu $TS
 $TS$ $M'$ môže vždy prejsť všetky aktuálne rozbehnuté simulácie a na každej vykonať práve jeden krok.
 Pokiaľ v niektorom prípade dôjde k prijatiu reťazca $TS$ $M$, vykoná kontrolu pratričnosti prijatého reťazca do jazyka \textit{Affine} na druhej páske. Ak kontrola patričnosti prijatého reťazca skončila úspechom, t.j. reťazec bol prijatý $TS$ $M$ a súčastne patrí do jazyka \textit{Affine} môžeme tvrdiť, že existuje reťazec ktorý patrí do \textit{Affine} a súčastne do $L(M)$. Ak $TS$ $M$ neprijal reťazec alebo reťazec nepatrí do jazyka \textit{Affine}, tak $TS$ $M'$ pridá páskovú konfiguráciu pre ďalší reťazec a celý krok opakuje.\\
 
-$TS$ $M'$ vykonáva kontrolu patričnosti reťazca do jazyka \textit{Affine} na druhej páske tak, že \red{TODO}.\\
+$TS$ $M'$ vykonáva kontrolu patričnosti reťazca do jazyka \textit{Affine} na druhej páske tak, že na druhej páske $TS$ $M'$ spustí úplny $TS$ $M_{Affine}$ ktorý implementuje \textit{Affine} ktorý je rekurzívny t.j. $L(M_{Affine}) = Affine$ a pomocou $TS$ $M_{Affine}$ rozhodne zda reťazec patrí do \textit{Affine} alebo nie.\\
 
 Funkčnosť $TS$ $M'$ môžeme chápať tak, že najskôr $TS$ $M'$ spustí simuláciu $TS$ $M$ na prvej páske. Ak $TS$ $M$ zastaví a prijme určitý reťazec, tak tento reťazec $TS$ $M'$ overí na druhej páske zda patrí do jazyka \textit{Affine} t.j. skontroluje podmienku patričnosti tohto reťazca do jazyka \textit{Affine}.
 
@@ -344,7 +323,7 @@ Funkčnosť $TS$ $M'$ môžeme chápať tak, že najskôr $TS$ $M'$ spustí simu
 \subsection{(a)}
 Dôkaz, že pre každý $TS$ $M$ nad abecedou $\{0,1\}$ a reťazec $w \in \{0,1\}^*$ je možné zostrojiť program $P_M$ v jazyku \textit{RationalC} a zvoliť počiatočnú hodnotu $x_0$ pre register $x$ tak, že $P_M$ skončí s návratovou hodnotou $1$ práve vtedy keď $w \in L(M)$.\\
 
-Uvažujme $w = 1 0 1 1 1 0 1 1 1$.\\
+Uvažujme $w = 1 0 1 1 1 0 1 1 1$ na ktorom budeme vykonávať ilustrácie.\\
 
 Prvým krokom je potreba reverzovať reťazec $w$ na páske.
 
@@ -535,11 +514,13 @@ Overovacie rutiny:
         \end{flushright}
 \end{itemize}
 
-Všetky rutiny obsahujú na ľavej strane kódu písmená ktoré reprezentujú číslné označenie jednotlivých po sebe idúcich riadkov.
+Všetky rutiny obsahujú na ľavej strane kódu písmená ktoré reprezentujú číslné označenie jednotlivých po sebe idúcich riadkov.\\
+
+Na základe hore uvedeného popisu je dokázané, že ku $TS$ $M$ vieme zostrojiť ekvivalentný $P_M$ v \textit{RationalC}.
 
 \newpage
 \subsection{(b)}
-Dôkaz, že pre každý program $P$ v jazyku \textit{RationalC} a počiatočnú hodnotu $x_0 \red{\in \mathbb{N}}$ \red{($0 \in \mathbb{N}$)} je možné zostrojiť $TS$ $M_P = (Q, \Sigma, \Gamma, \delta, q_{first}, F)$ a reťazec $w \in \{0,1\}^*$ tak, že $w \in L(M_P)$ práve vtedy, keď $P$ s počiatočnou hodnotou $x_0$ skončí s návratovou hodnotou $1$.\\
+Dôkaz, že pre každý program $P$ v jazyku \textit{RationalC} a počiatočnú hodnotu $x_0$ je možné zostrojiť $TS$ $M_P = (Q, \Sigma, \Gamma, \delta, q_{first}, F)$ a reťazec $w \in \{0,1\}^*$ tak, že $w \in L(M_P)$ práve vtedy, keď $P$ s počiatočnou hodnotou $x_0$ skončí s návratovou hodnotou $1$.\\
 
 Na začiatku si zapíšeme obsah registra $x$ v ktorom sa nachádza číslo $x_0 \in \mathbb{N}$ v binárnej podobe na pásku $TS$ $M_P$ čo je zobrazené v ilustračnom obrázku \ref{fig:reg_to_tape}.
 
