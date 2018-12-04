@@ -131,7 +131,7 @@ Keďže $S' {\underset{G_D}{\Rightarrow}}^* u$ a $S {\underset{G_D}{\Rightarrow}
 \textbf{Indukčný predpoklad}
 \begin{flushright}
 \begin{minipage}{0.95\textwidth}
-    Predpokladáme, že tvrdenie platí pre všetky $w \in L$ kde $\#_[(w) < i \wedge \#_](w) < i$ t.j. kde $\#_[(w) \leq j \wedge \#_](w) \leq j$ kde $j<i$\\
+    Predpokladáme, že tvrdenie platí pre všetky $w \in L$ kde $\#_[(w) < i \wedge \#_](w) < i$ t.j. kde $\#_[(w) \leq j \wedge \#_](w) \leq j$ kde $0<j<i$\\
 \end{minipage}
 \end{flushright}
 
@@ -140,13 +140,19 @@ Keďže $S' {\underset{G_D}{\Rightarrow}}^* u$ a $S {\underset{G_D}{\Rightarrow}
 \begin{flushright}
 \begin{minipage}{0.95\textwidth}
 
-    Pre $w$ platí že
+    Pre $w \neq \varepsilon$ platí, že
 
     \begin{center}
         $\#_[(w) = i$
     \end{center}
 
-    Keďže $w=[u]v$ na základe kapitoly \ref{sec:a}, tak z toho vyplýva že
+    analogicky pre
+
+    \begin{center}
+        $\#_](w) = i$
+    \end{center}
+
+    Keďže $w \neq \varepsilon$ tak vieme že platí $w=[u]v$ na základe kapitoly \ref{sec:a}, z čoho vyplýva, že
 
     \begin{center}
     $\#_[(w) - 1 = \#_[(u) + \#_[(v) = i-1 = j$
@@ -158,7 +164,7 @@ Keďže $S' {\underset{G_D}{\Rightarrow}}^* u$ a $S {\underset{G_D}{\Rightarrow}
     $\#_](w) - 1 = \#_](u) + \#_](v) = i-1 = j$
     \end{center}
 
-    Z toho vyplýva podľa indukčného predpokladu že
+    Z toho vyplýva podľa indukčného predpokladu, že
 
     \begin{center}
     $S {\underset{G}{\Rightarrow}}^* u \wedge S {\underset{G}{\Rightarrow}}^* v$
@@ -178,8 +184,14 @@ Keďže $S' {\underset{G_D}{\Rightarrow}}^* u$ a $S {\underset{G_D}{\Rightarrow}
 
     tak je možné generovať
     \begin{center}
-        $S {\underset{G}{\Rightarrow}} [S]S {\underset{G}{\Rightarrow}}^* w \Rightarrow w \in L(G)$.
+        $S {\underset{G}{\Rightarrow}} [S]S {\underset{G}{\Rightarrow}}^* w \Rightarrow w \in L(G)$
     \end{center}
+
+    Z hore uvedených vyplýva, že
+    \begin{center}
+        $\forall w \in L(G)$
+    \end{center}
+
 \end{minipage}
 \end{flushright}
 
@@ -289,7 +301,7 @@ Ak $L(M_x) = \Sigma^*$ je zrejmé, že jazyk $L(M_x)$ iste obsahuje aspoň jeden
 Teraz už ľahko ukážeme, že $\sigma$ zachováva členstvo $\langle M_{x} \rangle \in L \Leftrightarrow L(M_x) = \Sigma^{*} \Leftrightarrow x=x_1\#x_2$ kde $x_1$ je kód $TS$, ktorý zastaví na vstupe s kódem $x_2 \Leftrightarrow x \in MP$.
 
 \newpage
-\subsection{Čiastočná rozhodnuteľnosť}
+\subsection{Čiastočná rozhodnuteľnosť (idea)}
 
 Majme $TS$ $M$ pre ktorý platí, že $\exists w \in \text{\textit{Affine}}: w \in L(M)$ kde jazyk \textit{Affine} je rekurzívny jazyk.\\
 
@@ -391,9 +403,9 @@ Aby sme desatinnú čiarku presunuli na správne miesto, tak bude treba využiť
 \end{minipage}
 \end{flushright}
 
-Následne po správnej inicializácii registra sme schopný vykonávať jednotlivé činnosti $TS$ $M$ pomocou určitých podprogramov. Samotný podprogram reprezentuje rutinu ktorá sa správa rovnako ako chovanie jednej činnosti $TS$ $M$.\\
+Následne po správnej inicializácii registra sme schopný vykonávať jednotlivé činnosti $TS$ $M$ pomocou určitých podprogramov. Samotný podprogram reprezentuje rutinu ktorá sa správa rovnako ako chovanie jednej činnosti $TS$ $M$ - jedného prechodu, čím je čítanie jedného symbolu pod hlavou $TS$ z pásky nasledujúci posunom alebo zápisom jedného symbolu na pásku pri pozícii hlavy $TS$.\\
 
-Rutiny pre jednotlivé činnosti $TS$ $M$ môžeme rozdeliť na základe ich závislosti na posuvné, zápisové a overovacie. Posuvné realizujú posuv hlavy zo symbolu na symbol ktoré ale nekontrolujú \green{\textit{EOT}} pretože prechod $TS$ $M$ závisí od aktuálneho symbolu pod hlavou, ktorý sa kontroluje zda to nie je \green{\textit{EOT}} v overovacích rutinách, ktoré realizujú čítanie symbolu pod hlavou. Každá posuvná a zápisová rutina je podmienená overovacou rutinou, ktorá vždy overí zda sa tam nenachádza \green{\textit{EOT}}. Každá overovacia rutina obsahuje na začiatku kód pre overenie \green{\textit{EOT}} pod ktorým sa nachádza kód pre overenie $0$,$1$ alebo $\Delta$. Ak overovacia rutina odhalí \green{\textit{EOT}} tak beh programu je ukončený s návratovou hodnotou $0$, ak neodhalí \green{\textit{EOT}} symbol tak overí zda sa jedná o očakávaný symbol a ak sa jedná o očakávaný symbol tak sa vykoná posuvná alebo zápisová rutina. Overovacie rutiny obsahujú na konci \texttt{NOOP;} ktorý je možný realizovať za pomoci dvoch príkazov \texttt{x /= 2; x *= 2;} ktoré realizujú neutrálnu operáciu. Je to z toho dôvodu, že bolo potrebné pre overovaciu rutinu vytvoriť koncovú návesť.\\
+Rutiny pre jednotlivé činnosti $TS$ $M$ (resp. prechody $TS$ $M$) môžeme rozdeliť na základe ich závislosti na posuvné, zápisové a overovacie. Posuvné realizujú posuv hlavy zo symbolu na symbol ktoré ale nekontrolujú \green{\textit{EOT}} pretože prechod $TS$ $M$ závisí od aktuálneho symbolu pod hlavou, ktorý sa kontroluje zda to nie je \green{\textit{EOT}} v overovacích rutinách, ktoré realizujú čítanie symbolu pod hlavou. Každá posuvná a zápisová rutina je podmienená overovacou rutinou, ktorá vždy overí zda sa tam nenachádza \green{\textit{EOT}}. Každá overovacia rutina obsahuje na začiatku kód pre overenie \green{\textit{EOT}} pod ktorým sa nachádza kód pre overenie $0$,$1$ alebo $\Delta$. Ak overovacia rutina odhalí \green{\textit{EOT}} tak beh programu je ukončený s návratovou hodnotou $0$, ak neodhalí \green{\textit{EOT}} symbol tak overí zda sa jedná o očakávaný symbol a ak sa jedná o očakávaný symbol tak sa vykoná posuvná alebo zápisová rutina. Overovacie rutiny obsahujú na konci \texttt{NOOP;} ktorý je možný realizovať za pomoci dvoch príkazov \texttt{x /= 2; x *= 2;} ktoré realizujú neutrálnu operáciu. Je to z toho dôvodu, že bolo potrebné pre overovaciu rutinu vytvoriť koncovú návesť.\\
 
 Posuvné rutiny:
 \begin{itemize}
@@ -514,9 +526,9 @@ Overovacie rutiny:
         \end{flushright}
 \end{itemize}
 
-Všetky rutiny obsahujú na ľavej strane kódu písmená ktoré reprezentujú číslné označenie jednotlivých po sebe idúcich riadkov.\\
+Všetky rutiny obsahujú na ľavej strane kódu písmená ktoré reprezentujú číselné označenie pre jednotlivé po sebe idúce riadky. Ak $TS$ $M$ skončí v stave $q_{reject}$ tak program vykoná nemu prislúchajúci príkaz ktorým je \texttt{return 0;} a tým pádom program skončí s návratovou hodnotou $0$. Naopak ak $TS$ $M$ skončí v stave $q_{accept}$ tak program vykoná \texttt{return 1;} a skončí s návratovou hodnotou $1$.\\
 
-Na základe hore uvedeného popisu je dokázané, že ku $TS$ $M$ vieme zostrojiť ekvivalentný $P_M$ v \textit{RationalC}.
+Na základe hore uvedeného popisu je dokázané, že ku $TS$ $M$ vieme zostrojiť $P_M$ v \textit{RationalC} ktorý je ekvivalentný t.j. program ktorý má rovnakú funkčnosť ako $TS$.
 
 \newpage
 \subsection{(b)}
