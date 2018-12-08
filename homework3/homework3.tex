@@ -1,0 +1,120 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[left=2cm,text={17cm,24cm},top=3cm]{geometry}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{url}
+\usepackage{enumerate}
+
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage{listings}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{amsfonts}
+\usepackage{breakurl}
+\usepackage{etoolbox}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{supertabular}
+\usepackage{tikz}
+\usepackage[titles]{tocloft}
+
+\renewcommand{\cftdot}{}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\definecolor{OliveGreen}{rgb}{0,0.7,0}
+\newcommand{\green}[1]{\textcolor{OliveGreen}{#1}}
+
+\setlength\parindent{0pt}
+
+\def\UrlBreaks{\do\/\do-}
+\newcommand{\tilda}{\raisebox{0.5ex}{\texttildelow}}
+
+\graphicspath{{.}}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \Huge
+        \textsc{
+            Fakulta informačních technologií\\
+            Vysoké učení technické v~Brně
+        }
+        \vspace{80px}
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[scale=0.3]{img/vutbr-fit-logo.eps}
+        \end{figure}
+        \\[15mm]
+        \Huge{
+            \textbf{
+                TIN
+            }
+        }
+        \\[1.5mm]
+        \huge{
+            \textbf{
+                Teoretická informatika
+            }
+        }
+        \\[2.5em]
+        \LARGE{
+            \textbf{
+                3. domáca úloha
+            }
+        }
+        \vfill
+    \end{center}
+        \Large{
+            Adrián Tóth (xtotha01)\hfill \today
+        }
+\end{titlepage}
+
+\setlength{\parskip}{0pt}
+\hypersetup{hidelinks}\tableofcontents
+\setlength{\parskip}{0pt}
+
+\newpage
+\section{Príklad číslo 1}
+
+...\cite{TIN}
+
+\newpage
+\section{Príklad číslo 2}
+
+...
+
+\newpage
+\section{Príklad číslo 3}
+
+...
+
+\newpage
+\section{Príklad číslo 4}
+
+...
+
+\newpage
+\section{Príklad číslo 5}
+
+...
+
+\newpage
+\section{Literatúra}
+\bibliographystyle{slovakiso}
+\begin{flushleft}
+    \bibliography{quotation}
+\end{flushleft}
+
+\end{document}

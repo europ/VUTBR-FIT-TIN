@@ -12,8 +12,8 @@
 
 ### Homework 3
 * obtained points: 0.0 / 5.0
-* assignment
-* solution
+* [assignment](https://github.com/europ/VUTBR-FIT-TIN/blob/master/assignments/task3.pdf)
+* [solution](https://github.com/europ/VUTBR-FIT-TIN/blob/master/homework3/homework3.pdf)
 
 ### Other
 * [Pumping lemma pro bezkontextové jazyky, zásobníkové automaty, nedeterministická syntaktická analýza](https://github.com/europ/VUTBR-FIT-TIN/blob/master/other/pl_cfl_pda_syn_an.pdf)
