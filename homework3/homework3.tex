@@ -36,7 +36,7 @@
 \newcommand{\TODO}{\textbf{\textcolor{red}{TODO}}} % red bold TODO
 \newcommand{\D}{\Delta}
 \newcommand{\EOT}{\Delta^\omega} % end of tape
-\newcommand{\UL}[1]{\blue{\underbar{$#1$}}} % underline
+\newcommand{\UL}[1]{\underbar{$#1$}} % underline
 
 \setlength\parindent{0pt}
 
@@ -94,7 +94,7 @@
 
 \subsection{(a)}
 
-Pre $f(0)$\\[-0.5em]
+Pre $f(0)$ je reťazec $x$ prázdny pre ktorý páska 4 obsahuje výslednú hodnotu $1$ t.j. $f(0)=1$.\\[-0.5em]
 
 \begin{tabular}{r|l|l|l}
     &                    & \tiny{$R^41^4L^4$}   & \tiny{$R^1$} \\\hline
@@ -106,72 +106,63 @@ Pre $f(0)$\\[-0.5em]
 
 \hfill\\[-1em]
 
-Pre $f(1)$\\[-0.5em]
+Pre $f(1)$ je reťazec $x = 1$ pre ktorý páska 4 obsahuje výslednú hodnotu $1$ t.j. $f(1)=1$.\\[-0.5em]
 
 \begin{tabular}{r|l|l|l|l|l|l|l|l|l}
-    &                  &\tiny{$R^41^4L^4$}& \tiny{$R^1$}     & \tiny{$CP(3,2)$}  & \tiny{$L^3_\D$}      & \tiny{$CP(4,3)$}          &\tiny{$L^2_\D L^3_\D L^4_\D$}& \tiny{$CP(2,4)L^4$}    & \\\hline
-  1 & $\UL{\D} 1 \EOT$ & $\UL{\D} 1 \EOT$ & $\D \UL{1} \EOT$ & $\D \UL{1} \EOT$  & $\D \UL{1} \EOT$     & $\D \UL{1} \EOT$          & $\D \UL{1} \EOT$            & $\D \UL{1} \EOT$       & \\
-  2 & $\UL{\D} \EOT$   & $\UL{\D} \EOT$   & $\UL{\D} \EOT$   & $\D \UL{\D} \EOT$ & $\D \UL{\D} \EOT$    & $\D \UL{\D} \EOT$         & $\UL{\D} \EOT$              & $\D \UL{\D} \EOT$      & ... \\
-  3 & $\UL{\D} \EOT$   & $\UL{\D} \EOT$   & $\UL{\D} \EOT$   & $\D \UL{\D} \EOT$ & $\D \D \UL{\D} \EOT$ & $\D \D \D 1 \UL{\D} \EOT$ & $\D \D \D \UL{1} \EOT$      & $\D \D \D \UL{1} \EOT$ & \\
-  4 & $\UL{\D} \EOT$   & $\UL{\D} 1 \EOT$ & $\UL{\D} 1 \EOT$ & $\UL{\D} 1 \EOT$  & $\UL{\D} 1 \EOT$     & $\D 1 \UL{\D} \EOT$       & $\D \UL{1} \EOT$            & $\D \UL{1} \EOT$       & \\
+    &                  &\tiny{$R^41^4L^4$}& \tiny{$R^1$}     & \tiny{$CP(3,2)$}  & \tiny{$L^3_\D$}   & \tiny{$CP(4,3)$}    &\tiny{$L^2_\D L^3_\D L^4_\D$}& \tiny{$CP(2,4)L^4$} & \\\hline
+  1 & $\UL{\D} 1 \EOT$ & $\UL{\D} 1 \EOT$ & $\D \UL{1} \EOT$ & $\D \UL{1} \EOT$  & $\D \UL{1} \EOT$  & $\D \UL{1} \EOT$    & $\D \UL{1} \EOT$            & $\D \UL{1} \EOT$    & \\
+  2 & $\UL{\D} \EOT$   & $\UL{\D} \EOT$   & $\UL{\D} \EOT$   & $\D \UL{\D} \EOT$ & $\D \UL{\D} \EOT$ & $\D \UL{\D} \EOT$   & $\UL{\D} \EOT$              & $\D \UL{\D} \EOT$   & ... \\
+  3 & $\UL{\D} \EOT$   & $\UL{\D} \EOT$   & $\UL{\D} \EOT$   & $\D \UL{\D} \EOT$ & $\UL{\D} \EOT$    & $\D 1 \UL{\D} \EOT$ & $\UL{\D} 1 \EOT$            & $\UL{\D} 1 \EOT$    & \\
+  4 & $\UL{\D} \EOT$   & $\UL{\D} 1 \EOT$ & $\UL{\D} 1 \EOT$ & $\UL{\D} 1 \EOT$  & $\UL{\D} 1 \EOT$  & $\D 1 \UL{\D} \EOT$ & $\UL{\D} 1 \EOT$            & $\UL{\D} 1 \EOT$    & \\
 \end{tabular}
 
 \begin{flushright}
   \begin{tabular}{r|l|l|l}
-        &\tiny{$CP(3,4)$}          & \tiny{$L^2_\D L^3_\D L^4_\D$} & \tiny{$R^1$}           \\\hline
-        &$\D \UL{1} \EOT$          & $\D \UL{1} \EOT$              & $\D 1 \UL{\D} \EOT$    \\
-    ... &$\D \UL{\D} \EOT$         & $\UL{\D} \EOT$                & $\UL{\D} \EOT$         \\
-        &$\D \D \D 1 \UL{\D} \EOT$ & $\D \D \D \UL{1} \EOT$        & $\D \D \D \UL{1} \EOT$ \\
-        &$\D 1 \UL{\D} \EOT$       & $\D \UL{1} \EOT$              & $\D \UL{1} \EOT$       \\
+        &\tiny{$CP(3,4)$}    & \tiny{$L^2_\D L^3_\D L^4_\D$} & \tiny{$R^1$}        \\\hline
+        &$\D \UL{1} \EOT$    & $\D \UL{1} \EOT$              & $\D 1 \UL{\D} \EOT$ \\
+    ... &$\D \UL{\D} \EOT$   & $\UL{\D} \EOT$                & $\UL{\D} \EOT$      \\
+        &$\D 1 \UL{\D} \EOT$ & $\UL{\D} 1 \EOT$              & $\UL{\D} 1 \EOT$    \\
+        &$\D 1 \UL{\D} \EOT$ & $\UL{\D} 1 \EOT$              & $\UL{\D} 1 \EOT$    \\
   \end{tabular}
 \end{flushright}
 
 \hfill\\[-1em]
 
-Pre $f(2)$\\[-0.5em]
+Pre $f(2)$ je reťazec $x = 11$ pre ktorý páska 4 obsahuje výslednú hodnotu $11$ t.j. $f(2)=2$.\\[-0.5em]
 
 \begin{tabular}{r|l|l|l|l|l|l|l|l|l}
-    &                    & \tiny{$R^41^4L^4$} & \tiny{$R^1$}       & \tiny{$CP(3,2)$}   & \tiny{$L^3_\D$}      & \tiny{$CP(4,3)$}          &\tiny{$L^2_\D L^3_\D L^4_\D$}& \tiny{$CP(2,4)L^4$}    & \\\hline
-  1 & $\UL{\D} 1 1 \EOT$ & $\UL{\D} 1 1 \EOT$ & $\D \UL{1} 1 \EOT$ & $\D \UL{1} 1 \EOT$ & $\D \UL{1} 1 \EOT$   & $\D \UL{1} 1 \EOT$        & $\D \UL{1} 1 \EOT$          & $\D \UL{1} 1 \EOT$     & \\
-  2 & $\UL{\D} \EOT$     & $\UL{\D} \EOT$     & $\UL{\D} \EOT$     & $\D \UL{\D} \EOT$  & $\D \UL{\D} \EOT$    & $\D \UL{\D} \EOT$         & $\UL{\D} \EOT$              & $\D \UL{\D} \EOT$      & ... \\
-  3 & $\UL{\D} \EOT$     & $\UL{\D} \EOT$     & $\UL{\D} \EOT$     & $\D \UL{\D} \EOT$  & $\D \D \UL{\D} \EOT$ & $\D \D \D 1 \UL{\D} \EOT$ & $\D \D \D \UL{1} \EOT$      & $\D \D \D \UL{1} \EOT$ & \\
-  4 & $\UL{\D} \EOT$     & $\UL{\D} 1 \EOT$   & $\UL{\D} 1 \EOT$   & $\UL{\D} 1 \EOT$   & $\UL{\D} 1 \EOT$     & $\D 1 \UL{\D} \EOT$       & $\D \UL{1} \EOT$            & $\D \UL{1} \EOT$       & \\
+    &                    &\tiny{$R^41^4L^4$}  & \tiny{$R^1$}       & \tiny{$CP(3,2)$}   & \tiny{$L^3_\D$}    & \tiny{$CP(4,3)$}    &\tiny{$L^2_\D L^3_\D L^4_\D$}& \tiny{$CP(2,4)L^4$} & \\\hline
+  1 & $\UL{\D} 1 1 \EOT$ & $\UL{\D} 1 1 \EOT$ & $\D \UL{1} 1 \EOT$ & $\D \UL{1} 1 \EOT$ & $\D \UL{1} 1 \EOT$ & $\D \UL{1} 1 \EOT$  & $\D \UL{1} 1 \EOT$          & $\D \UL{1} 1 \EOT$  & \\
+  2 & $\UL{\D} \EOT$     & $\UL{\D} \EOT$     & $\UL{\D} \EOT$     & $\D \UL{\D} \EOT$  & $\D \UL{\D} \EOT$  & $\D \UL{\D} \EOT$   & $\UL{\D} \EOT$              & $\D \UL{\D} \EOT$   & ... \\
+  3 & $\UL{\D} \EOT$     & $\UL{\D} \EOT$     & $\UL{\D} \EOT$     & $\D \UL{\D} \EOT$  & $\UL{\D} \EOT$     & $\D 1 \UL{\D} \EOT$ & $\UL{\D} 1 \EOT$            & $\UL{\D} 1 \EOT$    & \\
+  4 & $\UL{\D} \EOT$     & $\UL{\D} 1 \EOT$   & $\UL{\D} 1 \EOT$   & $\UL{\D} 1 \EOT$   & $\UL{\D} 1 \EOT$   & $\D 1 \UL{\D} \EOT$ & $\UL{\D} 1 \EOT$            & $\UL{\D} 1 \EOT$    & \\
 \end{tabular}
 
 \begin{center}
   \begin{tabular}{r|l|l|l|l|l|l|l}
-        &\tiny{$CP(3,4)$}          & \tiny{$L^2_\D L^3_\D L^4_\D$} & \tiny{$R^1$}           & \tiny{$CP(3,2)$}          & \tiny{$L^3_\D$}        & \tiny{$CP(4,3)$}          & \\\hline
-        &$\D \UL{1} 1 \EOT$        & $\D \UL{1} 1 \EOT$            & $\D 1 \UL{1} \EOT$     & $\D 1 \UL{1} \EOT$        & $\D 1 \UL{1} \EOT$     & $\D 1 \UL{1} \EOT$        & \\
-    ... &$\D \UL{\D} \EOT$         & $\UL{\D} \EOT$                & $\UL{\D} \EOT$         & $\D \UL{\D} \EOT$         & $\D \UL{\D} \EOT$      & $\D \UL{\D} \EOT$         & ... \\
-        &$\D \D \D 1 \UL{\D} \EOT$ & $\D \D \D \UL{1} \EOT$        & $\D \D \D \UL{1} \EOT$ & $\D \D \D 1 \UL{\D} \EOT$ & $\D \D \D \UL{1} \EOT$ & $\D \D \D 1 \UL{\D} \EOT$ & \\
-        &$\D 1 \UL{\D} \EOT$       & $\D \UL{1} \EOT$              & $\D \UL{1} \EOT$       & $\D \UL{1} \EOT$          & $\D \UL{1} \EOT$       & $\D 1 \UL{\D} \EOT$       & \\
+        &\tiny{$CP(3,4)$}    & \tiny{$L^2_\D L^3_\D L^4_\D$} & \tiny{$R^1$}       & \tiny{$CP(3,2)$}    & \tiny{$L^3_\D$}     & \tiny{$CP(4,3)$}    & \\\hline
+        &$\D \UL{1} 1 \EOT$  & $\D \UL{1} 1 \EOT$            & $\D 1 \UL{1} \EOT$ & $\D 1 \UL{1} \EOT$  & $\D 1 \UL{1} \EOT$  & $\D 1 \UL{1} \EOT$  & \\
+    ... &$\D \UL{\D} \EOT$   & $\UL{\D} \EOT$                & $\UL{\D} \EOT$     & $\D 1 \UL{\D} \EOT$ & $\D 1 \UL{\D} \EOT$ & $\D 1 \UL{\D} \EOT$ & ... \\
+        &$\D 1 \UL{\D} \EOT$ & $\UL{\D} 1 \EOT$              & $\UL{\D} 1 \EOT$   & $\D 1 \UL{\D} \EOT$ & $\UL{\D} 1 \EOT$    & $\D 1 \UL{\D} \EOT$ & \\
+        &$\D 1 \UL{\D} \EOT$ & $\UL{\D} 1 \EOT$              & $\UL{\D} 1 \EOT$   & $\UL{\D} 1 \EOT$    & $\UL{\D} 1 \EOT$    & $\D 1 \UL{\D} \EOT$ & \\
   \end{tabular}
 \end{center}
 
 \begin{flushright}
   \begin{tabular}{r|l|l|l|l|l}
-        & \tiny{$L^2_\D L^3_\D L^4_\D$} & \tiny{$CP(2,4)L^4$}    & \tiny{$CP(3,4)$}          & \tiny{$L^2_\D L^3_\D L^4_\D$} & \tiny{$R^1$}           \\\hline
-        & $\D 1 \UL{1} \EOT$            & $\D 1 \UL{1} \EOT$     & $\D 1 \UL{1} \EOT$        & $\D 1 \UL{1} \EOT$            & $\D 1 1 \UL{\D} \EOT$  \\
-    ... & $\UL{\D} \EOT$                & $\D \UL{\D} \EOT$      & $\D \UL{\D} \EOT$         & $\UL{\D} \EOT$                & $\UL{\D} \EOT$         \\
-        & $\D \D \D \UL{1} \EOT$        & $\D \D \D \UL{1} \EOT$ & $\D \D \D 1 \UL{\D} \EOT$ & $\D \D \D \UL{1} \EOT$        & $\D \D \D \UL{1} \EOT$ \\
-        & $\D \UL{1} \EOT$              & $\D \UL{1} \EOT$       & $\D 1 \UL{\D} \EOT$       & $\D \UL{1} \EOT$              & $\D \UL{1} \EOT$       \\
+        & \tiny{$L^2_\D L^3_\D L^4_\D$} & \tiny{$CP(2,4)L^4$} & \tiny{$CP(3,4)$}      & \tiny{$L^2_\D L^3_\D L^4_\D$} & \tiny{$R^1$}          \\\hline
+        & $\D 1 \UL{1} \EOT$            & $\D 1 \UL{1} \EOT$  & $\D 1 \UL{1} \EOT$    & $\D 1 \UL{1} \EOT$            & $\D 1 1 \UL{\D} \EOT$ \\
+    ... & $\UL{\D} 1 \EOT$              & $\D 1 \UL{\D} \EOT$ & $\D 1 \UL{\D} \EOT$   & $\UL{\D} 1 \EOT$              & $\UL{\D} 1 \EOT$      \\
+        & $\UL{\D} 1 \EOT$              & $\UL{\D} 1 \EOT$    & $\D 1 \UL{\D} \EOT$   & $\UL{\D} 1 \EOT$              & $\UL{\D} 1 \EOT$      \\
+        & $\UL{\D} 1 \EOT$              & $\D \UL{1} \EOT$    & $\D 1 1 \UL{\D} \EOT$ & $\UL{\D} 1 1 \EOT$            & $\UL{\D} 1 1 \EOT$    \\
   \end{tabular}
 \end{flushright}
 
 \hfill\\[-1em]
 
-Získané hodnoty
+Pre $f(0),f(1),f(2),f(3),f(4),f(5)$ odpovedá rada čísel $1,1,2,3,5,8$. Na základe získaných hodnôt a faktu, že sa jedná o veľmi známu radu čísel vyplýva, že funkcia~$f$ generuje čísla z Fibonacciho rady.
 
-\begin{center}
-  \begin{tabular}{r@{ $=$ }l}
-    $f(0)$ & 1 \\
-    $f(1)$ & 1 \\
-    $f(2)$ & 2 \\
-  \end{tabular}
-\end{center}
-
-Na základe hore uvedených získaných hodnôt a faktu, že sa jedná o veľmi známu postupnosť vyplýva, že funkcia~$f$ generuje čísla z Fibbonačiho rady.
-
+\newpage
 \subsection{(b)}
 
 ...
