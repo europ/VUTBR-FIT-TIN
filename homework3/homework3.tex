@@ -8,9 +8,11 @@
 \usepackage{url}
 \usepackage{enumerate}
 
+\usepackage{tikz}
 \usepackage{float}
 \usepackage{xcolor}
 \usepackage{siunitx}
+\usepackage{comment}
 \usepackage{amsmath}
 \usepackage{accents}
 \usepackage{listings}
@@ -24,7 +26,6 @@
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{supertabular}
-\usepackage{tikz}
 \usepackage[titles]{tocloft}
 
 \renewcommand{\cftdot}{}
@@ -42,6 +43,12 @@
 
 \def\UrlBreaks{\do\/\do-}
 \newcommand{\tilda}{\raisebox{0.5ex}{\texttildelow}}
+
+\usepackage{makecell}
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
 
 \graphicspath{{.}}
 \patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
@@ -104,7 +111,7 @@ Pre $f(0)$ je reťazec $x$ prázdny pre ktorý páska 4 obsahuje výslednú hodn
   4 & $\UL{\D} \EOT$ & $\UL{\D} 1 \EOT$ & $\UL{\D} 1 \EOT$     \\
 \end{tabular}
 
-\hfill\\[-1em]
+\hfill\\[-5mm]
 
 Pre $f(1)$ je reťazec $x = 1$ pre ktorý páska 4 obsahuje výslednú hodnotu $1$ t.j. $f(1)=1$.\\[-0.5em]
 
@@ -125,8 +132,6 @@ Pre $f(1)$ je reťazec $x = 1$ pre ktorý páska 4 obsahuje výslednú hodnotu $
         &$\D 1 \UL{\D} \EOT$ & $\UL{\D} 1 \EOT$              & $\UL{\D} 1 \EOT$    \\
   \end{tabular}
 \end{flushright}
-
-\hfill\\[-1em]
 
 Pre $f(2)$ je reťazec $x = 11$ pre ktorý páska 4 obsahuje výslednú hodnotu $11$ t.j. $f(2)=2$.\\[-0.5em]
 
@@ -158,32 +163,87 @@ Pre $f(2)$ je reťazec $x = 11$ pre ktorý páska 4 obsahuje výslednú hodnotu 
   \end{tabular}
 \end{flushright}
 
-\hfill\\[-1em]
+Hodnoty na páske číslo $4$ $TS$ $M$ pre jednotlivé $x$ sú uvedené dole v tabuľke.
 
-Pre $f(0),f(1),f(2),f(3),f(4),f(5)$ odpovedá rada čísel $1,1,2,3,5,8$. Na základe získaných hodnôt a faktu, že sa jedná o veľmi známu radu čísel vyplýva, že funkcia~$f$ generuje čísla z Fibonacciho rady.
+\begin{center}
+\begin{tabular}{l|l|l|l}
+  \multicolumn{1}{c|}{\thead{$x$}} & \multicolumn{1}{c|}{\thead{unárny\\zápis $x$}} & \multicolumn{1}{c|}{\thead{obsah pásky č. $4$\\po zastavení $TS$ $M$}} & \multicolumn{1}{c}{\thead{hodnota čísla\\na páske č. $4$}} \\
+  \hline
+  $0$ & $\varepsilon$ & $\UL{\D} 1 \EOT$        & $1$ \\
+  $1$ & $1$           & $\UL{\D} 1 \EOT$        & $1$ \\
+  $2$ & $11$          & $\UL{\D} 11 \EOT$       & $2$ \\
+  $3$ & $111$         & $\UL{\D} 111 \EOT$      & $3$ \\
+  $4$ & $1111$        & $\UL{\D} 11111 \EOT$    & $5$ \\
+  $5$ & $11111$       & $\UL{\D} 11111111 \EOT$ & $8$ \\
+\end{tabular}
+\end{center}
 
-\newpage
+Pre $f(0),f(1),f(2),f(3),f(4),f(5)$ odpovedá rada čísel $1,1,2,3,5,8$. Na základe získaných hodnôt ktoré sú uvedné vyššie v tabuľke a faktu, že sa jedná o veľmi známu radu čísel vyplýva, že funkcia~$f$ generuje čísla z Fibonacciho rady.
+
 \subsection{(b)}
 
 Funkciu $f$ môžeme definovať ako parciálne rekurzívnu funckiu nasledujúcim spôsobom
 
-%\red{Toto generuje 1,2,3,5,8,...}
-
-%\begin{center}
-%\begin{tabular}{l}
-%$f(0) = 1$ \\
-%$f(x+1) = plus(f(x), f(monus(x,1)))$\\
-%\end{tabular}
-%\end{center}
-
-%\red{Toto generuje 1,1,2,3,5,8,...}
+\begin{comment}
+\red{Dole uvedené riešenie generuje sekvenciu 1, 2, 3, 5, 8, ...}
 
 \begin{center}
-\begin{tabular}{l}
-$f(0) = 1$ \\
-$f(x+1) = monus(plus(f(x),f(monus(x,1))),eq(plus(x,x),0))$ \\
+\begin{tabular}{r@{ $=$ }l}
+  $f(0)$   & $1$ \\
+  $f(x+1)$ & $plus(f(x), f(monus(x,1)))$\\
 \end{tabular}
 \end{center}
+\end{comment}
+
+%\red{Dole uvedené riešenie generuje sekvenciu 1, 1, 2, 3, 5, 8, ...}
+
+\begin{center}
+\begin{tabular}{r@{ $=$ }l}
+  $f(0)$   & $1$ \\
+  $f(x+1)$ & $monus(plus(f(x),f(monus(x,1))),eq(plus(x,x),0))$ \\
+\end{tabular}
+\end{center}
+
+Skúška správnosti pre $f(5)$ napríklad\\
+
+\begin{tabular}{rl}
+$f(5)$\hspace{-3mm} & $= monus(plus(f(4),f(monus(4,1))),eq(plus(4,4),0))$\\
+                    & $= monus(plus(f(4),f(3))),eq(8,0))$\\
+                    & $= monus(plus(f(4),f(3))),0)$\\
+                    & $= monus(plus(5,3),0)$\\
+                    & $= monus(8,0)$\\
+                    & $= 8$\\
+\\[-0.5em]
+$f(4)$\hspace{-3mm} & $= monus(plus(f(3),f(monus(3,1))),eq(plus(3,3),0))$\\
+                    & $= monus(plus(f(3),f(2))),eq(6,0))$\\
+                    & $= monus(plus(f(3),f(2))),0)$\\
+                    & $= monus(plus(3,2),0)$\\
+                    & $= monus(5,0)$\\
+                    & $= 5$\\
+\\[-0.5em]
+$f(3)$\hspace{-3mm} & $= monus(plus(f(2),f(monus(2,1))),eq(plus(2,2),0))$\\
+                    & $= monus(plus(f(2),f(1))),eq(4,0))$\\
+                    & $= monus(plus(f(2),f(1))),0)$\\
+                    & $= monus(plus(2,1),0)$\\
+                    & $= monus(3,0)$\\
+                    & $= 3$\\
+\\[-0.5em]
+$f(2)$\hspace{-3mm} & $= monus(plus(f(1),f(monus(1,1))),eq(plus(1,1),0))$\\
+                    & $= monus(plus(f(1),f(0))),eq(2,0))$\\
+                    & $= monus(plus(f(1),f(0))),0)$\\
+                    & $= monus(plus(1,1),0)$\\
+                    & $= monus(2,0)$\\
+                    & $= 2$\\
+\\[-0.5em]
+$f(1)$\hspace{-3mm} & $= monus(plus(f(0),f(monus(0,1))),eq(plus(0,0),0))$\\
+                    & $= monus(plus(f(0),f(0))),eq(0,0))$\\
+                    & $= monus(plus(f(0),f(0))),1)$\\
+                    & $= monus(plus(1,1),1)$\\
+                    & $= monus(2,1)$\\
+                    & $= 1$\\
+\\[-0.5em]
+$f(0)$\hspace{-3mm} & $= 1$\\
+\end{tabular}
 
 \newpage
 \section{Príklad číslo 2}
