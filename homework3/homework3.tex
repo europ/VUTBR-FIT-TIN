@@ -165,13 +165,23 @@ Pre $f(0),f(1),f(2),f(3),f(4),f(5)$ odpovedá rada čísel $1,1,2,3,5,8$. Na zá
 \newpage
 \subsection{(b)}
 
-Parciálne rekurzívnu funckiu $f$ môžeme definovať ako:
+Funkciu $f$ môžeme definovať ako parciálne rekurzívnu funckiu nasledujúcim spôsobom
+
+%\red{Toto generuje 1,2,3,5,8,...}
+
+%\begin{center}
+%\begin{tabular}{l}
+%$f(0) = 1$ \\
+%$f(x+1) = plus(f(x), f(monus(x,1)))$\\
+%\end{tabular}
+%\end{center}
+
+%\red{Toto generuje 1,1,2,3,5,8,...}
 
 \begin{center}
 \begin{tabular}{l}
 $f(0) = 1$ \\
-$f(x+1) = plus(f(x), h(x))$ \\
-$h(x)=f(monus(x,1))$ \\
+$f(x+1) = monus(plus(f(x),f(monus(x,1))),eq(plus(x,x),0))$ \\
 \end{tabular}
 \end{center}
 
