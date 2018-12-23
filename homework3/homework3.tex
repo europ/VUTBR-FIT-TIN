@@ -201,43 +201,38 @@ Funkciu $f$ môžeme definovať ako parciálne rekurzívnu funckiu nasledujúcim
 \begin{center}
 \begin{tabular}{r@{ $=$ }l}
   $f(0)$   & $1$ \\
-  $f(x+1)$ & $monus(plus(f(x),f(monus(x,1))),eq(plus(x,x),0))$ \\
+  $f(x+1)$ & $monus(plus(f(x),f(monus(x,1))),eq(x,0))$ \\
 \end{tabular}
 \end{center}
 
 Skúška správnosti pre $f(5)$ napríklad\\
 
 \begin{tabular}{rl}
-$f(5)$\hspace{-3mm} & $= monus(plus(f(4),f(monus(4,1))),eq(plus(4,4),0))$\\
-                    & $= monus(plus(f(4),f(3))),eq(8,0))$\\
+$f(5)$\hspace{-3mm} & $= monus(plus(f(4),f(monus(4,1))),eq(4,0))$\\
                     & $= monus(plus(f(4),f(3))),0)$\\
                     & $= monus(plus(5,3),0)$\\
                     & $= monus(8,0)$\\
                     & $= 8$\\
 \\[-0.5em]
-$f(4)$\hspace{-3mm} & $= monus(plus(f(3),f(monus(3,1))),eq(plus(3,3),0))$\\
-                    & $= monus(plus(f(3),f(2))),eq(6,0))$\\
+$f(4)$\hspace{-3mm} & $= monus(plus(f(3),f(monus(3,1))),eq(3,0))$\\
                     & $= monus(plus(f(3),f(2))),0)$\\
                     & $= monus(plus(3,2),0)$\\
                     & $= monus(5,0)$\\
                     & $= 5$\\
 \\[-0.5em]
-$f(3)$\hspace{-3mm} & $= monus(plus(f(2),f(monus(2,1))),eq(plus(2,2),0))$\\
-                    & $= monus(plus(f(2),f(1))),eq(4,0))$\\
+$f(3)$\hspace{-3mm} & $= monus(plus(f(2),f(monus(2,1))),eq(2,0))$\\
                     & $= monus(plus(f(2),f(1))),0)$\\
                     & $= monus(plus(2,1),0)$\\
                     & $= monus(3,0)$\\
                     & $= 3$\\
 \\[-0.5em]
-$f(2)$\hspace{-3mm} & $= monus(plus(f(1),f(monus(1,1))),eq(plus(1,1),0))$\\
-                    & $= monus(plus(f(1),f(0))),eq(2,0))$\\
+$f(2)$\hspace{-3mm} & $= monus(plus(f(1),f(monus(1,1))),eq(1,0))$\\
                     & $= monus(plus(f(1),f(0))),0)$\\
                     & $= monus(plus(1,1),0)$\\
                     & $= monus(2,0)$\\
                     & $= 2$\\
 \\[-0.5em]
-$f(1)$\hspace{-3mm} & $= monus(plus(f(0),f(monus(0,1))),eq(plus(0,0),0))$\\
-                    & $= monus(plus(f(0),f(0))),eq(0,0))$\\
+$f(1)$\hspace{-3mm} & $= monus(plus(f(0),f(monus(0,1))),eq(0,0))$\\
                     & $= monus(plus(f(0),f(0))),1)$\\
                     & $= monus(plus(1,1),1)$\\
                     & $= monus(2,1)$\\
