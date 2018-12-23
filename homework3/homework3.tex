@@ -14,6 +14,7 @@
 \usepackage{siunitx}
 \usepackage{comment}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{accents}
 \usepackage{listings}
 \usepackage{csquotes}
@@ -248,12 +249,118 @@ $f(0)$\hspace{-3mm} & $= 1$\\
 \newpage
 \section{Príklad číslo 2}
 
-...\cite{TIN}
+...
 
 \newpage
 \section{Príklad číslo 3}
 
-...
+Dôkaz:\\[-0.5em]
+
+\hspace{5mm}1.) Dôkaz sporom pre '$\subseteq$'
+
+\begin{flushright}
+\begin{minipage}{0.92\textwidth}
+  Predpokladajme, že platí
+  \begin{center}
+    $\mathcal{O}(3^{2n}) \subseteq \mathcal{O}(2^{3n})$
+  \end{center}
+  Potom
+  \begin{center}
+    $\exists c \in \mathbb{R}^{+} \ \exists n_{0} \in \mathbb{N} \ \forall n \geq n_{0}: 3^{2n} \leq c\hspace{0.5mm}2^{3n}$
+  \end{center}
+  Môžeme krátiť vzhľadom ku tomu, že $3^{2n} \neq 0$ pre žiadne $n$
+  \begin{center}
+    $\exists c \in \mathbb{R}^{+} \ \exists n_{0} \in \mathbb{N} \ \forall n \geq n_{0}: \frac{c2^{3n}}{3^{2n}} \geq 1$
+  \end{center}
+  Uvážme\\[-3.5em]
+  \begin{center}
+    $$\lim_{n\to\infty} \frac{c2^{3n}}{3^{2n}}$$
+  \end{center}
+  Vypočítame hore uvedenú limitu\\[-3.5em]
+  \begin{center}
+    $$\lim_{n\to\infty} \frac{c2^{3n}}{3^{2n}} = \lim_{n\to\infty} \frac{c\left(2^3\right)^n}{\left(3^2\right)^n} = \lim_{n\to\infty} \frac{c\hspace{0.2mm}8^n}{9^n} = \lim_{n\to\infty} c\frac{8^n}{9^n} = \lim_{n\to\infty} c{\left({\frac{8}{9}}\right)}^n = 0$$
+  \end{center}
+  Nemôže súčastne platiť, že\\[-3.5em]
+  \begin{center}
+    $$\lim_{n\to\infty} \frac{c2^{3n}}{3^{2n}} = 0$$
+  \end{center}
+  a
+  \begin{center}
+    $\exists c \in \mathbb{R}^{+} \ \exists n_{0} \in \mathbb{N} \ \forall n \geq n_{0}: \frac{c2^{3n}}{3^{2n}} \geq 1$
+  \end{center}
+  z čoho vyplýva, že sa jedná o spor z čoho vyplýva, že
+  \begin{center}
+    $\mathcal{O}(3^{2n}) \nsubseteq \mathcal{O}(2^{3n})$
+  \end{center}
+\end{minipage}
+\end{flushright}
+
+\hspace{5mm}2.) Dôkaz sporom pre '$\supseteq$'
+
+\begin{flushright}
+\begin{minipage}{0.92\textwidth}
+  Predpokladajme, že platí
+  \begin{center}
+    $\mathcal{O}(3^{2n}) \supseteq \mathcal{O}(2^{3n})$
+  \end{center}
+  Potom
+  \begin{center}
+    $\exists c \in \mathbb{R}^{+} \ \exists n_{0} \in \mathbb{N} \ \forall n \geq n_{0}: c\hspace{0.5mm}3^{2n} \geq 2^{3n}$
+  \end{center}
+  Môžeme krátiť vzhľadom ku tomu, že $2^{3n} \neq 0$ pre žiadne $n$
+  \begin{center}
+    $\exists c \in \mathbb{R}^{+} \ \exists n_{0} \in \mathbb{N} \ \forall n \geq n_{0}: \frac{c3^{2n}}{2^{3n}} \geq 1$
+  \end{center}
+  Uvážme\\[-3.5em]
+  \begin{center}
+    $$\lim_{n\to\infty} \frac{c3^{2n}}{2^{3n}}$$
+  \end{center}
+\end{minipage}
+\end{flushright}
+
+\begin{flushright}
+\begin{minipage}{0.92\textwidth}
+  Vypočítame hore uvedenú limitu\\[-3.5em]
+  \begin{center}
+    $$\lim_{n\to\infty} \frac{c3^{2n}}{2^{3n}} = \lim_{n\to\infty} \frac{c\left(3^2\right)^n}{\left(2^3\right)^n} = \lim_{n\to\infty} \frac{c\hspace{0.2mm}9^n}{8^n} = \lim_{n\to\infty} c\frac{9^n}{8^n} = \lim_{n\to\infty} c{\left({\frac{9}{8}}\right)}^n = +\infty$$
+  \end{center}
+  Keďže platí, že\\[-3.5em]
+  \begin{center}
+    $$\lim_{n\to\infty} \frac{c3^{2n}}{2^{3n}} = +\infty$$
+  \end{center}
+  a
+  \begin{center}
+    $\exists c \in \mathbb{R}^{+} \ \exists n_{0} \in \mathbb{N} \ \forall n \geq n_{0}: \frac{c3^{2n}}{2^{3n}} \geq 1$
+  \end{center}
+  tak z toho vyplýva, že predpokladaný vzťah platí
+  \begin{center}
+    $\mathcal{O}(3^{2n}) \supseteq \mathcal{O}(2^{3n})$
+  \end{center}
+\end{minipage}
+\end{flushright}
+
+\hspace{5mm}3.) Priamy dôkaz pre '$=$'
+
+\begin{flushright}
+\begin{minipage}{0.92\textwidth}
+  Keďže z hore uvedených dôkazov platí, že
+  \begin{center}
+    $\mathcal{O}(3^{2n}) \nsubseteq \mathcal{O}(2^{3n})$
+  \end{center}
+  a
+  \begin{center}
+    $\mathcal{O}(3^{2n}) \supseteq \mathcal{O}(2^{3n})$
+  \end{center}
+  tak z toho vyplýva, že nasledujúci vzťah
+  \begin{center}
+    $\mathcal{O}(3^{2n}) = \mathcal{O}(2^{3n})$
+  \end{center}
+  neplatí, teda musí platiť, že
+  \begin{center}
+    $\mathcal{O}(3^{2n}) \neq \mathcal{O}(2^{3n})$
+  \end{center}
+\end{minipage}
+\end{flushright}
 
 \newpage
 \section{Príklad číslo 4}
@@ -275,6 +382,8 @@ $L = \{a^i(b^j)c^k \in \{a,b,c,(,)\}^* \ | \ i \geq j \geq k\}$
   \caption{Petriho sieť.}
   \label{fig:pn}
 \end{figure}
+
+\phantom{\cite{TIN}} % hiddes text but creates a line according to the text size
 
 \newpage
 \section{Literatúra}
