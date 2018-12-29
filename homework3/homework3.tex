@@ -185,27 +185,31 @@ Pre $f(0),f(1),f(2),f(3),f(4),f(5)$ odpovedá rada čísel $1,1,2,3,5,8$. Na zá
 
 Funkciu $f$ môžeme definovať ako parciálne rekurzívnu funckiu nasledujúcim spôsobom
 
-\begin{comment}
-\red{Dole uvedené riešenie generuje sekvenciu 1, 2, 3, 5, 8, ...}
 
 \begin{center}
-\begin{tabular}{r@{ $=$ }l}
-  $f(0)$   & $1$ \\
-  $f(x+1)$ & $plus(f(x), f(monus(x,1)))$\\
-\end{tabular}
-\end{center}
-\end{comment}
-
-%\red{Dole uvedené riešenie generuje sekvenciu 1, 1, 2, 3, 5, 8, ...}
-
-\begin{center}
+\red{Riešenie 1.2.A}
 \begin{tabular}{r@{ $=$ }l}
   $f(0)$   & $\sigma(\xi())$ \\
   $f(x+1)$ & $monus(plus(f(x),f(monus(x,\sigma(\xi())))),eq(x,\xi()))$ \\
 \end{tabular}
 \end{center}
 
-Skúška správnosti pre $f(5)$ napríklad\\
+
+\begin{center}
+\red{Riešenie 1.2.B}
+\begin{tabular}{r@{ $=$ }l}
+  $zero()$ & $\xi()$ \\
+  $one()$  & $\sigma(zero())$ \\
+  $f(0)$   & $one()$ \\
+  $f(x+1)$ & $h(x,f(monus(x,one())))$ \\
+  $h(x,y)$ & $monus(plus(f(x),y),eq(x,zero()))$ \\
+\end{tabular}
+\end{center}
+
+
+
+
+Skúška správnosti pre $f(5)$ napríklad \red{pre 1.2.A}\\
 
 \begin{tabular}{rl}
 $f(5)$\hspace{-3mm} & $= monus(plus(f(4),f(monus(4,1))),eq(4,0))$\\
