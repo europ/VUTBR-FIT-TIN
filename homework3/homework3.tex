@@ -193,40 +193,48 @@ Funkciu $f$ môžeme definovať ako parciálne rekurzívnu funckiu nasledujúcim
 \end{tabular}
 \end{center}
 
-Demonštrácia na príklade pre $f(5)$:\\
+Demonštrácia na príklade pre $f(5)$
 
+\begin{center}
 \begin{tabular}{rcl}
 $f(5)$ & \hspace{-3mm}$=$\hspace{-3mm} & $\pi_1^2 \circ h(5)$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $\pi_1^2 (8,13)$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $8$\\
-\\[-0.75em]
+\\[-0.9em]
+\hline\\[-0.75em]
 $h(5)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 \circ h(4), plus(\pi_1^2 \circ h(4),\pi_2^2 \circ h(4)))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 (5, 8), plus(\pi_1^2 (5, 8),\pi_2^2 (5, 8)))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(8, plus(5,8))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(8,13)$\\
-\\[-0.75em]
+\\[-0.9em]
+\hline\\[-0.75em]
 $h(4)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 \circ h(3), plus(\pi_1^2 \circ h(3),\pi_2^2 \circ h(3)))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 (3, 5), plus(\pi_1^2 (3, 5),\pi_2^2 (3, 5)))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(5, plus(3,5))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(5,8)$\\
-\\[-0.75em]
+\\[-0.9em]
+\hline\\[-0.75em]
 $h(3)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 \circ h(2), plus(\pi_1^2 \circ h(2),\pi_2^2 \circ h(2)))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 (2, 3), plus(\pi_1^2 (2, 3),\pi_2^2 (2, 3)))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(3, plus(2,3))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(3,5)$\\
-\\[-0.75em]
+\\[-0.9em]
+\hline\\[-0.75em]
 $h(2)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 \circ h(1), plus(\pi_1^2 \circ h(1),\pi_2^2 \circ h(1)))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 (1, 2), plus(\pi_1^2 (1, 2),\pi_2^2 (1, 2)))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(2, plus(1,2))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(2,3)$\\
-\\[-0.75em]
+\\[-0.9em]
+\hline\\[-0.75em]
 $h(1)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 \circ h(0), plus(\pi_1^2 \circ h(0),\pi_2^2 \circ h(0)))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 (1, 1), plus(\pi_1^2 (1, 1),\pi_2^2 (1, 1)))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(1, plus(1,1))$\\
        & \hspace{-3mm}$=$\hspace{-3mm} & $(1,2)$\\
-\\[-0.75em]
+\\[-0.9em]
+\hline\\[-0.75em]
 $h(0)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(1, 1)$\\
 \end{tabular}
+\end{center}
 
 \newpage
 \section{Príklad číslo 2}
