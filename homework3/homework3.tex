@@ -185,64 +185,47 @@ Pre $f(0),f(1),f(2),f(3),f(4),f(5)$ odpovedá rada čísel $1,1,2,3,5,8$. Na zá
 
 Funkciu $f$ môžeme definovať ako parciálne rekurzívnu funckiu nasledujúcim spôsobom
 
-
 \begin{center}
-\red{Riešenie 1.2.A}
-\begin{tabular}{r@{ $=$ }l}
-  $f(0)$   & $\sigma(\xi())$ \\
-  $f(x+1)$ & $monus(plus(f(x),f(monus(x,\sigma(\xi())))),eq(x,\xi()))$ \\
+\begin{tabular}{rcl}
+  $f(x)$   & \hspace{-3mm}$=$\hspace{-3mm} & $\pi_1^2 \circ h(x)$\\
+  $h(x+1)$ & \hspace{-3mm}$=$\hspace{-3mm}      & $(\pi_2^2 \circ h(x), plus(\pi_1^2 \circ h(x),\pi_2^2 \circ h(x)))$\\
+  $h(0)$   & \hspace{-3mm}$=$\hspace{-3mm}      & $(1,1)$
 \end{tabular}
 \end{center}
 
+Demonštrácia na príklade pre $f(5)$:\\
 
-\begin{center}
-\red{Riešenie 1.2.B}
-\begin{tabular}{r@{ $=$ }l}
-  $zero()$ & $\xi()$ \\
-  $one()$  & $\sigma(zero())$ \\
-  $f(0)$   & $one()$ \\
-  $f(x+1)$ & $h(x,f(monus(x,one())))$ \\
-  $h(x,y)$ & $monus(plus(f(x),y),eq(x,zero()))$ \\
-\end{tabular}
-\end{center}
-
-
-
-
-Skúška správnosti pre $f(5)$ napríklad \red{pre 1.2.A}\\
-
-\begin{tabular}{rl}
-$f(5)$\hspace{-3mm} & $= monus(plus(f(4),f(monus(4,1))),eq(4,0))$\\
-                    & $= monus(plus(f(4),f(3))),0)$\\
-                    & $= monus(plus(5,3),0)$\\
-                    & $= monus(8,0)$\\
-                    & $= 8$\\
-\\[-0.5em]
-$f(4)$\hspace{-3mm} & $= monus(plus(f(3),f(monus(3,1))),eq(3,0))$\\
-                    & $= monus(plus(f(3),f(2))),0)$\\
-                    & $= monus(plus(3,2),0)$\\
-                    & $= monus(5,0)$\\
-                    & $= 5$\\
-\\[-0.5em]
-$f(3)$\hspace{-3mm} & $= monus(plus(f(2),f(monus(2,1))),eq(2,0))$\\
-                    & $= monus(plus(f(2),f(1))),0)$\\
-                    & $= monus(plus(2,1),0)$\\
-                    & $= monus(3,0)$\\
-                    & $= 3$\\
-\\[-0.5em]
-$f(2)$\hspace{-3mm} & $= monus(plus(f(1),f(monus(1,1))),eq(1,0))$\\
-                    & $= monus(plus(f(1),f(0))),0)$\\
-                    & $= monus(plus(1,1),0)$\\
-                    & $= monus(2,0)$\\
-                    & $= 2$\\
-\\[-0.5em]
-$f(1)$\hspace{-3mm} & $= monus(plus(f(0),f(monus(0,1))),eq(0,0))$\\
-                    & $= monus(plus(f(0),f(0))),1)$\\
-                    & $= monus(plus(1,1),1)$\\
-                    & $= monus(2,1)$\\
-                    & $= 1$\\
-\\[-0.5em]
-$f(0)$\hspace{-3mm} & $= 1$\\
+\begin{tabular}{rcl}
+$f(5)$ & \hspace{-3mm}$=$\hspace{-3mm} & $\pi_1^2 \circ h(5)$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $\pi_1^2 (8,13)$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $8$\\
+\\[-0.75em]
+$h(5)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 \circ h(4), plus(\pi_1^2 \circ h(4),\pi_2^2 \circ h(4)))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 (5, 8), plus(\pi_1^2 (5, 8),\pi_2^2 (5, 8)))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(8, plus(5,8))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(8,13)$\\
+\\[-0.75em]
+$h(4)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 \circ h(3), plus(\pi_1^2 \circ h(3),\pi_2^2 \circ h(3)))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 (3, 5), plus(\pi_1^2 (3, 5),\pi_2^2 (3, 5)))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(5, plus(3,5))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(5,8)$\\
+\\[-0.75em]
+$h(3)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 \circ h(2), plus(\pi_1^2 \circ h(2),\pi_2^2 \circ h(2)))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 (2, 3), plus(\pi_1^2 (2, 3),\pi_2^2 (2, 3)))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(3, plus(2,3))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(3,5)$\\
+\\[-0.75em]
+$h(2)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 \circ h(1), plus(\pi_1^2 \circ h(1),\pi_2^2 \circ h(1)))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 (1, 2), plus(\pi_1^2 (1, 2),\pi_2^2 (1, 2)))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(2, plus(1,2))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(2,3)$\\
+\\[-0.75em]
+$h(1)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 \circ h(0), plus(\pi_1^2 \circ h(0),\pi_2^2 \circ h(0)))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(\pi_2^2 (1, 1), plus(\pi_1^2 (1, 1),\pi_2^2 (1, 1)))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(1, plus(1,1))$\\
+       & \hspace{-3mm}$=$\hspace{-3mm} & $(1,2)$\\
+\\[-0.75em]
+$h(0)$ & \hspace{-3mm}$=$\hspace{-3mm} & $(1, 1)$\\
 \end{tabular}
 
 \newpage
@@ -350,11 +333,11 @@ Dôkaz:\\[-0.5em]
   \begin{center}
     $\mathcal{O}(3^{2n}) \supseteq \mathcal{O}(2^{3n})$
   \end{center}
-  tak z toho vyplýva, že nasledujúci vzťah
+  tak z toho vyplýva, že nasledujúci vzťah neplatí
   \begin{center}
     $\mathcal{O}(3^{2n}) = \mathcal{O}(2^{3n})$
   \end{center}
-  neplatí, teda musí platiť, že
+  teda musí platiť, že
   \begin{center}
     $\mathcal{O}(3^{2n}) \neq \mathcal{O}(2^{3n})$
   \end{center}
