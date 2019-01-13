@@ -22,4 +22,4 @@
 
 ## Materials
 
-The required materials, which were necessary to these homeworks can be found [here](https://github.com/europ/VUTBR-FIT-TIN/blob/master/other/MATERIALS.md).
+The required materials, which were necessary to these homeworks can be found [here](https://github.com/europ/VUTBR-FIT-TIN/blob/master/other/README.md).
