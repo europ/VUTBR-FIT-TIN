@@ -22,4 +22,8 @@
 
 ## Materials
 
-The required materials, which were necessary to these homeworks can be found [here](https://github.com/europ/VUTBR-FIT-TIN/blob/master/other/README.md).
+The required materials, which were necessary to complete these homeworks can be found [here](https://github.com/europ/VUTBR-FIT-TIN/blob/master/other/README.md).
+
+## Tools
+
+Online finite state machine designer, which can be exported to LaTeX, can be found [here](http://madebyevan.com/fsm/).
